@@ -28,12 +28,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
-      lang="en"
       className={`${GeistSans.variable}`}
+      lang="en"
       suppressHydrationWarning
     >
       <body>
-        <ThemeProvider attribute="class" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-sky-500 to-white dark:from-sky-950 dark:to-black">
             <Header />
             {children}
