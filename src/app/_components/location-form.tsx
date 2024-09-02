@@ -54,7 +54,7 @@ export function LocationForm() {
   }
 
   if (form.formState.isLoading) {
-    return <span>Loading...</span>;
+    return <span>Loading location...</span>;
   }
 
   return (
