@@ -1,11 +1,11 @@
 import { type Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { GeistSans } from "geist/font/sans";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import "~/styles/globals.css";
 
 import { Header } from "~/components/header";
+import { QueryProvider } from "~/components/providers/query";
 
 export const metadata: Metadata = {
   title: "Weather",
@@ -24,8 +24,6 @@ export const metadata: Metadata = {
   },
 };
 
-const queryClient = new QueryClient();
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -37,12 +35,12 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <QueryClientProvider client={queryClient}>
+          <QueryProvider>
             <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-sky-500 to-white dark:from-sky-950 dark:to-black">
               <Header />
               {children}
             </main>
-          </QueryClientProvider>
+          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>
