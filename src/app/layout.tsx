@@ -1,7 +1,10 @@
+import { type Metadata } from "next";
+import { ThemeProvider } from "next-themes";
+import { GeistSans } from "geist/font/sans";
+
 import "~/styles/globals.css";
 
-import { GeistSans } from "geist/font/sans";
-import { type Metadata } from "next";
+import { Header } from "~/components/header";
 
 export const metadata: Metadata = {
   title: "Weather",
@@ -24,11 +27,18 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
+    <html
+      lang="en"
+      className={`${GeistSans.variable}`}
+      suppressHydrationWarning
+    >
       <body>
-        <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-sky-500 to-white text-white dark:from-sky-950 dark:to-black">
-          {children}
-        </main>
+        <ThemeProvider attribute="class" enableSystem>
+          <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-sky-500 to-white dark:from-sky-950 dark:to-black">
+            <Header />
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );
