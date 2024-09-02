@@ -1,6 +1,6 @@
 import { CloudSun } from "lucide-react";
 
-import { LocationForm } from "~/app/_components/location";
+import { LocationForm } from "~/app/_components/location-form";
 
 export default function HomePage() {
   return (
