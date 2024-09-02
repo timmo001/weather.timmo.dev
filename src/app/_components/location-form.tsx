@@ -16,12 +16,24 @@ import {
 import { Input } from "~/components/ui/input";
 import { LocationSchema } from "~/lib/schema";
 
+type Location = z.infer<typeof LocationSchema>;
+
 export function LocationForm() {
-  const form = useForm<z.infer<typeof LocationSchema>>({
+  const form = useForm<Location>({
     resolver: zodResolver(LocationSchema),
-    defaultValues: {
-      latitude: 32,
-      longitude: 104.9,
+    defaultValues: async () => {
+      const data = localStorage.getItem("location");
+      if (data) {
+        try {
+          return JSON.parse(data);
+        } catch (e) {
+          console.error("Error parsing location data:", e);
+        }
+      }
+      return {
+        latitude: 32,
+        longitude: 104.9,
+      };
     },
   });
 
@@ -39,12 +51,16 @@ export function LocationForm() {
   }
 
   function onSetLocation() {
-    const data: z.infer<typeof LocationSchema> = {
+    const data: Location = {
       latitude: Number(form.getValues("latitude")),
       longitude: Number(form.getValues("longitude")),
     };
     console.log("Update location:", data);
     localStorage.setItem("location", JSON.stringify(data));
+  }
+
+  if (form.formState.isLoading) {
+    return <span>Loading...</span>;
   }
 
   return (
