@@ -1,5 +1,6 @@
 import { CloudSun } from "lucide-react";
 
+import { ForecastNow } from "~/app/_components/forecast-now";
 import { LocationForm } from "~/app/_components/location-form";
 
 export default function HomePage() {
@@ -18,6 +19,9 @@ export default function HomePage() {
       </section>
       <section className="flex flex-col items-center gap-3 delay-300 duration-300 animate-in fade-in">
         <h2 className="text-2xl font-bold text-white">Forecast</h2>
+        <h3 className="text-xl font-semibold text-white">Now</h3>
+
+        <ForecastNow />
       </section>
     </div>
   );
