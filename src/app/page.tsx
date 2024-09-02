@@ -20,8 +20,6 @@ export default function HomePage() {
       </section>
       <section className="flex w-full flex-col items-center gap-3 delay-300 duration-300 animate-in fade-in">
         <h2 className="text-2xl font-bold">Forecast</h2>
-        <h3 className="text-xl font-semibold">Now</h3>
-
         <ForecastNow />
         <ForecastHourly />
       </section>
