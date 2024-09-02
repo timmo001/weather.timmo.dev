@@ -49,7 +49,7 @@ export function LocationForm() {
 
   return (
     <Form {...form}>
-      <form className="flex flex-row gap-4">
+      <form className="flex flex-row flex-wrap gap-4">
         <FormField
           control={form.control}
           name="latitude"

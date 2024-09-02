@@ -7,7 +7,7 @@ const forecast12Hour = [
 
 export function ForecastHourly() {
   return (
-    <div className="flex max-w-screen-sm select-none flex-row gap-4 overflow-y-auto">
+    <div className="flex max-w-screen-md select-none flex-row gap-4 overflow-y-auto">
       {forecast12Hour.map((temp, index) => (
         <div key={index} className="flex flex-col items-stretch gap-1">
           <div className="flex flex-row items-center gap-1">
