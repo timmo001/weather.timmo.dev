@@ -1,6 +1,7 @@
 "use client";
 import { LocateFixed } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { useQueryClient } from "@tanstack/react-query";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -15,25 +16,17 @@ import {
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 import { LocationSchema } from "~/lib/schema";
+import { getLocationFromLocalStorage } from "~/lib/localStorage";
 
 type Location = z.infer<typeof LocationSchema>;
 
 export function LocationForm() {
+  const queryClient = useQueryClient();
+
   const form = useForm<Location>({
     resolver: zodResolver(LocationSchema),
     defaultValues: async () => {
-      const data = localStorage.getItem("location");
-      if (data) {
-        try {
-          return JSON.parse(data);
-        } catch (e) {
-          console.error("Error parsing location data:", e);
-        }
-      }
-      return {
-        latitude: 32,
-        longitude: 104.9,
-      };
+      return getLocationFromLocalStorage();
     },
   });
 
@@ -57,6 +50,7 @@ export function LocationForm() {
     };
     console.log("Update location:", data);
     localStorage.setItem("location", JSON.stringify(data));
+    queryClient.invalidateQueries({ queryKey: ["location"] });
   }
 
   if (form.formState.isLoading) {

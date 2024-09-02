@@ -1,11 +1,19 @@
 "use client";
+import { useQuery } from "@tanstack/react-query";
 import { CloudSun } from "lucide-react";
+
+import { getLocationFromLocalStorage } from "~/lib/localStorage";
 
 const forecast12Hour = [
   22.1, 21.9, 21.6, 21.4, 21.2, 21.1, 21.0, 20.9, 20.8, 20.7, 20.6, 20.5,
 ];
 
 export function ForecastHourly() {
+  const location = useQuery({
+    queryKey: ["location"],
+    queryFn: getLocationFromLocalStorage,
+  });
+
   return (
     <div className="flex max-w-screen-md select-none flex-row gap-4 overflow-y-auto">
       {forecast12Hour.map((temp, index) => (
