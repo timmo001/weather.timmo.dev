@@ -3,7 +3,7 @@ import { CloudSun } from "lucide-react";
 
 export function ForecastNow() {
   return (
-    <div className="flex flex-row items-stretch gap-6">
+    <div className="flex select-none flex-row items-stretch gap-6">
       <div className="flex flex-row items-center gap-1">
         <CloudSun className="h-24 w-24" />
       </div>

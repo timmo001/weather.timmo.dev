@@ -67,3 +67,19 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  ::-webkit-scrollbar {
+    height: 0.4rem;
+    width: 0.4rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(60, 60, 60, 0.8);
+    border-radius: 0.5rem;
+  }
+}
