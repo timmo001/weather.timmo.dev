@@ -17,7 +17,7 @@ export function Header() {
         <div />
       ) : (
         <Link href="/">
-          <CloudSun className="h-[1.2rem] w-[1.2rem]" />
+          <CloudSun className="h-[1.2rem] w-[1.2rem] delay-200 duration-300 animate-in fade-in" />
         </Link>
       )}
       <ThemeToggle />
