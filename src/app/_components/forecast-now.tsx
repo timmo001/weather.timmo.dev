@@ -5,11 +5,11 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 import { getLocationFromLocalStorage } from "~/lib/localStorage";
+import { getWeatherForecastNow } from "~/lib/serverActions/tomorrowio";
 import {
   type WeatherForecastErrorResponse,
   type WeatherForecastNow,
-  getWeatherForecastNow,
-} from "~/lib/serverActions/tomorrowio";
+} from "~/lib/types/tomorrowio";
 
 dayjs.extend(relativeTime);
 

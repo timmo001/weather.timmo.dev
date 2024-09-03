@@ -4,11 +4,11 @@ import dayjs from "dayjs";
 import { CloudSun } from "lucide-react";
 
 import { getLocationFromLocalStorage } from "~/lib/localStorage";
+import { getWeatherForecastHourly } from "~/lib/serverActions/tomorrowio";
 import {
   type WeatherForecastErrorResponse,
   type WeatherForecastHourly,
-  getWeatherForecastHourly,
-} from "~/lib/serverActions/tomorrowio";
+} from "~/lib/types/tomorrowio";
 
 export function ForecastHourly() {
   const location = useQuery({
