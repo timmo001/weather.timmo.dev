@@ -41,7 +41,7 @@ export function ForecastHourly() {
   return (
     <div className="mt-4 flex select-none flex-col items-center gap-1 text-center">
       <h3 className="text-xl font-semibold">Hourly</h3>
-      <div className="mt-1 flex max-w-screen-md flex-row gap-4 overflow-y-auto">
+      <div className="custom-scrollbar mt-1 flex max-w-screen-sm flex-row flex-nowrap gap-4 overflow-y-auto md:max-w-screen-md lg:max-w-screen-lg">
         {forecastHourly.data.map((item) => {
           const time = dayjs(item.time);
 
