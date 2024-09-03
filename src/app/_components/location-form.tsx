@@ -17,7 +17,7 @@ import {
 import { Input } from "~/components/ui/input";
 import { type Location, LocationSchema } from "~/lib/schema";
 import { getLocationFromLocalStorage } from "~/lib/localStorage";
-import { DialogFooter, DialogTrigger } from "~/components/ui/dialog";
+import { DialogClose, DialogFooter } from "~/components/ui/dialog";
 
 export function LocationForm() {
   const router = useRouter();
@@ -42,12 +42,15 @@ export function LocationForm() {
     );
   }
 
-  async function onSetLocation(data: Location) {
+  async function onSetLocation() {
+    const data: Location = {
+      latitude: Number(form.getValues("latitude")),
+      longitude: Number(form.getValues("longitude")),
+    };
     console.log("Update location:", data);
     localStorage.setItem("location", JSON.stringify(data));
     await queryClient.invalidateQueries({ queryKey: ["location"] });
     router.refresh();
-    // window.location.reload();
   }
 
   if (form.formState.isLoading) {
@@ -56,10 +59,7 @@ export function LocationForm() {
 
   return (
     <Form {...form}>
-      <form
-        className="flex flex-row flex-wrap items-center justify-center gap-4"
-        onSubmit={form.handleSubmit(onSetLocation)}
-      >
+      <form className="flex flex-col gap-1">
         <FormField
           control={form.control}
           name="latitude"
@@ -86,22 +86,22 @@ export function LocationForm() {
             </FormItem>
           )}
         />
-        <DialogFooter className="">
-          <Button
-            type="button"
-            size="default"
-            variant="outline"
-            onClick={onGetLocation}
-          >
-            <LocateFixed className="h-4 w-4" />
-            <span className="ms-2">Use my location</span>
-          </Button>
-          <DialogTrigger asChild>
-            <Button type="submit">
+        <Button
+          className="my-2"
+          type="button"
+          variant="outline"
+          onClick={onGetLocation}
+        >
+          <LocateFixed className="h-4 w-4" />
+          <span className="ms-2">Use my location</span>
+        </Button>
+        <DialogFooter className="flex w-full flex-row flex-wrap items-stretch justify-center gap-4">
+          <DialogClose asChild>
+            <Button type="button" onClick={onSetLocation}>
               <Save className="h-4 w-4" />
               <span className="ms-2">Set Location</span>
             </Button>
-          </DialogTrigger>
+          </DialogClose>
         </DialogFooter>
       </form>
     </Form>

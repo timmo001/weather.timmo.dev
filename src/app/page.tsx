@@ -31,7 +31,7 @@ export default function HomePage() {
               Set Location
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="w-full">
             <DialogHeader>
               <DialogTitle>Set Location</DialogTitle>
               <DialogDescription>
