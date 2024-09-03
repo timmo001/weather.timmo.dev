@@ -19,7 +19,7 @@ export const metadata: Metadata = {
         url: "/api/og",
       },
     ],
-    siteName: "Notes",
+    siteName: "Weather",
     url: "https://weather.timmo.dev",
   },
 };
