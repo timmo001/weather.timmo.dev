@@ -113,7 +113,7 @@ export async function getWeatherForecastHourly(
   return unstable_cache(
     async (): Promise<WeatherForecastErrorResponse | WeatherForecastHourly> => {
       const response = await fetch(
-        `${env.WEATHER_API_KEY}/forecast?${BASE_PARAMS}&location=${location.latitude},${location.longitude}&timesteps=1h`,
+        `${env.WEATHER_BASE_URL}/forecast?${BASE_PARAMS}&location=${location.latitude},${location.longitude}&timesteps=1h`,
         BASE_REQUEST_OPTIONS,
       );
       const responseData = (await response.json()) as
@@ -142,7 +142,7 @@ export async function getWeatherForecastDaily(
   return unstable_cache(
     async (): Promise<WeatherForecastErrorResponse | WeatherForecastDaily> => {
       const response = await fetch(
-        `${env.WEATHER_API_KEY}/forecast?${BASE_PARAMS}&location=${location.latitude},${location.longitude}&timesteps=1d`,
+        `${env.WEATHER_BASE_URL}/forecast?${BASE_PARAMS}&location=${location.latitude},${location.longitude}&timesteps=1d`,
         BASE_REQUEST_OPTIONS,
       );
       const responseData = (await response.json()) as
