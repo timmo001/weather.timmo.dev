@@ -1,5 +1,6 @@
 "use client";
-import { LocateFixed } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { LocateFixed, Save } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useQueryClient } from "@tanstack/react-query";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,8 +17,10 @@ import {
 import { Input } from "~/components/ui/input";
 import { type Location, LocationSchema } from "~/lib/schema";
 import { getLocationFromLocalStorage } from "~/lib/localStorage";
+import { DialogClose, DialogFooter } from "~/components/ui/dialog";
 
 export function LocationForm() {
+  const router = useRouter();
   const queryClient = useQueryClient();
 
   const form = useForm<Location>({
@@ -32,7 +35,6 @@ export function LocationForm() {
       (position) => {
         form.setValue("latitude", position.coords.latitude);
         form.setValue("longitude", position.coords.longitude);
-        onSetLocation(false);
       },
       (error) => {
         console.error("Error getting location:", error);
@@ -40,14 +42,15 @@ export function LocationForm() {
     );
   }
 
-  function onSetLocation(invalidate: boolean) {
+  async function onSetLocation() {
     const data: Location = {
       latitude: Number(form.getValues("latitude")),
       longitude: Number(form.getValues("longitude")),
     };
     console.log("Update location:", data);
     localStorage.setItem("location", JSON.stringify(data));
-    if (invalidate) queryClient.invalidateQueries({ queryKey: ["location"] });
+    await queryClient.invalidateQueries({ queryKey: ["location"] });
+    router.refresh();
   }
 
   if (form.formState.isLoading) {
@@ -56,7 +59,7 @@ export function LocationForm() {
 
   return (
     <Form {...form}>
-      <form className="flex flex-row flex-wrap gap-4">
+      <form className="flex flex-col gap-1">
         <FormField
           control={form.control}
           name="latitude"
@@ -64,16 +67,7 @@ export function LocationForm() {
             <FormItem>
               <FormLabel>Latitude</FormLabel>
               <FormControl>
-                <Input
-                  className="border-transparent bg-sky-500/40 dark:bg-sky-900/40"
-                  type="number"
-                  placeholder="32"
-                  {...field}
-                  onChange={(event) => {
-                    field.onChange(event);
-                    onSetLocation(true);
-                  }}
-                />
+                <Input type="number" placeholder="32" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -86,31 +80,29 @@ export function LocationForm() {
             <FormItem>
               <FormLabel>Longitude</FormLabel>
               <FormControl>
-                <Input
-                  className="border-transparent bg-sky-500/40 dark:bg-sky-900/40"
-                  type="number"
-                  placeholder="104.9"
-                  {...field}
-                  onChange={(event) => {
-                    field.onChange(event);
-                    onSetLocation(true);
-                  }}
-                />
+                <Input type="number" placeholder="104.9" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button
-          className="self-end border-transparent bg-sky-500/40 hover:bg-accent/90 hover:text-accent-foreground dark:bg-sky-900/40 dark:hover:bg-accent/60"
+          className="my-2"
           type="button"
-          size="default"
           variant="outline"
           onClick={onGetLocation}
         >
           <LocateFixed className="h-4 w-4" />
           <span className="ms-2">Use my location</span>
         </Button>
+        <DialogFooter className="flex w-full flex-row flex-wrap items-stretch justify-center gap-4">
+          <DialogClose asChild>
+            <Button type="button" onClick={onSetLocation}>
+              <Save className="h-4 w-4" />
+              <span className="ms-2">Set Location</span>
+            </Button>
+          </DialogClose>
+        </DialogFooter>
       </form>
     </Form>
   );

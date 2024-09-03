@@ -2,6 +2,15 @@ import { CloudSun } from "lucide-react";
 import { ForecastDaily } from "~/app/_components/forecast-daily";
 import { ForecastHourly } from "~/app/_components/forecast-hourly";
 
+import { Button } from "~/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "~/components/ui/dialog";
 import { ForecastNow } from "~/app/_components/forecast-now";
 import { LocationForm } from "~/app/_components/location-form";
 
@@ -16,8 +25,22 @@ export default function HomePage() {
         Weather
       </h1>
       <section className="flex w-full flex-col items-center gap-3 delay-300 duration-300 animate-in fade-in">
-        <h2 className="text-2xl font-bold">Set Location</h2>
-        <LocationForm />
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="text-2xl font-bold" size="lg">
+              Set Location
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="w-full">
+            <DialogHeader>
+              <DialogTitle>Set Location</DialogTitle>
+              <DialogDescription>
+                Set your location to get the weather forecast
+              </DialogDescription>
+            </DialogHeader>
+            <LocationForm />
+          </DialogContent>
+        </Dialog>
       </section>
       <section className="flex w-full flex-col items-center gap-3 delay-300 duration-300 animate-in fade-in">
         <h2 className="text-2xl font-bold">Now</h2>
