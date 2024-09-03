@@ -5,7 +5,7 @@ import { CloudSun } from "lucide-react";
 
 import { getLocationFromLocalStorage } from "~/lib/localStorage";
 import { getWeatherForecastDaily } from "~/lib/serverActions/accuweather";
-import { type AccuweatherHourlyForecast } from "~/lib/types/accuweather";
+import { type AccuweatherDailyForecast } from "~/lib/types/accuweather";
 
 export function ForecastDaily() {
   const location = useQuery({
@@ -16,7 +16,7 @@ export function ForecastDaily() {
   const forecastDaily = useQuery({
     staleTime: 1000 * 60 * 30, // 30 minutes
     queryKey: [location.data, "forecast", "daily"],
-    queryFn: async (): Promise<Array<AccuweatherHourlyForecast>> => {
+    queryFn: async (): Promise<AccuweatherDailyForecast> => {
       if (location.isLoading || !location.data)
         return Promise.reject("No location data.");
       console.log("Get daily forecast for location:", location.data);
@@ -37,35 +37,36 @@ export function ForecastDaily() {
       ) : !forecastDaily.data ? (
         <span>No daily forecast data.</span>
       ) : (
-        <div className="custom-scrollbar mt-1 flex max-w-96 flex-row flex-nowrap gap-4 overflow-y-auto md:max-w-screen-md lg:max-w-screen-lg">
-          {forecastDaily.data.map((item) => {
-            const time = dayjs(item.time);
+        <div className="custom-scrollbar mt-1 flex max-w-96 flex-row flex-nowrap gap-4 overflow-x-auto overflow-y-hidden md:max-w-screen-md lg:max-w-screen-lg">
+          {forecastDaily.data.DailyForecasts.map((item) => {
+            const dateTime = dayjs(item.Date);
 
             return (
               <div
-                key={time.toISOString()}
+                key={item.EpochDate}
                 className="flex flex-col items-stretch gap-1"
               >
                 <div className="flex flex-col items-center">
                   <span className="text-sm font-semibold">
-                    {time.format("ddd")}
+                    {dateTime.format("ddd")}
                   </span>
                 </div>
-                <div className="flex flex-row items-center gap-1">
-                  <CloudSun className="h-16 w-16" />
-                </div>
-                <div className="flex flex-row items-center gap-1">
-                  <span className="text-xl font-bold">
-                    {item.temperatureMin.toFixed(1)}
-                  </span>
-                  <span className="text-sm font-semibold">°C</span>
-                </div>
+                <CloudSun className="h-20 w-20" />
+                <span className="text-xl font-bold">{item.Day.IconPhrase}</span>
                 <div className="flex flex-row items-center gap-1">
                   <span className="text-xl font-bold">
-                    {item.temperatureMax.toFixed(1)}
+                    {item.Temperature.Minimum.Value.toFixed(1)}
                   </span>
-                  <span className="text-sm font-semibold">°C</span>
+                  <span className="text-sm font-semibold">
+                    °{item.Temperature.Minimum.Unit}
+                  </span>
                 </div>
+                <span className="text-xl font-bold">
+                  {item.Temperature.Maximum.Value.toFixed(1)}
+                  <span className="ms-1 pb-1 text-sm font-semibold">
+                    °{item.Temperature.Maximum.Unit}
+                  </span>
+                </span>
               </div>
             );
           })}

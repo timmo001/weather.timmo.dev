@@ -1,5 +1,5 @@
 import { CloudSun } from "lucide-react";
-// import { ForecastDaily } from "~/app/_components/forecast-daily";
+import { ForecastDaily } from "~/app/_components/forecast-daily";
 import { ForecastHourly } from "~/app/_components/forecast-hourly";
 
 import { ForecastNow } from "~/app/_components/forecast-now";
@@ -23,7 +23,7 @@ export default function HomePage() {
         <ForecastNow />
         <h2 className="mt-3 text-2xl font-bold">Forecast</h2>
         <ForecastHourly />
-        {/* <ForecastDaily /> */}
+        <ForecastDaily />
       </section>
     </div>
   );

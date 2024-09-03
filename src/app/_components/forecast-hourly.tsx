@@ -37,13 +37,13 @@ export function ForecastHourly() {
       ) : !forecastHourly.data ? (
         <span>No hourly forecast data.</span>
       ) : (
-        <div className="custom-scrollbar mt-1 flex max-w-96 flex-row flex-nowrap gap-4 overflow-y-auto md:max-w-screen-md lg:max-w-screen-lg">
+        <div className="custom-scrollbar mt-1 flex max-w-96 flex-row flex-nowrap gap-4 overflow-x-auto overflow-y-hidden md:max-w-screen-md lg:max-w-screen-lg">
           {forecastHourly.data.map((item) => {
             const dateTime = dayjs(item.DateTime);
 
             return (
               <div
-                key={dateTime.toISOString()}
+                key={item.EpochDateTime}
                 className="flex flex-col items-stretch gap-1"
               >
                 <div className="flex flex-col items-center">
@@ -54,17 +54,14 @@ export function ForecastHourly() {
                     {dateTime.format("HH:mm")}
                   </span>
                 </div>
-                <div className="flex flex-row items-center gap-1">
-                  <CloudSun className="h-16 w-16" />
-                </div>
-                <div className="flex flex-row items-center gap-1">
-                  <span className="text-xl font-bold">
-                    {item.Temperature.Value.toFixed(1)}
-                  </span>
-                  <span className="text-sm font-semibold">
+                <CloudSun className="h-20 w-20" />
+                <span className="text-sm font-bold">{item.IconPhrase}</span>
+                <span className="align-top text-xl font-bold">
+                  {item.Temperature.Value.toFixed(1)}
+                  <span className="ms-1 pb-1 text-sm font-semibold">
                     °{item.Temperature.Unit.toUpperCase()}
                   </span>
-                </div>
+                </span>
               </div>
             );
           })}

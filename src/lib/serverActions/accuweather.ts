@@ -8,6 +8,7 @@ import {
   type AccuweatherLocation,
   type AccuweatherCurrentConditions,
   AccuweatherHourlyForecast,
+  AccuweatherDailyForecast,
 } from "~/lib/types/accuweather";
 
 const BASE_PARAMS = `apikey=${env.WEATHER_API_KEY}&details=true&language=en-gb`;
@@ -95,10 +96,22 @@ export async function getWeatherForecastHourly(
 
 export async function getWeatherForecastDaily(
   location: Location,
-): Promise<any> {
+): Promise<AccuweatherDailyForecast> {
   return unstable_cache(
-    async (): Promise<any> => {
-      return Promise.reject("Not implemented.");
+    async (): Promise<AccuweatherDailyForecast> => {
+      const weatherLocation = await getWeatherLocation(location);
+      console.log("Location key:", weatherLocation.Key);
+
+      const url = `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${weatherLocation.Key}?${BASE_PARAMS}&metric=true`;
+      console.log("Get daily forecast:", url);
+      const response = await fetch(url, BASE_REQUEST_OPTIONS);
+      const responseData = await response.json();
+      console.log("Response:", JSON.stringify(responseData));
+
+      if (!responseData || responseData.length === 0 || !responseData[0])
+        return Promise.reject("No data found.");
+
+      return responseData;
     },
     [`${location.latitude},${location.longitude}`],
     {
