@@ -51,7 +51,6 @@ export function ForecastNow() {
 
   return (
     <div className="flex select-none flex-col items-center gap-1 text-center">
-      <h3 className="text-xl font-semibold">Now</h3>
       {forecastNow.isLoading ? (
         <span>Loading realtime forecast...</span>
       ) : forecastNow.isError ? (
