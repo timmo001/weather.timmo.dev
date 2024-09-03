@@ -5,6 +5,7 @@ import { CloudSun } from "lucide-react";
 
 import { getLocationFromLocalStorage } from "~/lib/localStorage";
 import { getWeatherForecastHourly } from "~/lib/serverActions/tomorrowio";
+import { weatherCode } from "~/lib/tomorrowio/weatherCodes";
 import {
   type WeatherForecastErrorResponse,
   type WeatherForecastHourly,
@@ -48,25 +49,28 @@ export function ForecastHourly() {
             ": Too many requests to the API. Please try again later."}
         </span>
       ) : (
-        <div className="custom-scrollbar mt-1 flex max-w-96 flex-row flex-nowrap gap-4 overflow-y-auto md:max-w-screen-md lg:max-w-screen-lg">
+        <div className="custom-scrollbar mt-1 flex max-w-96 flex-row flex-nowrap gap-5 overflow-y-auto md:max-w-screen-md lg:max-w-screen-lg">
           {forecastHourly.data.map((item) => {
-            const time = dayjs(item.time);
+            const dateTime = dayjs(item.time);
 
             return (
               <div
-                key={time.toISOString()}
-                className="flex flex-col items-stretch gap-1"
+                key={String(item.time)}
+                className="flex flex-col items-center gap-1"
               >
                 <div className="flex flex-col items-center">
                   <span className="text-sm font-semibold">
-                    {time.format("ddd")}
+                    {dateTime.format("ddd")}
                   </span>
                   <span className="text-sm font-semibold">
-                    {time.format("HH:mm")}
+                    {dateTime.format("HH:mm")}
                   </span>
                 </div>
-                <div className="flex flex-row items-center gap-1">
-                  <CloudSun className="h-16 w-16" />
+                <CloudSun className="h-24 w-24" />
+                <div className="flex flex-col items-center">
+                  <span className="whitespace-nowrap text-sm font-semibold">
+                    {weatherCode[item.weatherCode] || "Unknown"}
+                  </span>
                 </div>
                 <div className="flex flex-row items-center gap-1">
                   <span className="text-xl font-bold">

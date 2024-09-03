@@ -67,13 +67,13 @@ export function ForecastNow() {
       ) : (
         <>
           <div className="flex flex-row items-stretch gap-6">
-            <CloudSun className="h-24 w-24" />
+            <CloudSun className="h-32 w-32" />
             <div className="flex flex-col items-center justify-center gap-1">
-              <span className="text-lg font-semibold">
+              <span className="text-3xl font-bold">
                 {weatherCode[forecastNow.data.weatherCode] || "Unknown"}
               </span>
               <div className="flex flex-row items-center gap-1">
-                <span className="text-4xl font-bold">
+                <span className="text-5xl font-semibold">
                   {forecastNow.data.temperature.toFixed(1)}
                 </span>
                 <span className="text-2xl font-semibold">°C</span>
