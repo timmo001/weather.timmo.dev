@@ -57,6 +57,14 @@ export function ForecastHourly() {
                 key={time.toISOString()}
                 className="flex flex-col items-stretch gap-1"
               >
+                <div className="flex flex-col items-center">
+                  <span className="text-sm font-semibold">
+                    {time.format("ddd")}
+                  </span>
+                  <span className="text-sm font-semibold">
+                    {time.format("HH:mm")}
+                  </span>
+                </div>
                 <div className="flex flex-row items-center gap-1">
                   <CloudSun className="h-16 w-16" />
                 </div>
@@ -65,14 +73,6 @@ export function ForecastHourly() {
                     {item.temperature.toFixed(1)}
                   </span>
                   <span className="text-sm font-semibold">°C</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <span className="text-sm font-semibold">
-                    {time.format("ddd")}
-                  </span>
-                  <span className="text-sm font-semibold">
-                    {time.format("HH:mm")}
-                  </span>
                 </div>
               </div>
             );

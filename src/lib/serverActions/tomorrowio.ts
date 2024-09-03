@@ -93,9 +93,9 @@ export async function getWeatherForecastDaily(
       console.log("Response:", JSON.stringify(responseData));
       if ("code" in responseData) return responseData;
 
-      return responseData.timelines.hourly.map((hourly) => ({
-        time: hourly.time,
-        ...hourly.values,
+      return responseData.timelines.daily.map((daily) => ({
+        time: daily.time,
+        ...daily.values,
       }));
     },
     [`${location.latitude},${location.longitude}`],
