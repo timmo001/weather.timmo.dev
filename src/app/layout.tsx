@@ -55,7 +55,7 @@ export default function RootLayout({
             <div className="flex min-h-screen flex-col items-center bg-gradient-to-b from-sky-500 to-white transition-all dark:from-sky-950 dark:to-black">
               <Header />
               <main
-                className="container flex flex-col items-center justify-center gap-12 p-4"
+                className="container mb-4 flex flex-col items-center justify-center gap-12 p-4"
                 role="main"
               >
                 <h1 className="flex select-none flex-row items-center gap-2 text-7xl font-extrabold tracking-tight delay-200 duration-300 animate-in fade-in sm:text-[5rem]">
