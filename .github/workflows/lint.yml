@@ -20,6 +20,8 @@ concurrency:
 jobs:
   lint-eslint:
     uses: timmo001/workflows/.github/workflows/lint-eslint.yml@master
+    with:
+      use-bun: true
   lint-markdown-links:
     uses: timmo001/workflows/.github/workflows/lint-markdown-links.yml@master
   lint-markdownlint:
