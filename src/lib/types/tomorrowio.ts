@@ -129,6 +129,6 @@ export type WeatherForecastHourly = Array<{
   windSpeed: number;
 }>;
 
-export type WeatherForecastDailyResponse = any;
+export type WeatherForecastDailyResponse = WeatherForecastHourlyResponse;
 
-export type WeatherForecastDaily = any;
+export type WeatherForecastDaily = WeatherForecastHourly;
