@@ -4,28 +4,28 @@ import dayjs from "dayjs";
 import { CloudSun } from "lucide-react";
 
 import { getLocationFromLocalStorage } from "~/lib/localStorage";
-import { getWeatherForecastHourly } from "~/lib/serverActions/tomorrowio";
+import { getWeatherForecastDaily } from "~/lib/serverActions/tomorrowio";
 import {
   type WeatherForecastErrorResponse,
-  type WeatherForecastHourly,
+  type WeatherForecastDaily,
 } from "~/lib/types/tomorrowio";
 
-export function ForecastHourly() {
+export function ForecastDaily() {
   const location = useQuery({
     queryKey: ["location"],
     queryFn: getLocationFromLocalStorage,
   });
 
-  const forecastHourly = useQuery({
-    staleTime: 1000 * 60 * 20, // 20 minutes
-    queryKey: [location.data, "forecast", "hourly"],
+  const forecastDaily = useQuery({
+    staleTime: 1000 * 60 * 30, // 30 minutes
+    queryKey: [location.data, "forecast", "daily"],
     queryFn: async (): Promise<
-      WeatherForecastErrorResponse | WeatherForecastHourly
+      WeatherForecastErrorResponse | WeatherForecastDaily
     > => {
       if (location.isLoading || !location.data)
         return Promise.reject("No location data.");
-      console.log("Get hourly forecast for location:", location.data);
-      return await getWeatherForecastHourly(location.data);
+      console.log("Get daily forecast for location:", location.data);
+      return await getWeatherForecastDaily(location.data);
     },
   });
 
@@ -34,22 +34,22 @@ export function ForecastHourly() {
 
   return (
     <div className="mt-4 flex select-none flex-col items-center gap-1 text-center">
-      <h3 className="text-xl font-semibold">Hourly</h3>
-      {forecastHourly.isLoading ? (
-        <span>Loading hourly forecast...</span>
-      ) : forecastHourly.isError ? (
-        <span>Error loading hourly forecast.</span>
-      ) : !forecastHourly.data ? (
-        <span>No hourly forecast data.</span>
-      ) : "code" in forecastHourly.data ? (
+      <h3 className="text-xl font-semibold">Daily</h3>
+      {forecastDaily.isLoading ? (
+        <span>Loading daily forecast...</span>
+      ) : forecastDaily.isError ? (
+        <span>Error loading daily forecast.</span>
+      ) : !forecastDaily.data ? (
+        <span>No daily forecast data.</span>
+      ) : "code" in forecastDaily.data ? (
         <span>
-          An error occured when loading hourly forecast data
-          {String(forecastHourly.data.code).startsWith("429") &&
+          An error occured when loading daily forecast data
+          {String(forecastDaily.data.code).startsWith("429") &&
             ": Too many requests to the API. Please try again later."}
         </span>
       ) : (
         <div className="custom-scrollbar mt-1 flex max-w-96 flex-row flex-nowrap gap-4 overflow-y-auto md:max-w-screen-md lg:max-w-screen-lg">
-          {forecastHourly.data.map((item) => {
+          {forecastDaily.data.map((item) => {
             const time = dayjs(item.time);
 
             return (

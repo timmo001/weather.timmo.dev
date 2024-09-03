@@ -1,9 +1,7 @@
 "use client";
-import { z } from "zod";
+import { type Location } from "~/lib/schema";
 
-import { LocationSchema } from "~/lib/schema";
-
-export function getLocationFromLocalStorage(): z.infer<typeof LocationSchema> {
+export function getLocationFromLocalStorage(): Location {
   const data = localStorage.getItem("location");
   if (data) {
     try {
