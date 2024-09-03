@@ -34,35 +34,40 @@ export function ForecastNow() {
 
   if (location.isLoading) return <span>Loading location...</span>;
   if (location.isError) return <span>Error loading location...</span>;
-  if (forecastNow.isLoading) return <span>Loading realtime forecast...</span>;
-  if (forecastNow.isError) return <span>Error loading realtime forecast.</span>;
-  if (!forecastNow.data) return <span>No realtime forecast data.</span>;
-  if ("code" in forecastNow.data)
-    return (
-      <span>
-        An error occured when loading realtime forecast data
-        {String(forecastNow.data.code).startsWith("429") &&
-          ": Too many requests to the API. Please try again later."}
-      </span>
-    );
 
   return (
     <div className="flex select-none flex-col items-center gap-1 text-center">
       <h3 className="text-xl font-semibold">Now</h3>
-      <div className="flex flex-row items-stretch gap-6">
-        <div className="flex flex-row items-center gap-1">
-          <CloudSun className="h-24 w-24" />
-        </div>
-        <div className="flex flex-row items-center gap-1">
-          <span className="text-4xl font-bold">
-            {forecastNow.data.temperature.toFixed(1)}
+      {forecastNow.isLoading ? (
+        <span>Loading realtime forecast...</span>
+      ) : forecastNow.isError ? (
+        <span>Error loading realtime forecast.</span>
+      ) : !forecastNow.data ? (
+        <span>No realtime forecast data.</span>
+      ) : "code" in forecastNow.data ? (
+        <span>
+          An error occured when loading realtime forecast data
+          {String(forecastNow.data.code).startsWith("429") &&
+            ": Too many requests to the API. Please try again later."}
+        </span>
+      ) : (
+        <>
+          <div className="flex flex-row items-stretch gap-6">
+            <div className="flex flex-row items-center gap-1">
+              <CloudSun className="h-24 w-24" />
+            </div>
+            <div className="flex flex-row items-center gap-1">
+              <span className="text-4xl font-bold">
+                {forecastNow.data.temperature.toFixed(1)}
+              </span>
+              <span className="text-2xl font-semibold">°C</span>
+            </div>
+          </div>
+          <span className="text-sm font-semibold">
+            Last updated: {dayjs(forecastNow.data.time).fromNow()}
           </span>
-          <span className="text-2xl font-semibold">°C</span>
-        </div>
-      </div>
-      <span className="text-sm font-semibold">
-        Last updated: {dayjs(forecastNow.data.time).fromNow()}
-      </span>
+        </>
+      )}
     </div>
   );
 }
