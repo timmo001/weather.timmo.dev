@@ -41,10 +41,8 @@ export function ForecastNow() {
     return <span>{forecastNow.data.message}</span>;
 
   return (
-    <div className="flex select-none flex-col gap-6">
-      <span className="text-2xl font-semibold">
-        Last updated: {dayjs(forecastNow.data.time).fromNow()}
-      </span>
+    <div className="flex select-none flex-col items-center gap-1 text-center">
+      <h3 className="text-xl font-semibold">Now</h3>
       <div className="flex flex-row items-stretch gap-6">
         <div className="flex flex-row items-center gap-1">
           <CloudSun className="h-24 w-24" />
@@ -56,6 +54,9 @@ export function ForecastNow() {
           <span className="text-2xl font-semibold">°C</span>
         </div>
       </div>
+      <span className="text-sm font-semibold">
+        Last updated: {dayjs(forecastNow.data.time).fromNow()}
+      </span>
     </div>
   );
 }

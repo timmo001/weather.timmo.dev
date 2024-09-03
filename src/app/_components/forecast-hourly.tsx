@@ -39,35 +39,38 @@ export function ForecastHourly() {
     return <span>{forecastHourly.data.code}</span>;
 
   return (
-    <div className="flex max-w-screen-md select-none flex-row gap-4 overflow-y-auto">
-      {forecastHourly.data.map((item) => {
-        const time = dayjs(item.time);
+    <div className="mt-4 flex select-none flex-col items-center gap-1 text-center">
+      <h3 className="text-xl font-semibold">Hourly</h3>
+      <div className="mt-1 flex max-w-screen-md flex-row gap-4 overflow-y-auto">
+        {forecastHourly.data.map((item) => {
+          const time = dayjs(item.time);
 
-        return (
-          <div
-            key={time.toISOString()}
-            className="flex flex-col items-stretch gap-1"
-          >
-            <div className="flex flex-row items-center gap-1">
-              <CloudSun className="h-16 w-16" />
+          return (
+            <div
+              key={time.toISOString()}
+              className="flex flex-col items-stretch gap-1"
+            >
+              <div className="flex flex-row items-center gap-1">
+                <CloudSun className="h-16 w-16" />
+              </div>
+              <div className="flex flex-row items-center gap-1">
+                <span className="text-xl font-bold">
+                  {item.temperature.toFixed(1)}
+                </span>
+                <span className="text-sm font-semibold">°C</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-sm font-semibold">
+                  {time.format("ddd")}
+                </span>
+                <span className="text-sm font-semibold">
+                  {time.format("HH:mm")}
+                </span>
+              </div>
             </div>
-            <div className="flex flex-row items-center gap-1">
-              <span className="text-xl font-bold">
-                {item.temperature.toFixed(1)}
-              </span>
-              <span className="text-sm font-semibold">°C</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-sm font-semibold">
-                {time.format("ddd")}
-              </span>
-              <span className="text-sm font-semibold">
-                {time.format("HH:mm")}
-              </span>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 }
