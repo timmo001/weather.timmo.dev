@@ -23,7 +23,7 @@ export async function getWeatherLocation(
   return unstable_cache(
     async (): Promise<any> => {
       const response = await fetch(
-        `${env.WEATHER_BASE_URL}/locations/v1/cities/geoposition/search?${BASE_PARAMS}&q=${location.latitude},${location.longitude}`,
+        `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?${BASE_PARAMS}&q=${location.latitude},${location.longitude}`,
         BASE_REQUEST_OPTIONS,
       );
       const responseData = (await response.json()) as AccuweatherLocation;
@@ -48,7 +48,7 @@ export async function getWeatherForecastNow(
       console.log("Location key:", weatherLocation.Key);
 
       const response = await fetch(
-        `${env.WEATHER_BASE_URL}/currentconditions/v1/${weatherLocation.Key}?${BASE_PARAMS}`,
+        `http://dataservice.accuweather.com/currentconditions/v1/${weatherLocation.Key}?${BASE_PARAMS}`,
         BASE_REQUEST_OPTIONS,
       );
       const responseData =
