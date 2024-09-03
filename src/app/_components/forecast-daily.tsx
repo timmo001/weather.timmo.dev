@@ -59,7 +59,7 @@ export function ForecastDaily() {
                 className="flex flex-col items-center gap-1"
               >
                 <div className="flex flex-col items-center">
-                  <span className="text-sm font-semibold">
+                  <span className="text-base font-semibold">
                     {dateTime.format("ddd")}
                   </span>
                 </div>
