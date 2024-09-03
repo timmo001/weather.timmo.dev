@@ -11,7 +11,8 @@ export function ForecastHourly() {
   });
 
   const forecast = useQuery({
-    queryKey: ["forecast", location.data],
+    staleTime: 1000 * 60 * 20, // 20 minutes
+    queryKey: [location.data, "forecast", "hourly"],
     queryFn: async () => {
       return [
         22.1, 21.9, 21.6, 21.4, 21.2, 21.1, 21.0, 20.9, 20.8, 20.7, 20.6, 20.5,

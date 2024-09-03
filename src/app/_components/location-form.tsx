@@ -15,10 +15,8 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
-import { LocationSchema } from "~/lib/schema";
+import { type Location, LocationSchema } from "~/lib/schema";
 import { getLocationFromLocalStorage } from "~/lib/localStorage";
-
-type Location = z.infer<typeof LocationSchema>;
 
 export function LocationForm() {
   const queryClient = useQueryClient();
@@ -35,7 +33,7 @@ export function LocationForm() {
       (position) => {
         form.setValue("latitude", position.coords.latitude);
         form.setValue("longitude", position.coords.longitude);
-        onSetLocation();
+        onSetLocation(false);
       },
       (error) => {
         console.error("Error getting location:", error);
@@ -43,14 +41,14 @@ export function LocationForm() {
     );
   }
 
-  function onSetLocation() {
+  function onSetLocation(invalidate: boolean) {
     const data: Location = {
       latitude: Number(form.getValues("latitude")),
       longitude: Number(form.getValues("longitude")),
     };
     console.log("Update location:", data);
     localStorage.setItem("location", JSON.stringify(data));
-    queryClient.invalidateQueries({ queryKey: ["location"] });
+    if (invalidate) queryClient.invalidateQueries({ queryKey: ["location"] });
   }
 
   if (form.formState.isLoading) {
@@ -74,7 +72,7 @@ export function LocationForm() {
                   {...field}
                   onChange={(event) => {
                     field.onChange(event);
-                    onSetLocation();
+                    onSetLocation(true);
                   }}
                 />
               </FormControl>
@@ -96,7 +94,7 @@ export function LocationForm() {
                   {...field}
                   onChange={(event) => {
                     field.onChange(event);
-                    onSetLocation();
+                    onSetLocation(true);
                   }}
                 />
               </FormControl>
