@@ -27,10 +27,9 @@ export async function getWeatherForecastNow(
 ): Promise<WeatherForecastErrorResponse | WeatherForecastNow> {
   return unstable_cache(
     async (): Promise<WeatherForecastErrorResponse | WeatherForecastNow> => {
-      const response = await fetch(
-        `https://api.tomorrow.io/v4/weather/realtime?${BASE_PARAMS}&location=${location.latitude},${location.longitude}`,
-        BASE_REQUEST_OPTIONS,
-      );
+      const url = `https://api.tomorrow.io/v4/weather/realtime?${BASE_PARAMS}&location=${location.latitude},${location.longitude}`;
+      console.log("Get forecast now for location:", location, url);
+      const response = await fetch(url, BASE_REQUEST_OPTIONS);
       const responseData = (await response.json()) as
         | WeatherForecastErrorResponse
         | WeatherForecastNowResponse;
@@ -55,10 +54,9 @@ export async function getWeatherForecastHourly(
 ): Promise<WeatherForecastErrorResponse | WeatherForecastHourly> {
   return unstable_cache(
     async (): Promise<WeatherForecastErrorResponse | WeatherForecastHourly> => {
-      const response = await fetch(
-        `https://api.tomorrow.io/v4/weather/forecast?${BASE_PARAMS}&location=${location.latitude},${location.longitude}&timesteps=1h`,
-        BASE_REQUEST_OPTIONS,
-      );
+      const url = `https://api.tomorrow.io/v4/weather/forecast?${BASE_PARAMS}&location=${location.latitude},${location.longitude}&timesteps=1h`;
+      console.log("Get hourly forecast for location:", location, url);
+      const response = await fetch(url, BASE_REQUEST_OPTIONS);
       const responseData = (await response.json()) as
         | WeatherForecastErrorResponse
         | WeatherForecastHourlyResponse;
@@ -83,10 +81,9 @@ export async function getWeatherForecastDaily(
 ): Promise<WeatherForecastErrorResponse | WeatherForecastDaily> {
   return unstable_cache(
     async (): Promise<WeatherForecastErrorResponse | WeatherForecastDaily> => {
-      const response = await fetch(
-        `https://api.tomorrow.io/v4/weather/forecast?${BASE_PARAMS}&location=${location.latitude},${location.longitude}&timesteps=1d`,
-        BASE_REQUEST_OPTIONS,
-      );
+      const url = `https://api.tomorrow.io/v4/weather/forecast?${BASE_PARAMS}&location=${location.latitude},${location.longitude}&timesteps=1d`;
+      console.log("Get daily forecast for location:", location, url);
+      const response = await fetch(url, BASE_REQUEST_OPTIONS);
       const responseData = (await response.json()) as
         | WeatherForecastErrorResponse
         | WeatherForecastDailyResponse;
