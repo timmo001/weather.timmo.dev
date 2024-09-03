@@ -1,7 +1,6 @@
 "use client";
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { CloudSun } from "lucide-react";
 import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -12,6 +11,7 @@ import {
   type WeatherForecastNow,
 } from "~/lib/types/tomorrowio";
 import { weatherCode } from "~/lib/tomorrowio/weatherCodes";
+import { WeatherIcon } from "~/components/weatherIcon";
 
 dayjs.extend(relativeTime);
 
@@ -67,7 +67,13 @@ export function ForecastNow() {
       ) : (
         <>
           <div className="flex flex-row items-stretch gap-6">
-            <CloudSun className="h-32 w-32" />
+            <WeatherIcon
+              className="h-32 w-32"
+              code={forecastNow.data.weatherCode}
+              night={
+                dateTime ? dateTime.hour() < 6 || dateTime.hour() >= 18 : false
+              }
+            />
             <div className="flex flex-col items-center justify-center gap-1">
               <span className="text-3xl font-bold">
                 {weatherCode[forecastNow.data.weatherCode] || "Unknown"}

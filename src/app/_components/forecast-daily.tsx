@@ -1,7 +1,6 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
-import { CloudSun } from "lucide-react";
 
 import { getLocationFromLocalStorage } from "~/lib/localStorage";
 import { getWeatherForecastDaily } from "~/lib/serverActions/tomorrowio";
@@ -10,6 +9,7 @@ import {
   type WeatherForecastErrorResponse,
   type WeatherForecastDaily,
 } from "~/lib/types/tomorrowio";
+import { WeatherIcon } from "~/components/weatherIcon";
 
 export function ForecastDaily() {
   const location = useQuery({
@@ -63,7 +63,15 @@ export function ForecastDaily() {
                     {dateTime.format("ddd")}
                   </span>
                 </div>
-                <CloudSun className="h-24 w-24" />
+                <WeatherIcon
+                  className="h-24 w-24"
+                  code={item.weatherCodeMax}
+                  night={
+                    dateTime
+                      ? dateTime.hour() < 6 || dateTime.hour() >= 18
+                      : false
+                  }
+                />
                 <span className="whitespace-nowrap text-sm font-semibold">
                   {weatherCode[item.weatherCodeMax] || "Unknown"}
                 </span>
