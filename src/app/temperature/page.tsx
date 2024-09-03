@@ -1,3 +1,9 @@
+import { type Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Temperature | Weather",
+};
+
 export default function TemperaturePage() {
   return (
     <>

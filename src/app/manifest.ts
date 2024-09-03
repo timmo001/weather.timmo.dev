@@ -29,7 +29,14 @@ export default function manifest(): MetadataRoute.Manifest {
         type: "image/png",
       },
     ],
-    shortcuts: [],
+    shortcuts: [
+      {
+        name: "Temperature",
+        short_name: "Temperature",
+        url: "/temperature",
+        icons,
+      },
+    ],
   };
 
   // Return the manifest
