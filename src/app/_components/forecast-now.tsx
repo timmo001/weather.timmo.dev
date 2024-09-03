@@ -1,4 +1,5 @@
 "use client";
+import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { CloudSun } from "lucide-react";
 import dayjs, { Dayjs } from "dayjs";
@@ -11,7 +12,6 @@ import {
   type WeatherForecastNow,
 } from "~/lib/types/tomorrowio";
 import { weatherCode } from "~/lib/tomorrowio/weatherCodes";
-import { useMemo } from "react";
 
 dayjs.extend(relativeTime);
 
