@@ -87,7 +87,7 @@ export async function getWeatherForecastNow(
       const responseData = (await response.json()) as
         | WeatherForecastErrorResponse
         | WeatherForecastNowResponse;
-      console.log("Response:", responseData);
+      console.log("Response:", JSON.stringify(responseData));
       if ("code" in responseData) return responseData;
 
       return {
@@ -119,7 +119,7 @@ export async function getWeatherForecastHourly(
       const responseData = (await response.json()) as
         | WeatherForecastErrorResponse
         | WeatherForecastHourlyResponse;
-      console.log("Response:", responseData);
+      console.log("Response:", JSON.stringify(responseData));
       if ("code" in responseData) return responseData;
 
       return {};
@@ -148,7 +148,7 @@ export async function getWeatherForecastDaily(
       const responseData = (await response.json()) as
         | WeatherForecastErrorResponse
         | WeatherForecastDailyResponse;
-      console.log("Response:", responseData);
+      console.log("Response:", JSON.stringify(responseData));
       if ("code" in responseData) return responseData;
 
       return {};
