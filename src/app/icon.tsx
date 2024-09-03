@@ -24,7 +24,7 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "white",
+          color: "#cbd5e1",
         }}
       >
         <svg
