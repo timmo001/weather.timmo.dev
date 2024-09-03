@@ -1,7 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import { CloudSun } from "lucide-react";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 import { getLocationFromLocalStorage } from "~/lib/localStorage";
@@ -10,6 +10,8 @@ import {
   type WeatherForecastErrorResponse,
   type WeatherForecastNow,
 } from "~/lib/types/tomorrowio";
+import { weatherCode } from "~/lib/tomorrowio/weatherCodes";
+import { useMemo } from "react";
 
 dayjs.extend(relativeTime);
 
@@ -32,6 +34,18 @@ export function ForecastNow() {
     },
   });
 
+  const dateTime = useMemo<Dayjs | null>(() => {
+    if (
+      forecastNow.isLoading ||
+      forecastNow.isError ||
+      !forecastNow.data ||
+      "code" in forecastNow.data
+    )
+      return null;
+
+    return dayjs(forecastNow.data.time);
+  }, [forecastNow.data]);
+
   if (location.isLoading) return <span>Loading location...</span>;
   if (location.isError) return <span>Error loading location...</span>;
 
@@ -53,19 +67,24 @@ export function ForecastNow() {
       ) : (
         <>
           <div className="flex flex-row items-stretch gap-6">
-            <div className="flex flex-row items-center gap-1">
-              <CloudSun className="h-24 w-24" />
-            </div>
-            <div className="flex flex-row items-center gap-1">
-              <span className="text-4xl font-bold">
-                {forecastNow.data.temperature.toFixed(1)}
+            <CloudSun className="h-24 w-24" />
+            <div className="flex flex-col items-center justify-center gap-1">
+              <span className="text-lg font-semibold">
+                {weatherCode[forecastNow.data.weatherCode] || "Unknown"}
               </span>
-              <span className="text-2xl font-semibold">°C</span>
+              <div className="flex flex-row items-center gap-1">
+                <span className="text-4xl font-bold">
+                  {forecastNow.data.temperature.toFixed(1)}
+                </span>
+                <span className="text-2xl font-semibold">°C</span>
+              </div>
             </div>
           </div>
-          <span className="text-sm font-semibold">
-            Last updated: {dayjs(forecastNow.data.time).fromNow()}
-          </span>
+          {dateTime && (
+            <span className="text-sm font-semibold">
+              Last updated: {dateTime.fromNow()}
+            </span>
+          )}
         </>
       )}
     </div>
