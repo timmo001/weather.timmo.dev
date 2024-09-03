@@ -14,9 +14,6 @@ import {
   type WeatherForecastDailyResponse,
 } from "~/lib/types/tomorrowio";
 
-// TODO: https://docs.tomorrow.io/reference/rate-limiting
-// TODO: Check fetch response status
-
 const BASE_PARAMS = `apikey=${env.WEATHER_API_KEY}`;
 const BASE_REQUEST_OPTIONS: RequestInit = {
   method: "GET",
