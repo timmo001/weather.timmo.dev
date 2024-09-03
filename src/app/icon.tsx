@@ -29,8 +29,8 @@ export default function Icon() {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="256"
-          height="256"
+          width="248"
+          height="248"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
