@@ -34,11 +34,17 @@ export function ForecastNow() {
 
   if (location.isLoading) return <span>Loading location...</span>;
   if (location.isError) return <span>Error loading location...</span>;
-  if (forecastNow.isLoading) return <span>Loading forecast...</span>;
-  if (forecastNow.isError) return <span>Error loading forecast.</span>;
-  if (!forecastNow.data) return <span>No forecast data.</span>;
+  if (forecastNow.isLoading) return <span>Loading realtime forecast...</span>;
+  if (forecastNow.isError) return <span>Error loading realtime forecast.</span>;
+  if (!forecastNow.data) return <span>No realtime forecast data.</span>;
   if ("code" in forecastNow.data)
-    return <span>{forecastNow.data.message}</span>;
+    return (
+      <span>
+        An error occured when loading realtime forecast data
+        {String(forecastNow.data.code).startsWith("429") &&
+          ": Too many requests to the API. Please try again later."}
+      </span>
+    );
 
   return (
     <div className="flex select-none flex-col items-center gap-1 text-center">

@@ -36,7 +36,13 @@ export function ForecastHourly() {
     return <span>Error loading hourly forecast.</span>;
   if (!forecastHourly.data) return <span>No hourly forecast data.</span>;
   if ("code" in forecastHourly.data)
-    return <span>{forecastHourly.data.code}</span>;
+    return (
+      <span>
+        An error occured when loading hourly forecast data
+        {String(forecastHourly.data.code).startsWith("429") &&
+          ": Too many requests to the API. Please try again later."}
+      </span>
+    );
 
   return (
     <div className="mt-4 flex select-none flex-col items-center gap-1 text-center">
