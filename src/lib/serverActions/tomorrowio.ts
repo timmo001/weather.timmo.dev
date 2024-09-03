@@ -103,9 +103,77 @@ export async function getWeatherForecastNow(
   )();
 }
 
-export type WeatherForecastHourlyResponse = any;
+export type WeatherForecastHourlyResponse = {
+  timelines: {
+    hourly: Array<{
+      time: Date;
+      values: {
+        cloudBase: number;
+        cloudCeiling: number;
+        cloudCover: number;
+        dewPoint: number;
+        evapotranspiration: number;
+        freezingRainIntensity: number;
+        humidity: number;
+        iceAccumulation: number;
+        iceAccumulationLwe: number;
+        precipitationProbability: number;
+        pressureSurfaceLevel: number;
+        rainAccumulation: number;
+        rainAccumulationLwe: number;
+        rainIntensity: number;
+        sleetAccumulation: number;
+        sleetAccumulationLwe: number;
+        sleetIntensity: number;
+        snowAccumulation: number;
+        snowAccumulationLwe: number;
+        snowIntensity: number;
+        temperature: number;
+        temperatureApparent: number;
+        visibility: number;
+        weatherCode: number;
+        windDirection: number;
+        windGust: number;
+        windSpeed: number;
+      };
+    }>;
+  };
+  location: {
+    lat: number;
+    lon: number;
+  };
+};
 
-export type WeatherForecastHourly = any;
+export type WeatherForecastHourly = Array<{
+  time: Date;
+  cloudBase: number;
+  cloudCeiling: number;
+  cloudCover: number;
+  dewPoint: number;
+  evapotranspiration: number;
+  freezingRainIntensity: number;
+  humidity: number;
+  iceAccumulation: number;
+  iceAccumulationLwe: number;
+  precipitationProbability: number;
+  pressureSurfaceLevel: number;
+  rainAccumulation: number;
+  rainAccumulationLwe: number;
+  rainIntensity: number;
+  sleetAccumulation: number;
+  sleetAccumulationLwe: number;
+  sleetIntensity: number;
+  snowAccumulation: number;
+  snowAccumulationLwe: number;
+  snowIntensity: number;
+  temperature: number;
+  temperatureApparent: number;
+  visibility: number;
+  weatherCode: number;
+  windDirection: number;
+  windGust: number;
+  windSpeed: number;
+}>;
 
 export async function getWeatherForecastHourly(
   location: Location,
@@ -122,7 +190,10 @@ export async function getWeatherForecastHourly(
       console.log("Response:", JSON.stringify(responseData));
       if ("code" in responseData) return responseData;
 
-      return {};
+      return responseData.timelines.hourly.map((hourly) => ({
+        time: hourly.time,
+        ...hourly.values,
+      }));
     },
     [`${location.latitude},${location.longitude}`],
     {
