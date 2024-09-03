@@ -77,9 +77,9 @@ export type WeatherForecastNow = {
 
 export async function getWeatherForecastNow(
   location: Location,
-): Promise<WeatherForecastNow> {
+): Promise<WeatherForecastErrorResponse | WeatherForecastNow> {
   return unstable_cache(
-    async (): Promise<WeatherForecastNow> => {
+    async (): Promise<WeatherForecastErrorResponse | WeatherForecastNow> => {
       const response = await fetch(
         `${env.WEATHER_BASE_URL}/realtime?${BASE_PARAMS}&location=${location.latitude},${location.longitude}`,
         BASE_REQUEST_OPTIONS,
@@ -88,7 +88,7 @@ export async function getWeatherForecastNow(
         | WeatherForecastErrorResponse
         | WeatherForecastNowResponse;
       console.log("Response:", responseData);
-      if ("code" in responseData) return Promise.reject(responseData);
+      if ("code" in responseData) return responseData;
 
       return {
         time: responseData.data.time,
@@ -103,15 +103,15 @@ export async function getWeatherForecastNow(
   )();
 }
 
-export type WeatherForecastHourlyResponse = {};
+export type WeatherForecastHourlyResponse = any;
 
-export type WeatherForecastHourly = {};
+export type WeatherForecastHourly = any;
 
 export async function getWeatherForecastHourly(
   location: Location,
-): Promise<WeatherForecastHourly> {
+): Promise<WeatherForecastErrorResponse | WeatherForecastHourly> {
   return unstable_cache(
-    async (): Promise<WeatherForecastHourly> => {
+    async (): Promise<WeatherForecastErrorResponse | WeatherForecastHourly> => {
       const response = await fetch(
         `${env.WEATHER_API_KEY}/forecast?${BASE_PARAMS}&location=${location.latitude},${location.longitude}&timesteps=1h`,
         BASE_REQUEST_OPTIONS,
@@ -120,7 +120,7 @@ export async function getWeatherForecastHourly(
         | WeatherForecastErrorResponse
         | WeatherForecastHourlyResponse;
       console.log("Response:", responseData);
-      if ("code" in responseData) return Promise.reject(responseData);
+      if ("code" in responseData) return responseData;
 
       return {};
     },
@@ -132,15 +132,15 @@ export async function getWeatherForecastHourly(
   )();
 }
 
-export type WeatherForecastDailyResponse = {};
+export type WeatherForecastDailyResponse = any;
 
-export type WeatherForecastDaily = {};
+export type WeatherForecastDaily = any;
 
 export async function getWeatherForecastDaily(
   location: Location,
-): Promise<WeatherForecastDaily> {
+): Promise<WeatherForecastErrorResponse | WeatherForecastDaily> {
   return unstable_cache(
-    async (): Promise<WeatherForecastDaily> => {
+    async (): Promise<WeatherForecastErrorResponse | WeatherForecastDaily> => {
       const response = await fetch(
         `${env.WEATHER_API_KEY}/forecast?${BASE_PARAMS}&location=${location.latitude},${location.longitude}&timesteps=1d`,
         BASE_REQUEST_OPTIONS,
@@ -149,7 +149,7 @@ export async function getWeatherForecastDaily(
         | WeatherForecastErrorResponse
         | WeatherForecastDailyResponse;
       console.log("Response:", responseData);
-      if ("code" in responseData) return Promise.reject(responseData);
+      if ("code" in responseData) return responseData;
 
       return {};
     },

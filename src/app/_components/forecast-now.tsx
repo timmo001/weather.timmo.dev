@@ -5,7 +5,11 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 import { getLocationFromLocalStorage } from "~/lib/localStorage";
-import { getWeatherForecastNow } from "~/lib/serverActions/tomorrowio";
+import {
+  type WeatherForecastErrorResponse,
+  type WeatherForecastNow,
+  getWeatherForecastNow,
+} from "~/lib/serverActions/tomorrowio";
 
 dayjs.extend(relativeTime);
 
@@ -18,8 +22,12 @@ export function ForecastNow() {
   const forecastNow = useQuery({
     staleTime: 1000 * 60 * 5, // 5 minutes
     queryKey: [location.data, "forecast", "now"],
-    queryFn: async () => {
-      if (location.isLoading || !location.data) return null;
+    queryFn: async (): Promise<
+      WeatherForecastErrorResponse | WeatherForecastNow
+    > => {
+      if (location.isLoading || !location.data)
+        return Promise.reject("No location data.");
+      console.log("Get forecast now for location:", location.data);
       return getWeatherForecastNow(location.data);
     },
   });
@@ -27,8 +35,10 @@ export function ForecastNow() {
   if (location.isLoading) return <span>Loading location...</span>;
   if (location.isError) return <span>Error loading location...</span>;
   if (forecastNow.isLoading) return <span>Loading forecast...</span>;
-  if (forecastNow.isError) return <span>Error loading forecast...</span>;
+  if (forecastNow.isError) return <span>Error loading forecast.</span>;
   if (!forecastNow.data) return <span>No forecast data.</span>;
+  if ("code" in forecastNow.data)
+    return <span>{forecastNow.data.message}</span>;
 
   return (
     <div className="flex select-none flex-col gap-6">
