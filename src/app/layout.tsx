@@ -20,7 +20,7 @@ import { LocationForm } from "~/app/_components/location-form";
 
 export const metadata: Metadata = {
   title: "Weather",
-  description: "TODO",
+  description: "A weather application",
   keywords: ["weather"],
   icons: [{ rel: "icon", url: "/icon" }],
   metadataBase: new URL("https://weather.timmo.dev"),
