@@ -4,11 +4,8 @@ import dayjs from "dayjs";
 import { CloudSun } from "lucide-react";
 
 import { getLocationFromLocalStorage } from "~/lib/localStorage";
-import { getWeatherForecastHourly } from "~/lib/serverActions/tomorrowio";
-import {
-  type WeatherForecastErrorResponse,
-  type WeatherForecastHourly,
-} from "~/lib/types/tomorrowio";
+import { getWeatherForecastHourly } from "~/lib/serverActions/accuweather";
+import { type AccuweatherHourlyForecast } from "~/lib/types/accuweather";
 
 export function ForecastHourly() {
   const location = useQuery({
@@ -19,9 +16,7 @@ export function ForecastHourly() {
   const forecastHourly = useQuery({
     staleTime: 1000 * 60 * 20, // 20 minutes
     queryKey: [location.data, "forecast", "hourly"],
-    queryFn: async (): Promise<
-      WeatherForecastErrorResponse | WeatherForecastHourly
-    > => {
+    queryFn: async (): Promise<Array<AccuweatherHourlyForecast>> => {
       if (location.isLoading || !location.data)
         return Promise.reject("No location data.");
       console.log("Get hourly forecast for location:", location.data);
@@ -41,28 +36,22 @@ export function ForecastHourly() {
         <span>Error loading hourly forecast.</span>
       ) : !forecastHourly.data ? (
         <span>No hourly forecast data.</span>
-      ) : "code" in forecastHourly.data ? (
-        <span>
-          An error occured when loading hourly forecast data
-          {String(forecastHourly.data.code).startsWith("429") &&
-            ": Too many requests to the API. Please try again later."}
-        </span>
       ) : (
         <div className="custom-scrollbar mt-1 flex max-w-96 flex-row flex-nowrap gap-4 overflow-y-auto md:max-w-screen-md lg:max-w-screen-lg">
           {forecastHourly.data.map((item) => {
-            const time = dayjs(item.time);
+            const dateTime = dayjs(item.DateTime);
 
             return (
               <div
-                key={time.toISOString()}
+                key={dateTime.toISOString()}
                 className="flex flex-col items-stretch gap-1"
               >
                 <div className="flex flex-col items-center">
                   <span className="text-sm font-semibold">
-                    {time.format("ddd")}
+                    {dateTime.format("ddd")}
                   </span>
                   <span className="text-sm font-semibold">
-                    {time.format("HH:mm")}
+                    {dateTime.format("HH:mm")}
                   </span>
                 </div>
                 <div className="flex flex-row items-center gap-1">
@@ -70,9 +59,11 @@ export function ForecastHourly() {
                 </div>
                 <div className="flex flex-row items-center gap-1">
                   <span className="text-xl font-bold">
-                    {item.temperature.toFixed(1)}
+                    {item.Temperature.Value.toFixed(1)}
                   </span>
-                  <span className="text-sm font-semibold">°C</span>
+                  <span className="text-sm font-semibold">
+                    °{item.Temperature.Unit.toUpperCase()}
+                  </span>
                 </div>
               </div>
             );

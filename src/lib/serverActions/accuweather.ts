@@ -7,9 +7,10 @@ import { type Location } from "~/lib/schema";
 import {
   type AccuweatherLocation,
   type AccuweatherCurrentConditions,
+  AccuweatherHourlyForecast,
 } from "~/lib/types/accuweather";
 
-const BASE_PARAMS = `apikey=${env.WEATHER_API_KEY}`;
+const BASE_PARAMS = `apikey=${env.WEATHER_API_KEY}&details=true&language=en-gb`;
 const BASE_REQUEST_OPTIONS: RequestInit = {
   method: "GET",
   headers: {
@@ -22,10 +23,9 @@ export async function getWeatherLocation(
 ): Promise<AccuweatherLocation> {
   return unstable_cache(
     async (): Promise<any> => {
-      const response = await fetch(
-        `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?${BASE_PARAMS}&q=${location.latitude},${location.longitude}`,
-        BASE_REQUEST_OPTIONS,
-      );
+      const url = `https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?${BASE_PARAMS}&q=${location.latitude},${location.longitude}`;
+      console.log("Get location:", url);
+      const response = await fetch(url, BASE_REQUEST_OPTIONS);
       const responseData = (await response.json()) as AccuweatherLocation;
       console.log("Response:", JSON.stringify(responseData));
 
@@ -47,12 +47,10 @@ export async function getWeatherForecastNow(
       const weatherLocation = await getWeatherLocation(location);
       console.log("Location key:", weatherLocation.Key);
 
-      const response = await fetch(
-        `http://dataservice.accuweather.com/currentconditions/v1/${weatherLocation.Key}?${BASE_PARAMS}`,
-        BASE_REQUEST_OPTIONS,
-      );
-      const responseData =
-        (await response.json()) as Array<AccuweatherCurrentConditions>;
+      const url = `https://dataservice.accuweather.com/currentconditions/v1/${weatherLocation.Key}?${BASE_PARAMS}`;
+      console.log("Get current conditions:", url);
+      const response = await fetch(url, BASE_REQUEST_OPTIONS);
+      const responseData = await response.json();
       console.log("Response:", JSON.stringify(responseData));
 
       if (!responseData || responseData.length === 0 || !responseData[0])
@@ -70,10 +68,22 @@ export async function getWeatherForecastNow(
 
 export async function getWeatherForecastHourly(
   location: Location,
-): Promise<any> {
+): Promise<Array<AccuweatherHourlyForecast>> {
   return unstable_cache(
-    async (): Promise<any> => {
-      return Promise.reject("Not implemented.");
+    async (): Promise<Array<AccuweatherHourlyForecast>> => {
+      const weatherLocation = await getWeatherLocation(location);
+      console.log("Location key:", weatherLocation.Key);
+
+      const url = `https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${weatherLocation.Key}?${BASE_PARAMS}&metric=true`;
+      console.log("Get hourly forecast:", url);
+      const response = await fetch(url, BASE_REQUEST_OPTIONS);
+      const responseData = await response.json();
+      console.log("Response:", JSON.stringify(responseData));
+
+      if (!responseData || responseData.length === 0 || !responseData[0])
+        return Promise.reject("No data found.");
+
+      return responseData;
     },
     [`${location.latitude},${location.longitude}`],
     {

@@ -4,11 +4,8 @@ import dayjs from "dayjs";
 import { CloudSun } from "lucide-react";
 
 import { getLocationFromLocalStorage } from "~/lib/localStorage";
-import { getWeatherForecastDaily } from "~/lib/serverActions/tomorrowio";
-import {
-  type WeatherForecastErrorResponse,
-  type WeatherForecastDaily,
-} from "~/lib/types/tomorrowio";
+import { getWeatherForecastDaily } from "~/lib/serverActions/accuweather";
+import { type AccuweatherHourlyForecast } from "~/lib/types/accuweather";
 
 export function ForecastDaily() {
   const location = useQuery({
@@ -19,9 +16,7 @@ export function ForecastDaily() {
   const forecastDaily = useQuery({
     staleTime: 1000 * 60 * 30, // 30 minutes
     queryKey: [location.data, "forecast", "daily"],
-    queryFn: async (): Promise<
-      WeatherForecastErrorResponse | WeatherForecastDaily
-    > => {
+    queryFn: async (): Promise<Array<AccuweatherHourlyForecast>> => {
       if (location.isLoading || !location.data)
         return Promise.reject("No location data.");
       console.log("Get daily forecast for location:", location.data);
@@ -41,12 +36,6 @@ export function ForecastDaily() {
         <span>Error loading daily forecast.</span>
       ) : !forecastDaily.data ? (
         <span>No daily forecast data.</span>
-      ) : "code" in forecastDaily.data ? (
-        <span>
-          An error occured when loading daily forecast data
-          {String(forecastDaily.data.code).startsWith("429") &&
-            ": Too many requests to the API. Please try again later."}
-        </span>
       ) : (
         <div className="custom-scrollbar mt-1 flex max-w-96 flex-row flex-nowrap gap-4 overflow-y-auto md:max-w-screen-md lg:max-w-screen-lg">
           {forecastDaily.data.map((item) => {

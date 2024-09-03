@@ -75,3 +75,40 @@ export interface AccuweatherCurrentConditions {
   MobileLink: string;
   Link: string;
 }
+
+export interface AccuweatherHourlyForecast {
+  DateTime: Date;
+  EpochDateTime: number;
+  WeatherIcon: number;
+  IconPhrase: string;
+  HasPrecipitation: boolean;
+  IsDaylight: boolean;
+  Temperature: Temperature;
+  PrecipitationProbability: number;
+  MobileLink: string;
+  Link: string;
+}
+
+export interface AccuweatherHourlyForecast {
+  DateTime: Date;
+  EpochDateTime: number;
+  WeatherIcon: number;
+  IconPhrase: string;
+  HasPrecipitation: boolean;
+  IsDaylight: boolean;
+  Temperature: Temperature;
+  PrecipitationProbability: number;
+  MobileLink: string;
+  Link: string;
+}
+
+export interface Temperature {
+  Value: number;
+  Unit: UnitEnum;
+  UnitType: number;
+}
+
+export enum UnitEnum {
+  C = "C",
+  F = "F",
+}
