@@ -16,7 +16,7 @@ export default config;
 
 // Injected content via Sentry wizard below
 
-const { withSentryConfig } = require("@sentry/nextjs");
+const { withSentryConfig } = await import("@sentry/nextjs");
 
 module.exports = withSentryConfig(module.exports, {
   // For all available options, see:
