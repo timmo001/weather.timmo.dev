@@ -27,33 +27,46 @@ import {
 
 const temperaturesChartConfig = {
   temperatureMin: {
-    label: "Temperature Minimum",
+    label: "Minimum",
     color: "hsl(var(--chart-3))",
   },
   temperatureAvg: {
-    label: "Temperature Average",
+    label: "Average",
     color: "hsl(var(--chart-3))",
   },
   temperatureMax: {
-    label: "Temperature Maximum",
-    color: "hsl(var(--chart-3))",
-  },
-  temperatureRange: {
-    label: "Temperature Range",
+    label: "Maximum",
     color: "hsl(var(--chart-3))",
   },
 } satisfies ChartConfig;
 
 const humiditiesChartConfig = {
-  humidity: {
-    label: "Humidity",
+  humidityMin: {
+    label: "Minumum",
+    color: "hsl(var(--chart-2))",
+  },
+  humidityAvg: {
+    label: "Average",
+    color: "hsl(var(--chart-2))",
+  },
+  humidityMax: {
+    label: "Maximum",
     color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig;
 
+
 const windSpeedsChartConfig = {
-  windSpeed: {
-    label: "Wind speed",
+  windSpeedMin: {
+    label: "Minumum",
+    color: "hsl(var(--chart-4))",
+  },
+  windSpeedAvg: {
+    label: "Average",
+    color: "hsl(var(--chart-4))",
+  },
+  windSpeedMax: {
+    label: "Maximum",
     color: "hsl(var(--chart-4))",
   },
 } satisfies ChartConfig;
@@ -150,13 +163,6 @@ export function DailyCharts() {
             verticalAlign="bottom"
           />
           <ChartTooltip cursor content={<ChartTooltipContent />} />
-          <Area
-            dataKey="temperatureRange"
-            type="monotone"
-            stroke="var(--color-temperatureMin)"
-            strokeWidth={2}
-            dot={false}
-          />
           <Line
             dataKey="temperatureMin"
             type="monotone"
@@ -181,12 +187,12 @@ export function DailyCharts() {
         </ComposedChart>
       </ChartContainer>
 
-      <h3 className="text-xl font-semibold">Humidity</h3>
+      <h3 className="mt-8 text-xl font-semibold">Humidity</h3>
       <ChartContainer
         className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
         config={humiditiesChartConfig}
       >
-        <LineChart
+        <ComposedChart
           accessibilityLayer
           data={forecastDailyCharts.data.humidities}
           margin={{
@@ -207,7 +213,7 @@ export function DailyCharts() {
             axisLine={false}
             tickMargin={8}
             scale="auto"
-            tickFormatter={(value) => `${value} %`}
+            tickFormatter={(value) => `${value} °C`}
           />
           <ChartLegend
             content={<ChartLegendContent />}
@@ -215,21 +221,35 @@ export function DailyCharts() {
           />
           <ChartTooltip cursor content={<ChartTooltipContent />} />
           <Line
-            dataKey="humidity"
+            dataKey="humidityMin"
             type="monotone"
-            stroke="var(--color-humidity)"
+            stroke="var(--color-humidityMin)"
             strokeWidth={2}
             dot={false}
           />
-        </LineChart>
+          <Line
+            dataKey="humidityAvg"
+            type="monotone"
+            stroke="var(--color-humidityAvg)"
+            strokeWidth={2}
+            dot={false}
+          />
+          <Line
+            dataKey="humidityMax"
+            type="monotone"
+            stroke="var(--color-humidityMax)"
+            strokeWidth={2}
+            dot={false}
+          />
+        </ComposedChart>
       </ChartContainer>
 
-      <h3 className="text-xl font-semibold">Wind</h3>
+      <h3 className="mt-8 text-xl font-semibold">Wind</h3>
       <ChartContainer
         className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
         config={windSpeedsChartConfig}
       >
-        <LineChart
+        <ComposedChart
           accessibilityLayer
           data={forecastDailyCharts.data.windSpeeds}
           margin={{
@@ -246,12 +266,11 @@ export function DailyCharts() {
             scale="auto"
           />
           <YAxis
-            dataKey="windSpeed"
             tickLine={false}
             axisLine={false}
             tickMargin={8}
             scale="auto"
-            tickFormatter={(value) => `${value} mph`}
+            tickFormatter={(value) => `${value} °C`}
           />
           <ChartLegend
             content={<ChartLegendContent />}
@@ -259,17 +278,30 @@ export function DailyCharts() {
           />
           <ChartTooltip cursor content={<ChartTooltipContent />} />
           <Line
-            dataKey="windSpeed"
+            dataKey="windSpeedMin"
             type="monotone"
-            stroke="var(--color-windSpeed)"
+            stroke="var(--color-windSpeedMin)"
             strokeWidth={2}
             dot={false}
-            unit="mph"
           />
-        </LineChart>
+          <Line
+            dataKey="windSpeedAvg"
+            type="monotone"
+            stroke="var(--color-windSpeedAvg)"
+            strokeWidth={2}
+            dot={false}
+          />
+          <Line
+            dataKey="windSpeedMax"
+            type="monotone"
+            stroke="var(--color-windSpeedMax)"
+            strokeWidth={2}
+            dot={false}
+          />
+        </ComposedChart>
       </ChartContainer>
 
-      <h3 className="text-xl font-semibold">Precipitation</h3>
+      <h3 className="mt-8 text-xl font-semibold">Precipitation</h3>
       <ChartContainer
         className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
         config={intensitiesChartConfig}

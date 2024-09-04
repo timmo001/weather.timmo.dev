@@ -152,7 +152,7 @@ export function HourlyCharts() {
         </LineChart>
       </ChartContainer>
 
-      <h3 className="text-xl font-semibold">Humidity</h3>
+      <h3 className="mt-8 text-xl font-semibold">Humidity</h3>
       <ChartContainer
         className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
         config={humiditiesChartConfig}
@@ -195,7 +195,7 @@ export function HourlyCharts() {
         </LineChart>
       </ChartContainer>
 
-      <h3 className="text-xl font-semibold">Wind</h3>
+      <h3 className="mt-8 text-xl font-semibold">Wind</h3>
       <ChartContainer
         className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
         config={windSpeedsChartConfig}
@@ -240,7 +240,7 @@ export function HourlyCharts() {
         </LineChart>
       </ChartContainer>
 
-      <h3 className="text-xl font-semibold">Precipitation</h3>
+      <h3 className="mt-8 text-xl font-semibold">Precipitation</h3>
       <ChartContainer
         className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
         config={intensitiesChartConfig}
