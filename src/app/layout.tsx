@@ -1,7 +1,7 @@
 import { type Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { GeistSans } from "geist/font/sans";
-import { CloudSun } from "lucide-react";
+import { CloudSun, LocateFixedIcon } from "lucide-react";
 
 import "~/styles/globals.css";
 
@@ -66,6 +66,7 @@ export default function RootLayout({
                   <Dialog>
                     <DialogTrigger asChild>
                       <Button className="text-2xl font-bold" size="lg">
+                        <LocateFixedIcon className="me-1 h-5 w-5" />
                         Set Location
                       </Button>
                     </DialogTrigger>
