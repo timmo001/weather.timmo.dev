@@ -30,7 +30,7 @@ export default function manifest(): MetadataRoute.Manifest {
         type: "image/png",
       },
     ],
-    shortcuts: navItems.map(({ label, href }) => ({
+    shortcuts: navItems.slice(1).map(({ label, href }) => ({
       name: label,
       short_name: label,
       url: href,
