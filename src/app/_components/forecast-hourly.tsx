@@ -42,7 +42,8 @@ export function ForecastHourly() {
         <span>Error loading hourly forecast.</span>
       ) : !forecastHourly.data ? (
         <span>No hourly forecast data.</span>
-      ) : "code" in forecastHourly.data ? (
+      ) : "code" in forecastHourly.data ||
+        !Array.isArray(forecastHourly.data) ? (
         <span>
           An error occured when loading hourly forecast data
           {String(forecastHourly.data.code).startsWith("429") &&

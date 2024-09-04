@@ -42,7 +42,7 @@ export function ForecastDaily() {
         <span>Error loading daily forecast.</span>
       ) : !forecastDaily.data ? (
         <span>No daily forecast data.</span>
-      ) : "code" in forecastDaily.data ? (
+      ) : "code" in forecastDaily.data || !Array.isArray(forecastDaily.data) ? (
         <span>
           An error occured when loading daily forecast data
           {String(forecastDaily.data.code).startsWith("429") &&
