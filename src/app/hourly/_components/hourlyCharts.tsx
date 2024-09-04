@@ -131,10 +131,7 @@ export function HourlyCharts() {
               scale="auto"
               tickFormatter={(value) => `${value} °C`}
             />
-            <ChartLegend
-              content={<ChartLegendContent />}
-              verticalAlign="top"
-            />
+            <ChartLegend content={<ChartLegendContent />} verticalAlign="top" />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
             <Line
               dataKey="temperatureApparent"
@@ -183,10 +180,7 @@ export function HourlyCharts() {
               scale="auto"
               tickFormatter={(value) => `${value} %`}
             />
-            <ChartLegend
-              content={<ChartLegendContent />}
-              verticalAlign="top"
-            />
+            <ChartLegend content={<ChartLegendContent />} verticalAlign="top" />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
             <Line
               dataKey="humidity"
@@ -229,10 +223,7 @@ export function HourlyCharts() {
               scale="auto"
               tickFormatter={(value) => `${value} mph`}
             />
-            <ChartLegend
-              content={<ChartLegendContent />}
-              verticalAlign="top"
-            />
+            <ChartLegend content={<ChartLegendContent />} verticalAlign="top" />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
             <Line
               dataKey="windSpeed"
@@ -275,10 +266,7 @@ export function HourlyCharts() {
               scale="auto"
               tickFormatter={(value) => `${value} mm`}
             />
-            <ChartLegend
-              content={<ChartLegendContent />}
-              verticalAlign="top"
-            />
+            <ChartLegend content={<ChartLegendContent />} verticalAlign="top" />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
             <Line
               dataKey="rainAccumulation"
