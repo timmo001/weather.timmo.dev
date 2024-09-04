@@ -1,7 +1,14 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import dayjs from "dayjs";
-import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
+import {
+  Area,
+  CartesianGrid,
+  ComposedChart,
+  Line,
+  LineChart,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 import {
   ChartConfig,
@@ -12,20 +19,28 @@ import {
   ChartTooltipContent,
 } from "~/components/ui/chart";
 import { getLocationFromLocalStorage } from "~/lib/localStorage";
-import { getWeatherForecastHourlyCharts } from "~/lib/serverActions/tomorrowio";
+import { getWeatherForecastDailyCharts } from "~/lib/serverActions/tomorrowio";
 import {
   type WeatherForecastErrorResponse,
-  type WeatherForecastHourlyCharts,
+  type WeatherForecastDailyCharts,
 } from "~/lib/types/tomorrowio";
 
 const temperaturesChartConfig = {
-  temperature: {
-    label: "Actual",
+  temperatureMin: {
+    label: "Temperature Minimum",
     color: "hsl(var(--chart-3))",
   },
-  temperatureApparent: {
-    label: "Feels like",
-    color: "hsl(var(--chart-5))",
+  temperatureAvg: {
+    label: "Temperature Average",
+    color: "hsl(var(--chart-3))",
+  },
+  temperatureMax: {
+    label: "Temperature Maximum",
+    color: "hsl(var(--chart-3))",
+  },
+  temperatureRange: {
+    label: "Temperature Range",
+    color: "hsl(var(--chart-3))",
   },
 } satisfies ChartConfig;
 
@@ -62,40 +77,40 @@ const intensitiesChartConfig = {
   },
 } satisfies ChartConfig;
 
-export function HourlyCharts() {
+export function DailyCharts() {
   const location = useQuery({
     queryKey: ["location"],
     queryFn: getLocationFromLocalStorage,
   });
 
-  const forecastHourlyCharts = useQuery({
+  const forecastDailyCharts = useQuery({
     staleTime: 1000 * 60 * 20, // 20 minutes
-    queryKey: [location.data, "forecast", "hourly"],
+    queryKey: [location.data, "forecast", "daily"],
     queryFn: async (): Promise<
-      WeatherForecastErrorResponse | WeatherForecastHourlyCharts
+      WeatherForecastErrorResponse | WeatherForecastDailyCharts
     > => {
       if (location.isLoading || !location.data)
         return Promise.reject("No location data.");
       console.log(
-        "Get hourly temperature forecast for location:",
+        "Get daily temperature forecast for location:",
         location.data,
       );
-      return await getWeatherForecastHourlyCharts(location.data);
+      return await getWeatherForecastDailyCharts(location.data);
     },
   });
 
   if (location.isLoading) return <span>Loading location...</span>;
   if (location.isError) return <span>Error loading location...</span>;
-  if (forecastHourlyCharts.isLoading)
-    return <span>Loading hourly forecast...</span>;
-  if (forecastHourlyCharts.isError)
-    return <span>Error loading hourly forecast.</span>;
-  if (!forecastHourlyCharts.data) return <span>No hourly forecast data.</span>;
-  if ("code" in forecastHourlyCharts.data)
+  if (forecastDailyCharts.isLoading)
+    return <span>Loading daily forecast...</span>;
+  if (forecastDailyCharts.isError)
+    return <span>Error loading daily forecast.</span>;
+  if (!forecastDailyCharts.data) return <span>No daily forecast data.</span>;
+  if ("code" in forecastDailyCharts.data)
     return (
       <span>
-        An error occured when loading hourly forecast data{" "}
-        {String(forecastHourlyCharts.data.code).startsWith("429") &&
+        An error occured when loading daily forecast data{" "}
+        {String(forecastDailyCharts.data.code).startsWith("429") &&
           ": Too many requests to the API. Please try again later."}
       </span>
     );
@@ -107,9 +122,9 @@ export function HourlyCharts() {
         className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
         config={temperaturesChartConfig}
       >
-        <LineChart
+        <ComposedChart
           accessibilityLayer
-          data={forecastHourlyCharts.data.temperatures}
+          data={forecastDailyCharts.data.temperatures}
           margin={{
             left: 12,
             right: 12,
@@ -135,21 +150,35 @@ export function HourlyCharts() {
             verticalAlign="bottom"
           />
           <ChartTooltip cursor content={<ChartTooltipContent />} />
-          <Line
-            dataKey="temperatureApparent"
+          <Area
+            dataKey="temperatureRange"
             type="monotone"
-            stroke="var(--color-temperatureApparent)"
+            stroke="var(--color-temperatureMin)"
             strokeWidth={2}
             dot={false}
           />
           <Line
-            dataKey="temperature"
+            dataKey="temperatureMin"
             type="monotone"
-            stroke="var(--color-temperature)"
+            stroke="var(--color-temperatureMin)"
             strokeWidth={2}
             dot={false}
           />
-        </LineChart>
+          <Line
+            dataKey="temperatureAvg"
+            type="monotone"
+            stroke="var(--color-temperatureAvg)"
+            strokeWidth={2}
+            dot={false}
+          />
+          <Line
+            dataKey="temperatureMax"
+            type="monotone"
+            stroke="var(--color-temperatureMax)"
+            strokeWidth={2}
+            dot={false}
+          />
+        </ComposedChart>
       </ChartContainer>
 
       <h3 className="text-xl font-semibold">Humidity</h3>
@@ -159,7 +188,7 @@ export function HourlyCharts() {
       >
         <LineChart
           accessibilityLayer
-          data={forecastHourlyCharts.data.humidities}
+          data={forecastDailyCharts.data.humidities}
           margin={{
             left: 12,
             right: 12,
@@ -202,7 +231,7 @@ export function HourlyCharts() {
       >
         <LineChart
           accessibilityLayer
-          data={forecastHourlyCharts.data.windSpeeds}
+          data={forecastDailyCharts.data.windSpeeds}
           margin={{
             left: 12,
             right: 12,
@@ -247,7 +276,7 @@ export function HourlyCharts() {
       >
         <LineChart
           accessibilityLayer
-          data={forecastHourlyCharts.data.precipitations}
+          data={forecastDailyCharts.data.precipitations}
           margin={{
             left: 12,
             right: 12,

@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import { env } from "~/env";
 import { type Location } from "~/lib/schema";
 import {
+  WeatherForecastDailyCharts,
   type WeatherForecastDaily,
   type WeatherForecastDailyResponse,
   type WeatherForecastErrorResponse,
@@ -97,6 +98,10 @@ export async function getWeatherForecastHourlyCharts(
       time: dayjs(hourly.time).format("ddd HH:mm"),
       humidity: hourly.humidity,
     })),
+    windSpeeds: hourlyForecast.map((hourly) => ({
+      time: dayjs(hourly.time).format("ddd HH:mm"),
+      windSpeed: hourly.windSpeed,
+    })),
     precipitations: hourlyForecast.map((hourly) => ({
       time: dayjs(hourly.time).format("ddd HH:mm"),
       rainAccumulation: hourly.rainAccumulation,
@@ -109,7 +114,10 @@ export async function getWeatherForecastHourlyCharts(
   console.log(
     "Got hourly chart data:",
     JSON.stringify({
-      temperature: response.temperatures.length,
+      temperatures: response.temperatures.length,
+      humidities: response.humidities.length,
+      windSpeeds: response.windSpeeds.length,
+      precipitations: response.precipitations.length,
     }),
   );
   return response;
@@ -141,4 +149,82 @@ export async function getWeatherForecastDaily(
       revalidate: 1000 * 60 * 30, // 30 minutes
     },
   )();
+}
+
+export async function getWeatherForecastDailyCharts(
+  location: Location,
+): Promise<WeatherForecastErrorResponse | WeatherForecastDailyCharts> {
+  const dailyForecast = await getWeatherForecastDaily(location);
+  // If there is an error, return it so the client can handle it
+  if ("code" in dailyForecast) return dailyForecast;
+
+  const response: WeatherForecastDailyCharts = {
+    temperatures: dailyForecast.map((daily) => ({
+      time: dayjs(daily.time).format("ddd"),
+      temperatureMax: daily.temperatureMax,
+      temperatureMin: daily.temperatureMin,
+      temperatureAvg: daily.temperatureAvg,
+      temperatureRange: [daily.temperatureMin, daily.temperatureMax],
+    })),
+    humidities: dailyForecast.map((daily) => ({
+      time: dayjs(daily.time).format("ddd"),
+      humidityMin: daily.humidityMin,
+      humidityMax: daily.humidityMax,
+      humidityAvg: daily.humidityAvg,
+      humidityRange: [daily.humidityMin, daily.humidityMax],
+    })),
+    windSpeeds: dailyForecast.map((daily) => ({
+      time: dayjs(daily.time).format("ddd"),
+      windSpeedMin: daily.windSpeedMin,
+      windSpeedMax: daily.windSpeedMax,
+      windSpeedAvg: daily.windSpeedAvg,
+      windSpeedRange: [daily.windSpeedMin, daily.windSpeedMax],
+    })),
+    precipitations: dailyForecast.map((daily) => ({
+      time: dayjs(daily.time).format("ddd"),
+      rainAccumulationMin: daily.rainAccumulationMin,
+      rainAccumulationMax: daily.rainAccumulationMax,
+      rainAccumulationAvg: daily.rainAccumulationAvg,
+      rainAccumulationRange: [
+        daily.rainAccumulationMin,
+        daily.rainAccumulationMax,
+      ],
+      rainAccumulationSum: daily.rainAccumulationSum,
+      sleetAccumulationMin: daily.sleetAccumulationMin,
+      sleetAccumulationMax: daily.sleetAccumulationMax,
+      sleetAccumulationAvg: daily.sleetAccumulationAvg,
+      sleetAccumulationRange: [
+        daily.sleetAccumulationMin,
+        daily.sleetAccumulationMax,
+      ],
+      sleetAccumulationSum: daily.sleetAccumulationSum,
+      snowAccumulationMin: daily.snowAccumulationMin,
+      snowAccumulationMax: daily.snowAccumulationMax,
+      snowAccumulationAvg: daily.snowAccumulationAvg,
+      snowAccumulationRange: [
+        daily.snowAccumulationMin,
+        daily.snowAccumulationMax,
+      ],
+      snowAccumulationSum: daily.snowAccumulationSum,
+      iceAccumulationMin: daily.iceAccumulationMin,
+      iceAccumulationMax: daily.iceAccumulationMax,
+      iceAccumulationAvg: daily.iceAccumulationAvg,
+      iceAccumulationRange: [
+        daily.iceAccumulationMin,
+        daily.iceAccumulationMax,
+      ],
+      iceAccumulationSum: daily.iceAccumulationSum,
+    })),
+  };
+
+  console.log(
+    "Got daily chart data:",
+    JSON.stringify({
+      temperatures: response.temperatures.length,
+      humidities: response.humidities.length,
+      windSpeeds: response.windSpeeds.length,
+      precipitations: response.precipitations.length,
+    }),
+  );
+  return response;
 }

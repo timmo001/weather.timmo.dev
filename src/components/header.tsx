@@ -9,6 +9,7 @@ const navItems: Array<{
 }> = [
   { label: "Home", href: "/" },
   { label: "Hourly", href: "/hourly" },
+  { label: "Daily", href: "/daily" },
 ];
 
 export function Header() {
