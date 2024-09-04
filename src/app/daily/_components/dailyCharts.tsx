@@ -55,7 +55,6 @@ const humiditiesChartConfig = {
   },
 } satisfies ChartConfig;
 
-
 const windSpeedsChartConfig = {
   windSpeedMin: {
     label: "Minumum",
