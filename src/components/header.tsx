@@ -2,15 +2,7 @@ import Link from "next/link";
 
 import { ThemeToggle } from "~/components/theme-toggle";
 import { Button } from "~/components/ui/button";
-
-const navItems: Array<{
-  label: string;
-  href: string;
-}> = [
-  { label: "Home", href: "/" },
-  { label: "Hourly", href: "/hourly" },
-  { label: "Daily", href: "/daily" },
-];
+import { navItems } from "~/lib/nav-items";
 
 export function Header() {
   return (

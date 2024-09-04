@@ -1,6 +1,7 @@
 import { type MetadataRoute } from "next";
 
 import { metadata as mainMetadata } from "~/app/layout";
+import { navItems } from "~/lib/nav-items";
 
 export default function manifest(): MetadataRoute.Manifest {
   const icons = [
@@ -29,14 +30,12 @@ export default function manifest(): MetadataRoute.Manifest {
         type: "image/png",
       },
     ],
-    shortcuts: [
-      {
-        name: "Temperature",
-        short_name: "Temperature",
-        url: "/temperature",
-        icons,
-      },
-    ],
+    shortcuts: navItems.map(({ label, href }) => ({
+      name: label,
+      short_name: label,
+      url: href,
+      icons,
+    })),
   };
 
   // Return the manifest
