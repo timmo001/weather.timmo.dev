@@ -138,14 +138,14 @@ export function HourlyCharts() {
         </LineChart>
       </ChartContainer>
 
-      <h3 className="text-xl font-semibold">Hourly Precipitation Intensity</h3>
+      <h3 className="text-xl font-semibold">Hourly Precipitation</h3>
       <ChartContainer
         className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
         config={intensitiesChartConfig}
       >
         <LineChart
           accessibilityLayer
-          data={forecastHourlyCharts.data.intensities}
+          data={forecastHourlyCharts.data.precipitations}
           margin={{
             left: 12,
             right: 12,

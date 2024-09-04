@@ -131,7 +131,7 @@ export type WeatherForecastHourly = Array<{
 
 export type WeatherForecastHourlyCharts = {
   temperatures: WeatherForecastHourlyTemperatureChart;
-  intensities: WeatherForecastHourlyIntensityChart;
+  precipitations: WeatherForecastHourlyIntensityChart;
 };
 
 export type WeatherForecastHourlyTemperatureChart = Array<{
@@ -142,10 +142,10 @@ export type WeatherForecastHourlyTemperatureChart = Array<{
 
 export type WeatherForecastHourlyIntensityChart = Array<{
   time: string;
-  rainIntensity: number;
-  freezingRainIntensity: number;
-  sleetIntensity: number;
-  snowIntensity: number;
+  rainAccumulation: number;
+  sleetAccumulation: number;
+  snowAccumulation: number;
+  iceAccumulation: number;
 }>;
 
 export type WeatherForecastDailyResponse = {
