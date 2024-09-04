@@ -101,208 +101,216 @@ export function HourlyCharts() {
     );
 
   return (
-    <>
-      <h3 className="text-xl font-semibold">Temperature</h3>
-      <ChartContainer
-        className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
-        config={temperaturesChartConfig}
-      >
-        <LineChart
-          accessibilityLayer
-          data={forecastHourlyCharts.data.temperatures}
-          margin={{
-            left: 12,
-            right: 12,
-          }}
+    <div className="flex flex-row flex-wrap">
+      <div className="flex w-full flex-col items-center text-center xl:w-1/2">
+        <h3 className="text-xl font-semibold">Temperature</h3>
+        <ChartContainer
+          className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
+          config={temperaturesChartConfig}
         >
-          <CartesianGrid vertical={false} />
-          <XAxis
-            dataKey="time"
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            scale="auto"
-          />
-          <YAxis
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            scale="auto"
-            tickFormatter={(value) => `${value} °C`}
-          />
-          <ChartLegend
-            content={<ChartLegendContent />}
-            verticalAlign="bottom"
-          />
-          <ChartTooltip cursor content={<ChartTooltipContent />} />
-          <Line
-            dataKey="temperatureApparent"
-            type="monotone"
-            stroke="var(--color-temperatureApparent)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="temperature"
-            type="monotone"
-            stroke="var(--color-temperature)"
-            strokeWidth={2}
-            dot={false}
-          />
-        </LineChart>
-      </ChartContainer>
+          <LineChart
+            accessibilityLayer
+            data={forecastHourlyCharts.data.temperatures}
+            margin={{
+              left: 12,
+              right: 12,
+            }}
+          >
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="time"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              scale="auto"
+            />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              scale="auto"
+              tickFormatter={(value) => `${value} °C`}
+            />
+            <ChartLegend
+              content={<ChartLegendContent />}
+              verticalAlign="top"
+            />
+            <ChartTooltip cursor content={<ChartTooltipContent />} />
+            <Line
+              dataKey="temperatureApparent"
+              type="monotone"
+              stroke="var(--color-temperatureApparent)"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              dataKey="temperature"
+              type="monotone"
+              stroke="var(--color-temperature)"
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
+        </ChartContainer>
+      </div>
 
-      <h3 className="mt-8 text-xl font-semibold">Humidity</h3>
-      <ChartContainer
-        className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
-        config={humiditiesChartConfig}
-      >
-        <LineChart
-          accessibilityLayer
-          data={forecastHourlyCharts.data.humidities}
-          margin={{
-            left: 12,
-            right: 12,
-          }}
+      <div className="flex w-full flex-col items-center text-center xl:w-1/2">
+        <h3 className="mt-8 text-xl font-semibold">Humidity</h3>
+        <ChartContainer
+          className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
+          config={humiditiesChartConfig}
         >
-          <CartesianGrid vertical={false} />
-          <XAxis
-            dataKey="time"
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            scale="auto"
-          />
-          <YAxis
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            scale="auto"
-            tickFormatter={(value) => `${value} %`}
-          />
-          <ChartLegend
-            content={<ChartLegendContent />}
-            verticalAlign="bottom"
-          />
-          <ChartTooltip cursor content={<ChartTooltipContent />} />
-          <Line
-            dataKey="humidity"
-            type="monotone"
-            stroke="var(--color-humidity)"
-            strokeWidth={2}
-            dot={false}
-          />
-        </LineChart>
-      </ChartContainer>
+          <LineChart
+            accessibilityLayer
+            data={forecastHourlyCharts.data.humidities}
+            margin={{
+              left: 12,
+              right: 12,
+            }}
+          >
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="time"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              scale="auto"
+            />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              scale="auto"
+              tickFormatter={(value) => `${value} %`}
+            />
+            <ChartLegend
+              content={<ChartLegendContent />}
+              verticalAlign="top"
+            />
+            <ChartTooltip cursor content={<ChartTooltipContent />} />
+            <Line
+              dataKey="humidity"
+              type="monotone"
+              stroke="var(--color-humidity)"
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
+        </ChartContainer>
+      </div>
 
-      <h3 className="mt-8 text-xl font-semibold">Wind</h3>
-      <ChartContainer
-        className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
-        config={windSpeedsChartConfig}
-      >
-        <LineChart
-          accessibilityLayer
-          data={forecastHourlyCharts.data.windSpeeds}
-          margin={{
-            left: 12,
-            right: 12,
-          }}
+      <div className="flex w-full flex-col items-center text-center xl:w-1/2">
+        <h3 className="mt-8 text-xl font-semibold">Wind</h3>
+        <ChartContainer
+          className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
+          config={windSpeedsChartConfig}
         >
-          <CartesianGrid vertical={false} />
-          <XAxis
-            dataKey="time"
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            scale="auto"
-          />
-          <YAxis
-            dataKey="windSpeed"
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            scale="auto"
-            tickFormatter={(value) => `${value} mph`}
-          />
-          <ChartLegend
-            content={<ChartLegendContent />}
-            verticalAlign="bottom"
-          />
-          <ChartTooltip cursor content={<ChartTooltipContent />} />
-          <Line
-            dataKey="windSpeed"
-            type="monotone"
-            stroke="var(--color-windSpeed)"
-            strokeWidth={2}
-            dot={false}
-            unit="mph"
-          />
-        </LineChart>
-      </ChartContainer>
+          <LineChart
+            accessibilityLayer
+            data={forecastHourlyCharts.data.windSpeeds}
+            margin={{
+              left: 12,
+              right: 12,
+            }}
+          >
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="time"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              scale="auto"
+            />
+            <YAxis
+              dataKey="windSpeed"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              scale="auto"
+              tickFormatter={(value) => `${value} mph`}
+            />
+            <ChartLegend
+              content={<ChartLegendContent />}
+              verticalAlign="top"
+            />
+            <ChartTooltip cursor content={<ChartTooltipContent />} />
+            <Line
+              dataKey="windSpeed"
+              type="monotone"
+              stroke="var(--color-windSpeed)"
+              strokeWidth={2}
+              dot={false}
+              unit="mph"
+            />
+          </LineChart>
+        </ChartContainer>
+      </div>
 
-      <h3 className="mt-8 text-xl font-semibold">Precipitation</h3>
-      <ChartContainer
-        className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
-        config={intensitiesChartConfig}
-      >
-        <LineChart
-          accessibilityLayer
-          data={forecastHourlyCharts.data.precipitations}
-          margin={{
-            left: 12,
-            right: 12,
-          }}
+      <div className="flex w-full flex-col items-center text-center xl:w-1/2">
+        <h3 className="mt-8 text-xl font-semibold">Precipitation</h3>
+        <ChartContainer
+          className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
+          config={intensitiesChartConfig}
         >
-          <CartesianGrid vertical={false} />
-          <XAxis
-            dataKey="time"
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            scale="auto"
-          />
-          <YAxis
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            scale="auto"
-            tickFormatter={(value) => `${value} mm`}
-          />
-          <ChartLegend
-            content={<ChartLegendContent />}
-            verticalAlign="bottom"
-          />
-          <ChartTooltip cursor content={<ChartTooltipContent />} />
-          <Line
-            dataKey="rainAccumulation"
-            type="monotone"
-            stroke="var(--color-rainAccumulation)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="freezingRainAccumulation"
-            type="monotone"
-            stroke="var(--color-freezingRainAccumulation)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="sleetAccumulation"
-            type="monotone"
-            stroke="var(--color-sleetAccumulation)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="snowAccumulation"
-            type="monotone"
-            stroke="var(--color-snowAccumulation)"
-            strokeWidth={2}
-            dot={false}
-          />
-        </LineChart>
-      </ChartContainer>
-    </>
+          <LineChart
+            accessibilityLayer
+            data={forecastHourlyCharts.data.precipitations}
+            margin={{
+              left: 12,
+              right: 12,
+            }}
+          >
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="time"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              scale="auto"
+            />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              scale="auto"
+              tickFormatter={(value) => `${value} mm`}
+            />
+            <ChartLegend
+              content={<ChartLegendContent />}
+              verticalAlign="top"
+            />
+            <ChartTooltip cursor content={<ChartTooltipContent />} />
+            <Line
+              dataKey="rainAccumulation"
+              type="monotone"
+              stroke="var(--color-rainAccumulation)"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              dataKey="freezingRainAccumulation"
+              type="monotone"
+              stroke="var(--color-freezingRainAccumulation)"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              dataKey="sleetAccumulation"
+              type="monotone"
+              stroke="var(--color-sleetAccumulation)"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              dataKey="snowAccumulation"
+              type="monotone"
+              stroke="var(--color-snowAccumulation)"
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
+        </ChartContainer>
+      </div>
+    </div>
   );
 }

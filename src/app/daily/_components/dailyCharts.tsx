@@ -160,297 +160,242 @@ export function DailyCharts() {
     );
 
   return (
-    <>
-      <h3 className="text-xl font-semibold">Temperature</h3>
-      <ChartContainer
-        className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
-        config={temperaturesChartConfig}
-      >
-        <ComposedChart
-          accessibilityLayer
-          data={forecastDailyCharts.data.temperatures}
-          margin={{
-            left: 12,
-            right: 12,
-          }}
+    <div className="flex flex-row flex-wrap">
+      <div className="flex w-full flex-col items-center text-center xl:w-1/2">
+        <h3 className="mt-8 text-xl font-semibold">Temperature</h3>
+        <ChartContainer
+          className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
+          config={temperaturesChartConfig}
         >
-          <CartesianGrid vertical={false} />
-          <XAxis
-            dataKey="time"
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            scale="auto"
-          />
-          <YAxis
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            scale="auto"
-            tickFormatter={(value) => `${value} °C`}
-          />
-          <ChartLegend
-            content={<ChartLegendContent />}
-            verticalAlign="bottom"
-          />
-          <ChartTooltip cursor content={<ChartTooltipContent />} />
-          <Line
-            dataKey="temperatureMin"
-            type="monotone"
-            stroke="var(--color-temperatureMin)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="temperatureAvg"
-            type="monotone"
-            stroke="var(--color-temperatureAvg)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="temperatureMax"
-            type="monotone"
-            stroke="var(--color-temperatureMax)"
-            strokeWidth={2}
-            dot={false}
-          />
-        </ComposedChart>
-      </ChartContainer>
+          <ComposedChart
+            accessibilityLayer
+            data={forecastDailyCharts.data.temperatures}
+            margin={{
+              left: 12,
+              right: 12,
+            }}
+          >
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="time"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              scale="auto"
+            />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              scale="auto"
+              tickFormatter={(value) => `${value} °C`}
+            />
+            <ChartLegend content={<ChartLegendContent />} verticalAlign="top" />
+            <ChartTooltip cursor content={<ChartTooltipContent />} />
+            <Line
+              dataKey="temperatureMin"
+              type="monotone"
+              stroke="var(--color-temperatureMin)"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              dataKey="temperatureAvg"
+              type="monotone"
+              stroke="var(--color-temperatureAvg)"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              dataKey="temperatureMax"
+              type="monotone"
+              stroke="var(--color-temperatureMax)"
+              strokeWidth={2}
+              dot={false}
+            />
+          </ComposedChart>
+        </ChartContainer>
+      </div>
 
-      <h3 className="mt-8 text-xl font-semibold">Humidity</h3>
-      <ChartContainer
-        className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
-        config={humiditiesChartConfig}
-      >
-        <ComposedChart
-          accessibilityLayer
-          data={forecastDailyCharts.data.humidities}
-          margin={{
-            left: 12,
-            right: 12,
-          }}
+      <div className="flex w-full flex-col items-center text-center xl:w-1/2">
+        <h3 className="mt-8 text-xl font-semibold">Humidity</h3>
+        <ChartContainer
+          className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
+          config={humiditiesChartConfig}
         >
-          <CartesianGrid vertical={false} />
-          <XAxis
-            dataKey="time"
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            scale="auto"
-          />
-          <YAxis
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            scale="auto"
-            tickFormatter={(value) => `${value} °C`}
-          />
-          <ChartLegend
-            content={<ChartLegendContent />}
-            verticalAlign="bottom"
-          />
-          <ChartTooltip cursor content={<ChartTooltipContent />} />
-          <Line
-            dataKey="humidityMin"
-            type="monotone"
-            stroke="var(--color-humidityMin)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="humidityAvg"
-            type="monotone"
-            stroke="var(--color-humidityAvg)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="humidityMax"
-            type="monotone"
-            stroke="var(--color-humidityMax)"
-            strokeWidth={2}
-            dot={false}
-          />
-        </ComposedChart>
-      </ChartContainer>
+          <ComposedChart
+            accessibilityLayer
+            data={forecastDailyCharts.data.humidities}
+            margin={{
+              left: 12,
+              right: 12,
+            }}
+          >
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="time"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              scale="auto"
+            />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              scale="auto"
+              tickFormatter={(value) => `${value} °C`}
+            />
+            <ChartLegend content={<ChartLegendContent />} verticalAlign="top" />
+            <ChartTooltip cursor content={<ChartTooltipContent />} />
+            <Line
+              dataKey="humidityMin"
+              type="monotone"
+              stroke="var(--color-humidityMin)"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              dataKey="humidityAvg"
+              type="monotone"
+              stroke="var(--color-humidityAvg)"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              dataKey="humidityMax"
+              type="monotone"
+              stroke="var(--color-humidityMax)"
+              strokeWidth={2}
+              dot={false}
+            />
+          </ComposedChart>
+        </ChartContainer>
+      </div>
 
-      <h3 className="mt-8 text-xl font-semibold">Wind</h3>
-      <ChartContainer
-        className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
-        config={windSpeedsChartConfig}
-      >
-        <ComposedChart
-          accessibilityLayer
-          data={forecastDailyCharts.data.windSpeeds}
-          margin={{
-            left: 12,
-            right: 12,
-          }}
+      <div className="flex w-full flex-col items-center text-center xl:w-1/2">
+        <h3 className="mt-8 text-xl font-semibold">Wind</h3>
+        <ChartContainer
+          className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
+          config={windSpeedsChartConfig}
         >
-          <CartesianGrid vertical={false} />
-          <XAxis
-            dataKey="time"
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            scale="auto"
-          />
-          <YAxis
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            scale="auto"
-            tickFormatter={(value) => `${value} °C`}
-          />
-          <ChartLegend
-            content={<ChartLegendContent />}
-            verticalAlign="bottom"
-          />
-          <ChartTooltip cursor content={<ChartTooltipContent />} />
-          <Line
-            dataKey="windSpeedMin"
-            type="monotone"
-            stroke="var(--color-windSpeedMin)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="windSpeedAvg"
-            type="monotone"
-            stroke="var(--color-windSpeedAvg)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="windSpeedMax"
-            type="monotone"
-            stroke="var(--color-windSpeedMax)"
-            strokeWidth={2}
-            dot={false}
-          />
-        </ComposedChart>
-      </ChartContainer>
+          <ComposedChart
+            accessibilityLayer
+            data={forecastDailyCharts.data.windSpeeds}
+            margin={{
+              left: 12,
+              right: 12,
+            }}
+          >
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="time"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              scale="auto"
+            />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              scale="auto"
+              tickFormatter={(value) => `${value} °C`}
+            />
+            <ChartLegend content={<ChartLegendContent />} verticalAlign="top" />
+            <ChartTooltip cursor content={<ChartTooltipContent />} />
+            <Line
+              dataKey="windSpeedMin"
+              type="monotone"
+              stroke="var(--color-windSpeedMin)"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              dataKey="windSpeedAvg"
+              type="monotone"
+              stroke="var(--color-windSpeedAvg)"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              dataKey="windSpeedMax"
+              type="monotone"
+              stroke="var(--color-windSpeedMax)"
+              strokeWidth={2}
+              dot={false}
+            />
+          </ComposedChart>
+        </ChartContainer>
+      </div>
 
-      <h3 className="mt-8 text-xl font-semibold">Precipitation</h3>
-      <ChartContainer
-        className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
-        config={intensitiesChartConfig}
-      >
-        <LineChart
-          accessibilityLayer
-          data={forecastDailyCharts.data.precipitations}
-          margin={{
-            left: 12,
-            right: 12,
-          }}
+      <div className="flex w-full flex-col items-center text-center xl:w-1/2">
+        <h3 className="mt-8 text-xl font-semibold">Precipitation</h3>
+        <ChartContainer
+          className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
+          config={intensitiesChartConfig}
         >
-          <CartesianGrid vertical={false} />
-          <XAxis
-            dataKey="time"
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            scale="auto"
-          />
-          <YAxis
-            tickLine={false}
-            axisLine={false}
-            tickMargin={8}
-            scale="auto"
-            tickFormatter={(value) => `${value} mm`}
-          />
-          <ChartLegend
-            content={<ChartLegendContent />}
-            verticalAlign="bottom"
-          />
-          <ChartTooltip cursor content={<ChartTooltipContent />} />
-          <Line
-            dataKey="rainAccumulationMin"
-            type="monotone"
-            stroke="var(--color-rainAccumulationMin)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="rainAccumulationMax"
-            type="monotone"
-            stroke="var(--color-rainAccumulationMax)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="rainAccumulationAvg"
-            type="monotone"
-            stroke="var(--color-rainAccumulationAvg)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="freezingRainAccumulationMin"
-            type="monotone"
-            stroke="var(--color-freezingRainAccumulationMin)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="freezingRainAccumulationMax"
-            type="monotone"
-            stroke="var(--color-freezingRainAccumulationMax)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="freezingRainAccumulationAvg"
-            type="monotone"
-            stroke="var(--color-freezingRainAccumulationAvg)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="sleetAccumulationMin"
-            type="monotone"
-            stroke="var(--color-sleetAccumulationMin)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="sleetAccumulationMax"
-            type="monotone"
-            stroke="var(--color-sleetAccumulationMax)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="sleetAccumulationAvg"
-            type="monotone"
-            stroke="var(--color-sleetAccumulationAvg)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="snowAccumulationMin"
-            type="monotone"
-            stroke="var(--color-snowAccumulationMin)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="snowAccumulationMax"
-            type="monotone"
-            stroke="var(--color-snowAccumulationMax)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            dataKey="snowAccumulationAvg"
-            type="monotone"
-            stroke="var(--color-snowAccumulationAvg)"
-            strokeWidth={2}
-            dot={false}
-          />
-        </LineChart>
-      </ChartContainer>
-    </>
+          <LineChart
+            accessibilityLayer
+            data={forecastDailyCharts.data.precipitations}
+            margin={{
+              left: 12,
+              right: 12,
+            }}
+          >
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="time"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              scale="auto"
+            />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              scale="auto"
+              tickFormatter={(value) => `${value} mm`}
+            />
+            <ChartLegend
+              content={<ChartLegendContent />}
+              verticalAlign="top"
+              align="right"
+              direction="column"
+            />
+            <ChartTooltip cursor content={<ChartTooltipContent />} />
+            <Line
+              dataKey="rainAccumulationAvg"
+              type="monotone"
+              stroke="var(--color-rainAccumulationAvg)"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              dataKey="freezingRainAccumulationAvg"
+              type="monotone"
+              stroke="var(--color-freezingRainAccumulationAvg)"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              dataKey="sleetAccumulationAvg"
+              type="monotone"
+              stroke="var(--color-sleetAccumulationAvg)"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              dataKey="snowAccumulationAvg"
+              type="monotone"
+              stroke="var(--color-snowAccumulationAvg)"
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
+        </ChartContainer>
+      </div>
+    </div>
   );
 }
