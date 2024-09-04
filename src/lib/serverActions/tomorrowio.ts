@@ -93,6 +93,10 @@ export async function getWeatherForecastHourlyCharts(
       temperature: hourly.temperature,
       temperatureApparent: hourly.temperatureApparent,
     })),
+    humidities: hourlyForecast.map((hourly) => ({
+      time: dayjs(hourly.time).format("ddd HH:mm"),
+      humidity: hourly.humidity,
+    })),
     precipitations: hourlyForecast.map((hourly) => ({
       time: dayjs(hourly.time).format("ddd HH:mm"),
       rainAccumulation: hourly.rainAccumulation,

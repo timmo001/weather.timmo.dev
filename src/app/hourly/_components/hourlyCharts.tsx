@@ -30,21 +30,28 @@ const temperaturesChartConfig = {
 } satisfies ChartConfig;
 
 const intensitiesChartConfig = {
-  rainIntensity: {
+  rainAccumulation: {
     label: "Rain",
     color: "hsl(var(--chart-1))",
   },
-  freezingRainIntensity: {
+  freezingRainAccumulation: {
     label: "Freezing rain / Hail",
     color: "hsl(var(--chart-2))",
   },
-  sleetIntensity: {
+  sleetAccumulation: {
     label: "Sleet",
     color: "hsl(var(--chart-4))",
   },
-  snowIntensity: {
+  snowAccumulation: {
     label: "Snow",
     color: "hsl(var(--chart-5))",
+  },
+} satisfies ChartConfig;
+
+const humiditiesChartConfig = {
+  humidity: {
+    label: "Humidity",
+    color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig;
 
@@ -88,7 +95,7 @@ export function HourlyCharts() {
 
   return (
     <>
-      <h3 className="text-xl font-semibold">Hourly Temperature</h3>
+      <h3 className="text-xl font-semibold">Temperature</h3>
       <ChartContainer
         className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
         config={temperaturesChartConfig}
@@ -138,7 +145,50 @@ export function HourlyCharts() {
         </LineChart>
       </ChartContainer>
 
-      <h3 className="text-xl font-semibold">Hourly Precipitation</h3>
+      <h3 className="text-xl font-semibold">Humidity</h3>
+      <ChartContainer
+        className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
+        config={humiditiesChartConfig}
+      >
+        <LineChart
+          accessibilityLayer
+          data={forecastHourlyCharts.data.humidities}
+          margin={{
+            left: 12,
+            right: 12,
+          }}
+        >
+          <CartesianGrid vertical={false} />
+          <XAxis
+            dataKey="time"
+            tickLine={false}
+            axisLine={false}
+            tickMargin={8}
+            scale="auto"
+          />
+          <YAxis
+            tickLine={false}
+            axisLine={false}
+            tickMargin={8}
+            scale="auto"
+            tickFormatter={(value) => `${value}%`}
+          />
+          <ChartLegend
+            content={<ChartLegendContent />}
+            verticalAlign="bottom"
+          />
+          <ChartTooltip cursor content={<ChartTooltipContent />} />
+          <Line
+            dataKey="humidity"
+            type="monotone"
+            stroke="var(--color-humidity)"
+            strokeWidth={2}
+            dot={false}
+          />
+        </LineChart>
+      </ChartContainer>
+
+      <h3 className="text-xl font-semibold">Precipitation</h3>
       <ChartContainer
         className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
         config={intensitiesChartConfig}
@@ -172,30 +222,30 @@ export function HourlyCharts() {
           />
           <ChartTooltip cursor content={<ChartTooltipContent />} />
           <Line
-            dataKey="rainIntensity"
+            dataKey="rainAccumulation"
             type="monotone"
-            stroke="var(--color-rainIntensity)"
+            stroke="var(--color-rainAccumulation)"
             strokeWidth={2}
             dot={false}
           />
           <Line
-            dataKey="freezingRainIntensity"
+            dataKey="freezingRainAccumulation"
             type="monotone"
-            stroke="var(--color-freezingRainIntensity)"
+            stroke="var(--color-freezingRainAccumulation)"
             strokeWidth={2}
             dot={false}
           />
           <Line
-            dataKey="sleetIntensity"
+            dataKey="sleetAccumulation"
             type="monotone"
-            stroke="var(--color-sleetIntensity)"
+            stroke="var(--color-sleetAccumulation)"
             strokeWidth={2}
             dot={false}
           />
           <Line
-            dataKey="snowIntensity"
+            dataKey="snowAccumulation"
             type="monotone"
-            stroke="var(--color-snowIntensity)"
+            stroke="var(--color-snowAccumulation)"
             strokeWidth={2}
             dot={false}
           />

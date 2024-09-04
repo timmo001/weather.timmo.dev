@@ -131,6 +131,7 @@ export type WeatherForecastHourly = Array<{
 
 export type WeatherForecastHourlyCharts = {
   temperatures: WeatherForecastHourlyTemperatureChart;
+  humidities: WeatherForecastHourlyHumidityChart;
   precipitations: WeatherForecastHourlyIntensityChart;
 };
 
@@ -138,6 +139,11 @@ export type WeatherForecastHourlyTemperatureChart = Array<{
   time: string;
   temperature: number;
   temperatureApparent: number;
+}>;
+
+export type WeatherForecastHourlyHumidityChart = Array<{
+  time: string;
+  humidity: number;
 }>;
 
 export type WeatherForecastHourlyIntensityChart = Array<{
