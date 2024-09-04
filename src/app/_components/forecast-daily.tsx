@@ -34,7 +34,7 @@ export function ForecastDaily() {
   if (location.isError) return <span>Error loading location...</span>;
 
   return (
-    <div className="mt-4 flex select-none flex-col items-center gap-1 text-center">
+    <div className="mt-4 flex flex-col items-center gap-1 text-center">
       <h3 className="text-xl font-semibold">Daily</h3>
       {forecastDaily.isLoading ? (
         <span>Loading daily forecast...</span>

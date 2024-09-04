@@ -164,7 +164,7 @@ export function DailyCharts() {
       <div className="flex w-full flex-col items-center text-center xl:w-1/2">
         <h3 className="mt-8 text-xl font-semibold">Temperature</h3>
         <ChartContainer
-          className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
+          className="mt-4 w-full flex-col items-center gap-1 text-center"
           config={temperaturesChartConfig}
         >
           <ComposedChart
@@ -220,7 +220,7 @@ export function DailyCharts() {
       <div className="flex w-full flex-col items-center text-center xl:w-1/2">
         <h3 className="mt-8 text-xl font-semibold">Humidity</h3>
         <ChartContainer
-          className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
+          className="mt-4 w-full flex-col items-center gap-1 text-center"
           config={humiditiesChartConfig}
         >
           <ComposedChart
@@ -276,7 +276,7 @@ export function DailyCharts() {
       <div className="flex w-full flex-col items-center text-center xl:w-1/2">
         <h3 className="mt-8 text-xl font-semibold">Wind</h3>
         <ChartContainer
-          className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
+          className="mt-4 w-full flex-col items-center gap-1 text-center"
           config={windSpeedsChartConfig}
         >
           <ComposedChart
@@ -332,7 +332,7 @@ export function DailyCharts() {
       <div className="flex w-full flex-col items-center text-center xl:w-1/2">
         <h3 className="mt-8 text-xl font-semibold">Precipitation</h3>
         <ChartContainer
-          className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
+          className="mt-4 w-full flex-col items-center gap-1 text-center"
           config={intensitiesChartConfig}
         >
           <LineChart

@@ -50,7 +50,7 @@ export function ForecastNow() {
   if (location.isError) return <span>Error loading location...</span>;
 
   return (
-    <div className="flex select-none flex-col items-center gap-1 text-center">
+    <div className="flex flex-col items-center gap-1 text-center">
       {forecastNow.isLoading ? (
         <span>Loading realtime forecast...</span>
       ) : forecastNow.isError ? (
