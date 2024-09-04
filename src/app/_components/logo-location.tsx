@@ -29,7 +29,7 @@ export function LogoLocation() {
 
   return (
     <>
-      <h1 className="flex select-none flex-row items-center gap-2 text-7xl font-extrabold tracking-tight delay-200 duration-300 animate-in fade-in sm:text-[5rem]">
+      <h1 className="flex select-none flex-row items-center gap-2 text-6xl font-extrabold tracking-tight delay-200 duration-300 animate-in fade-in sm:text-[5rem]">
         <CloudSun className="h-20 w-20" />
         Weather
       </h1>

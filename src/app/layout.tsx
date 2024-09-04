@@ -45,7 +45,7 @@ export default function RootLayout({
             <div className="flex min-h-screen flex-col items-center bg-gradient-to-b from-sky-500 to-white transition-all dark:from-sky-950 dark:to-black">
               <Header />
               <main
-                className="container mb-4 flex flex-col items-center justify-center gap-12 p-4"
+                className="container flex flex-col items-center justify-center gap-8 px-4 pb-12 pt-4"
                 role="main"
               >
                 <LogoLocation />
