@@ -12,13 +12,11 @@ const config = {
   },
 };
 
-export default config;
-
 // Injected content via Sentry wizard below
 
 const { withSentryConfig } = await import("@sentry/nextjs");
 
-module.exports = withSentryConfig(module.exports, {
+export default withSentryConfig(config, {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options
 
