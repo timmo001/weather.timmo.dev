@@ -1,17 +1,19 @@
 "use server";
 import "server-only";
 import { unstable_cache } from "next/cache";
+import dayjs from "dayjs";
 
 import { env } from "~/env";
 import { type Location } from "~/lib/schema";
 import {
-  type WeatherForecastErrorResponse,
-  type WeatherForecastNow,
-  type WeatherForecastNowResponse,
-  type WeatherForecastHourly,
-  type WeatherForecastHourlyResponse,
   type WeatherForecastDaily,
   type WeatherForecastDailyResponse,
+  type WeatherForecastErrorResponse,
+  type WeatherForecastHourly,
+  type WeatherForecastHourlyCharts,
+  type WeatherForecastHourlyResponse,
+  type WeatherForecastNow,
+  type WeatherForecastNowResponse,
 } from "~/lib/types/tomorrowio";
 
 const BASE_PARAMS = `apikey=${env.WEATHER_API_KEY}`;
@@ -34,6 +36,7 @@ export async function getWeatherForecastNow(
         | WeatherForecastErrorResponse
         | WeatherForecastNowResponse;
       console.log("Response:", JSON.stringify(responseData));
+      // If there is an error, return it so the client can handle it
       if ("code" in responseData) return responseData;
 
       return {
@@ -61,6 +64,7 @@ export async function getWeatherForecastHourly(
         | WeatherForecastErrorResponse
         | WeatherForecastHourlyResponse;
       console.log("Response:", JSON.stringify(responseData));
+      // If there is an error, return it so the client can handle it
       if ("code" in responseData) return responseData;
 
       return responseData.timelines.hourly.map((hourly) => ({
@@ -76,6 +80,30 @@ export async function getWeatherForecastHourly(
   )();
 }
 
+export async function getWeatherForecastHourlyCharts(
+  location: Location,
+): Promise<WeatherForecastErrorResponse | WeatherForecastHourlyCharts> {
+  const hourlyForecast = await getWeatherForecastHourly(location);
+  // If there is an error, return it so the client can handle it
+  if ("code" in hourlyForecast) return hourlyForecast;
+
+  const response: WeatherForecastHourlyCharts = {
+    temperatures: hourlyForecast.map((hourly) => ({
+      time: dayjs(hourly.time).format("ddd HH:mm"),
+      temperature: hourly.temperature,
+      temperatureApparent: hourly.temperatureApparent,
+    })),
+  };
+
+  console.log(
+    "Got hourly chart data:",
+    JSON.stringify({
+      temperature: response.temperatures.length,
+    }),
+  );
+  return response;
+}
+
 export async function getWeatherForecastDaily(
   location: Location,
 ): Promise<WeatherForecastErrorResponse | WeatherForecastDaily> {
@@ -88,6 +116,7 @@ export async function getWeatherForecastDaily(
         | WeatherForecastErrorResponse
         | WeatherForecastDailyResponse;
       console.log("Response:", JSON.stringify(responseData));
+      // If there is an error, return it so the client can handle it
       if ("code" in responseData) return responseData;
 
       return responseData.timelines.daily.map((daily) => ({

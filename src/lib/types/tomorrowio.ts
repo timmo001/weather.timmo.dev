@@ -129,6 +129,16 @@ export type WeatherForecastHourly = Array<{
   windSpeed: number;
 }>;
 
+export type WeatherForecastHourlyCharts = {
+  temperatures: WeatherForecastHourlyTemperatureChart;
+};
+
+export type WeatherForecastHourlyTemperatureChart = Array<{
+  time: string;
+  temperature: number;
+  temperatureApparent: number;
+}>;
+
 export type WeatherForecastDailyResponse = {
   timelines: {
     daily: Array<{

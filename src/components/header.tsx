@@ -8,7 +8,7 @@ const navItems: Array<{
   href: string;
 }> = [
   { label: "Home", href: "/" },
-  { label: "Temperature", href: "/temperature" },
+  { label: "Charts", href: "/charts" },
 ];
 
 export function Header() {
