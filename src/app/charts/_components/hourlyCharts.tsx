@@ -18,7 +18,7 @@ import {
   type WeatherForecastHourlyCharts,
 } from "~/lib/types/tomorrowio";
 
-const chartConfig = {
+const temperaturesChartConfig = {
   temperature: {
     label: "Actual",
     color: "hsl(var(--chart-3))",
@@ -29,7 +29,26 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function TemperatureHourly() {
+const intensitiesChartConfig = {
+  rainIntensity: {
+    label: "Rain",
+    color: "hsl(var(--chart-1))",
+  },
+  freezingRainIntensity: {
+    label: "Freezing rain / Hail",
+    color: "hsl(var(--chart-2))",
+  },
+  sleetIntensity: {
+    label: "Sleet",
+    color: "hsl(var(--chart-4))",
+  },
+  snowIntensity: {
+    label: "Snow",
+    color: "hsl(var(--chart-5))",
+  },
+} satisfies ChartConfig;
+
+export function HourlyCharts() {
   const location = useQuery({
     queryKey: ["location"],
     queryFn: getLocationFromLocalStorage,
@@ -72,7 +91,7 @@ export function TemperatureHourly() {
       <h3 className="text-xl font-semibold">Hourly Temperature</h3>
       <ChartContainer
         className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
-        config={chartConfig}
+        config={temperaturesChartConfig}
       >
         <LineChart
           accessibilityLayer
@@ -91,7 +110,6 @@ export function TemperatureHourly() {
             scale="auto"
           />
           <YAxis
-            dataKey="temperature"
             tickLine={false}
             axisLine={false}
             tickMargin={8}
@@ -114,6 +132,70 @@ export function TemperatureHourly() {
             dataKey="temperature"
             type="monotone"
             stroke="var(--color-temperature)"
+            strokeWidth={2}
+            dot={false}
+          />
+        </LineChart>
+      </ChartContainer>
+
+      <h3 className="text-xl font-semibold">Hourly Precipitation Intensity</h3>
+      <ChartContainer
+        className="mt-4 w-full select-none flex-col items-center gap-1 text-center"
+        config={intensitiesChartConfig}
+      >
+        <LineChart
+          accessibilityLayer
+          data={forecastHourlyCharts.data.intensities}
+          margin={{
+            left: 12,
+            right: 12,
+          }}
+        >
+          <CartesianGrid vertical={false} />
+          <XAxis
+            dataKey="time"
+            tickLine={false}
+            axisLine={false}
+            tickMargin={8}
+            scale="auto"
+          />
+          <YAxis
+            tickLine={false}
+            axisLine={false}
+            tickMargin={8}
+            scale="auto"
+            tickFormatter={(value) => `${value}mm`}
+          />
+          <ChartLegend
+            content={<ChartLegendContent />}
+            verticalAlign="bottom"
+          />
+          <ChartTooltip cursor content={<ChartTooltipContent />} />
+          <Line
+            dataKey="rainIntensity"
+            type="monotone"
+            stroke="var(--color-rainIntensity)"
+            strokeWidth={2}
+            dot={false}
+          />
+          <Line
+            dataKey="freezingRainIntensity"
+            type="monotone"
+            stroke="var(--color-freezingRainIntensity)"
+            strokeWidth={2}
+            dot={false}
+          />
+          <Line
+            dataKey="sleetIntensity"
+            type="monotone"
+            stroke="var(--color-sleetIntensity)"
+            strokeWidth={2}
+            dot={false}
+          />
+          <Line
+            dataKey="snowIntensity"
+            type="monotone"
+            stroke="var(--color-snowIntensity)"
             strokeWidth={2}
             dot={false}
           />

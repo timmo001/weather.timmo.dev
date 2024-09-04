@@ -131,12 +131,21 @@ export type WeatherForecastHourly = Array<{
 
 export type WeatherForecastHourlyCharts = {
   temperatures: WeatherForecastHourlyTemperatureChart;
+  intensities: WeatherForecastHourlyIntensityChart;
 };
 
 export type WeatherForecastHourlyTemperatureChart = Array<{
   time: string;
   temperature: number;
   temperatureApparent: number;
+}>;
+
+export type WeatherForecastHourlyIntensityChart = Array<{
+  time: string;
+  rainIntensity: number;
+  freezingRainIntensity: number;
+  sleetIntensity: number;
+  snowIntensity: number;
 }>;
 
 export type WeatherForecastDailyResponse = {
