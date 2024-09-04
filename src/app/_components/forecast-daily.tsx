@@ -50,7 +50,7 @@ export function ForecastDaily() {
         </span>
       ) : (
         <div className="custom-scrollbar mt-1 flex max-w-96 flex-row flex-nowrap gap-5 overflow-y-auto md:max-w-screen-md lg:max-w-screen-lg">
-          {forecastDaily.data.map((item) => {
+          {forecastDaily.data?.map((item) => {
             const dateTime = dayjs(item.time);
 
             return (
