@@ -72,20 +72,52 @@ const windSpeedsChartConfig = {
 } satisfies ChartConfig;
 
 const intensitiesChartConfig = {
-  rainAccumulation: {
-    label: "Rain",
+  rainAccumulationMin: {
+    label: "Rain Min",
     color: "hsl(var(--chart-1))",
   },
-  freezingRainAccumulation: {
-    label: "Freezing rain / Hail",
+  rainAccumulationMax: {
+    label: "Rain Max",
+    color: "hsl(var(--chart-1))",
+  },
+  rainAccumulationAvg: {
+    label: "Rain Avg",
+    color: "hsl(var(--chart-1))",
+  },
+  freezingRainAccumulationMin: {
+    label: "Freezing rain / Hail Min",
     color: "hsl(var(--chart-2))",
   },
-  sleetAccumulation: {
-    label: "Sleet",
+  freezingRainAccumulationMax: {
+    label: "Freezing rain / Hail Max",
+    color: "hsl(var(--chart-2))",
+  },
+  freezingRainAccumulationAvg: {
+    label: "Freezing rain / Hail Avg",
+    color: "hsl(var(--chart-2))",
+  },
+  sleetAccumulationMin: {
+    label: "Sleet Min",
     color: "hsl(var(--chart-4))",
   },
-  snowAccumulation: {
-    label: "Snow",
+  sleetAccumulationMax: {
+    label: "Sleet Max",
+    color: "hsl(var(--chart-4))",
+  },
+  sleetAccumulationAvg: {
+    label: "Sleet Avg",
+    color: "hsl(var(--chart-4))",
+  },
+  snowAccumulationMin: {
+    label: "Snow Min",
+    color: "hsl(var(--chart-5))",
+  },
+  snowAccumulationMax: {
+    label: "Snow Max",
+    color: "hsl(var(--chart-5))",
+  },
+  snowAccumulationAvg: {
+    label: "Snow Avg",
     color: "hsl(var(--chart-5))",
   },
 } satisfies ChartConfig;
@@ -335,30 +367,86 @@ export function DailyCharts() {
           />
           <ChartTooltip cursor content={<ChartTooltipContent />} />
           <Line
-            dataKey="rainAccumulation"
+            dataKey="rainAccumulationMin"
             type="monotone"
-            stroke="var(--color-rainAccumulation)"
+            stroke="var(--color-rainAccumulationMin)"
             strokeWidth={2}
             dot={false}
           />
           <Line
-            dataKey="freezingRainAccumulation"
+            dataKey="rainAccumulationMax"
             type="monotone"
-            stroke="var(--color-freezingRainAccumulation)"
+            stroke="var(--color-rainAccumulationMax)"
             strokeWidth={2}
             dot={false}
           />
           <Line
-            dataKey="sleetAccumulation"
+            dataKey="rainAccumulationAvg"
             type="monotone"
-            stroke="var(--color-sleetAccumulation)"
+            stroke="var(--color-rainAccumulationAvg)"
             strokeWidth={2}
             dot={false}
           />
           <Line
-            dataKey="snowAccumulation"
+            dataKey="freezingRainAccumulationMin"
             type="monotone"
-            stroke="var(--color-snowAccumulation)"
+            stroke="var(--color-freezingRainAccumulationMin)"
+            strokeWidth={2}
+            dot={false}
+          />
+          <Line
+            dataKey="freezingRainAccumulationMax"
+            type="monotone"
+            stroke="var(--color-freezingRainAccumulationMax)"
+            strokeWidth={2}
+            dot={false}
+          />
+          <Line
+            dataKey="freezingRainAccumulationAvg"
+            type="monotone"
+            stroke="var(--color-freezingRainAccumulationAvg)"
+            strokeWidth={2}
+            dot={false}
+          />
+          <Line
+            dataKey="sleetAccumulationMin"
+            type="monotone"
+            stroke="var(--color-sleetAccumulationMin)"
+            strokeWidth={2}
+            dot={false}
+          />
+          <Line
+            dataKey="sleetAccumulationMax"
+            type="monotone"
+            stroke="var(--color-sleetAccumulationMax)"
+            strokeWidth={2}
+            dot={false}
+          />
+          <Line
+            dataKey="sleetAccumulationAvg"
+            type="monotone"
+            stroke="var(--color-sleetAccumulationAvg)"
+            strokeWidth={2}
+            dot={false}
+          />
+          <Line
+            dataKey="snowAccumulationMin"
+            type="monotone"
+            stroke="var(--color-snowAccumulationMin)"
+            strokeWidth={2}
+            dot={false}
+          />
+          <Line
+            dataKey="snowAccumulationMax"
+            type="monotone"
+            stroke="var(--color-snowAccumulationMax)"
+            strokeWidth={2}
+            dot={false}
+          />
+          <Line
+            dataKey="snowAccumulationAvg"
+            type="monotone"
+            stroke="var(--color-snowAccumulationAvg)"
             strokeWidth={2}
             dot={false}
           />
