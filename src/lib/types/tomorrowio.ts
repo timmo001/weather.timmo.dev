@@ -220,6 +220,7 @@ export type WeatherForecastDailyResponse = {
         sleetAccumulationLweSum: number;
         sleetAccumulationMax: number;
         sleetAccumulationMin: number;
+        sleetAccumulationSum: number;
         sleetIntensityAvg: number;
         sleetIntensityMax: number;
         sleetIntensityMin: number;
@@ -410,8 +411,8 @@ export type WeatherForecastDailyAccumulationChart = Array<{
   sleetAccumulationMin: number;
   sleetAccumulationMax: number;
   sleetAccumulationAvg: number;
-  sleepAccumulationRange: [number, number];
-  sleepAccumulationSum: number;
+  sleetAccumulationRange: [number, number];
+  sleetAccumulationSum: number;
   snowAccumulationMin: number;
   snowAccumulationMax: number;
   snowAccumulationAvg: number;
