@@ -129,6 +129,37 @@ export type WeatherForecastHourly = Array<{
   windSpeed: number;
 }>;
 
+export type WeatherForecastHourlyCharts = {
+  temperatures: WeatherForecastHourlyTemperatureChart;
+  humidities: WeatherForecastHourlyHumidityChart;
+  windSpeeds: WeatherForecastHourlyWindSpeedChart;
+  precipitations: WeatherForecastHourlyAccumulationChart;
+};
+
+export type WeatherForecastHourlyTemperatureChart = Array<{
+  time: string;
+  temperature: number;
+  temperatureApparent: number;
+}>;
+
+export type WeatherForecastHourlyHumidityChart = Array<{
+  time: string;
+  humidity: number;
+}>;
+
+export type WeatherForecastHourlyWindSpeedChart = Array<{
+  time: string;
+  windSpeed: number;
+}>;
+
+export type WeatherForecastHourlyAccumulationChart = Array<{
+  time: string;
+  rainAccumulation: number;
+  sleetAccumulation: number;
+  snowAccumulation: number;
+  iceAccumulation: number;
+}>;
+
 export type WeatherForecastDailyResponse = {
   timelines: {
     daily: Array<{
@@ -189,6 +220,7 @@ export type WeatherForecastDailyResponse = {
         sleetAccumulationLweSum: number;
         sleetAccumulationMax: number;
         sleetAccumulationMin: number;
+        sleetAccumulationSum: number;
         sleetIntensityAvg: number;
         sleetIntensityMax: number;
         sleetIntensityMin: number;
@@ -295,6 +327,7 @@ export type WeatherForecastDaily = Array<{
   sleetAccumulationLweSum: number;
   sleetAccumulationMax: number;
   sleetAccumulationMin: number;
+  sleetAccumulationSum: number;
   sleetIntensityAvg: number;
   sleetIntensityMax: number;
   sleetIntensityMin: number;
@@ -335,4 +368,59 @@ export type WeatherForecastDaily = Array<{
   windSpeedAvg: number;
   windSpeedMax: number;
   windSpeedMin: number;
+}>;
+
+export type WeatherForecastDailyCharts = {
+  temperatures: WeatherForecastDailyTemperatureChart;
+  humidities: WeatherForecastDailyHumidityChart;
+  windSpeeds: WeatherForecastDailyWindSpeedChart;
+  precipitations: WeatherForecastDailyAccumulationChart;
+};
+
+export type WeatherForecastDailyTemperatureChart = Array<{
+  time: string;
+  temperatureMin: number;
+  temperatureMax: number;
+  temperatureAvg: number;
+  temperatureRange: [number, number];
+}>;
+
+export type WeatherForecastDailyHumidityChart = Array<{
+  time: string;
+  humidityMin: number;
+  humidityMax: number;
+  humidityAvg: number;
+  humidityRange: [number, number];
+}>;
+
+export type WeatherForecastDailyWindSpeedChart = Array<{
+  time: string;
+  windSpeedMin: number;
+  windSpeedMax: number;
+  windSpeedAvg: number;
+  windSpeedRange: [number, number];
+}>;
+
+export type WeatherForecastDailyAccumulationChart = Array<{
+  time: string;
+  rainAccumulationMin: number;
+  rainAccumulationMax: number;
+  rainAccumulationAvg: number;
+  rainAccumulationRange: [number, number];
+  rainAccumulationSum: number;
+  sleetAccumulationMin: number;
+  sleetAccumulationMax: number;
+  sleetAccumulationAvg: number;
+  sleetAccumulationRange: [number, number];
+  sleetAccumulationSum: number;
+  snowAccumulationMin: number;
+  snowAccumulationMax: number;
+  snowAccumulationAvg: number;
+  snowAccumulationRange: [number, number];
+  snowAccumulationSum: number;
+  iceAccumulationMin: number;
+  iceAccumulationMax: number;
+  iceAccumulationAvg: number;
+  iceAccumulationRange: [number, number];
+  iceAccumulationSum: number;
 }>;

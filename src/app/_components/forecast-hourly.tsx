@@ -50,7 +50,7 @@ export function ForecastHourly() {
         </span>
       ) : (
         <div className="custom-scrollbar mt-1 flex max-w-96 flex-row flex-nowrap gap-5 overflow-y-auto md:max-w-screen-md lg:max-w-screen-lg">
-          {forecastHourly.data.map((item) => {
+          {forecastHourly.data?.map((item) => {
             const dateTime = dayjs(item.time);
 
             return (

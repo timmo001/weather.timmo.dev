@@ -8,7 +8,8 @@ const navItems: Array<{
   href: string;
 }> = [
   { label: "Home", href: "/" },
-  { label: "Temperature", href: "/temperature" },
+  { label: "Hourly", href: "/hourly" },
+  { label: "Daily", href: "/daily" },
 ];
 
 export function Header() {
