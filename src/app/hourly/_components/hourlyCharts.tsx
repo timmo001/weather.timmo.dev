@@ -69,7 +69,6 @@ export function HourlyCharts() {
   });
 
   const forecastHourlyCharts = useQuery({
-    staleTime: 1000 * 60 * 20, // 20 minutes
     queryKey: [location.data, "forecast", "hourly"],
     queryFn: async (): Promise<
       WeatherForecastErrorResponse | WeatherForecastHourlyCharts

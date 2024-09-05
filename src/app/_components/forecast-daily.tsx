@@ -18,7 +18,6 @@ export function ForecastDaily() {
   });
 
   const forecastDaily = useQuery({
-    staleTime: 1000 * 60 * 30, // 30 minutes
     queryKey: [location.data, "forecast", "daily"],
     queryFn: async (): Promise<
       WeatherForecastErrorResponse | WeatherForecastDaily

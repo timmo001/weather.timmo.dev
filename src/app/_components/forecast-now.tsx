@@ -22,7 +22,6 @@ export function ForecastNow() {
   });
 
   const forecastNow = useQuery({
-    staleTime: 1000 * 60 * 5, // 5 minutes
     queryKey: [location.data, "forecast", "now"],
     queryFn: async (): Promise<
       WeatherForecastErrorResponse | WeatherForecastNow
