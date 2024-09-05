@@ -40,11 +40,11 @@ There were a few options for weather data providers, but I chose Tomorrow.io for
 - The free tier is generous and allows for a good amount of requests per day. The hourly was an issue, but was alleviated thanks to the support team. See [here](https://github.com/timmo001/weather.timmo.dev/discussions/21) for more on this.
 - The API provides realtime data allowing for up to date weather information.
 - Tomorrow.io uses a range of data sources to provide accurate weather data. You can see the data sources [here](https://app.tomorrow.io/tomorrow-data-sources).
-- Only one request is needed to get the current weather data. Forecast data is also one request, but can be split into hourly or daily intervals via query parameters.
+- Only one request is needed to get the current weather data. Forecast data is also one request, split into hourly or daily intervals via query parameters.
 
 ### Alternatives Considered
 
-- [Accuweather](https://github.com/timmo001/weather.timmo.dev/tree/accuweather) - After hitting an hourly limit with tomorrow.io, I had used them before and they have accurate data. However, the free tier is limited to 50 requests per day.
+- [Accuweather](https://github.com/timmo001/weather.timmo.dev/tree/accuweather) - I had used them before and they have accurate data. However, the free tier is limited to 50 requests per day.
 - [OpenWeatherMap](https://openweathermap.org) - I have used OpenWeatherMap in the past and they have a generous free tier. However, I wanted to try a newer provider.
 - [Open-Meteo](https://open-meteo.com) - I have not used Open-Meteo before, but they have a generous free tier at 10,000 requests a day for non-commercial use. I may consider them in the future if I find the data to be accurate.
 
