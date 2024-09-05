@@ -22,7 +22,7 @@ Weather data is provided by the [Tomorrow.io](https://www.tomorrow.io/) API.
 - [Node.js](https://nodejs.org)
 - [Bun](https://bun.sh) (Optional, but recommended)
 
-You can also use `yarn` or `pnpm` as an alternative if you prefer. The below instructions are for `bun` but are interchangeable.
+You can also use `yarn` or `pnpm` as an alternative if you prefer. The below instructions are for `bun`, but are interchangeable.
 
 ### Setup
 
