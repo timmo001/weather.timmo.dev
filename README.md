@@ -13,6 +13,13 @@ Weather data is provided by the [Tomorrow.io](https://www.tomorrow.io/) API. The
 - Responsive design.
 - Progressive Web App support - You can install the web app as a standalone app on your device using the install prompt or the install button in your browser's address bar.
 
+## Screenshots
+
+[![Homepage (Dark)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/master/resources/home-dark.png)](https://weather.timmo.dev)
+[![Hourly (Dark)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/master/resources/hourly-dark.png)](https://weather.timmo.dev/hourly)
+[![Daily (Dark)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/master/resources/daily-dark.png)](https://weather.timmo.dev/daily)
+[![Homepage (Light)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/master/resources/home-dark.png)](https://weather.timmo.dev)
+
 ## Why Tomorrow.io?
 
 There were a few options for weather data providers, but I chose Tomorrow.io for the following reasons:
