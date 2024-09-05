@@ -47,7 +47,7 @@ export function LocationForm() {
       latitude: Number(form.getValues("latitude")),
       longitude: Number(form.getValues("longitude")),
     };
-    console.log("Update location:", data);
+    console.log("Update location in local storage:", data);
     localStorage.setItem("location", JSON.stringify(data));
     await queryClient.invalidateQueries({ queryKey: ["location"] });
     router.refresh();

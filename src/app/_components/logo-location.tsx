@@ -21,6 +21,8 @@ export function LogoLocation() {
     queryFn: getLocationFromLocalStorage,
   });
 
+  // Used to determine if the location is already set.
+  // If the location is already set, the button should be reduced in size and text should show as "update" instead of "set"
   const shouldUpdateLocation = useMemo<boolean>(
     () =>
       location.isLoading || location.isError || !location.data ? false : true,
@@ -36,7 +38,7 @@ export function LogoLocation() {
       <section className="flex w-full flex-col items-center gap-3 delay-300 duration-300 animate-in fade-in">
         <Dialog>
           <DialogTrigger asChild>
-            {/* When the location is already set, the button can be reduced in size */}
+            {/* When the location is already set, the button should be reduced in size */}
             <Button
               className={`${shouldUpdateLocation ? "text-base" : "text-2xl font-bold"} ${location.isLoading ? "invisible" : "visible"}`}
               size={shouldUpdateLocation ? "default" : "lg"}
