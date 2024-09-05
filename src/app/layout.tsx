@@ -11,7 +11,7 @@ import { LogoLocation } from "~/app/_components/logo-location";
 
 export const metadata: Metadata = {
   title: "Weather",
-  description: "A weather application",
+  description: "Get the weather forecast for your location.",
   keywords: ["weather"],
   icons: [{ rel: "icon", url: "/icon" }],
   metadataBase: new URL("https://weather.timmo.dev"),
