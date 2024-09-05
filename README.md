@@ -15,10 +15,23 @@ Weather data is provided by the [Tomorrow.io](https://www.tomorrow.io/) API. The
 
 ## Screenshots
 
-[![Homepage (Dark)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/master/resources/home-dark.png)](https://weather.timmo.dev)
+### Current Weather
+
+[![Current Weather (Dark Theme)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/master/resources/home-dark.png)](https://weather.timmo.dev)
+
+### Hourly
+
 [![Hourly (Dark)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/master/resources/hourly-dark.png)](https://weather.timmo.dev/hourly)
+
+### Daily
+
 [![Daily (Dark)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/master/resources/daily-dark.png)](https://weather.timmo.dev/daily)
-[![Homepage (Light)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/master/resources/home-dark.png)](https://weather.timmo.dev)
+
+### Light Theme
+
+Togglable using the theme switcher button in the top right corner. The initial theme is based on your browser's theme preference.
+
+[![Current Weather (Light)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/master/resources/home-light.png)](https://weather.timmo.dev)
 
 ## Why Tomorrow.io?
 
