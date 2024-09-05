@@ -64,7 +64,7 @@ export function ForecastNow() {
         </span>
       ) : (
         <>
-          <div className="flex flex-row flex-wrap items-stretch gap-6">
+          <div className="flex flex-row flex-wrap items-stretch justify-center gap-6">
             <WeatherIcon
               className="h-32 w-32"
               code={forecastNow.data.weatherCode}
