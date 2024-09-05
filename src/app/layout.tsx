@@ -2,12 +2,13 @@ import { type Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "next-themes";
 import { GeistSans } from "geist/font/sans";
+import { CloudSun } from "lucide-react";
 
 import "~/styles/globals.css";
 
 import { Header } from "~/components/header";
 import { QueryProvider } from "~/components/providers/query";
-import { LogoLocation } from "~/components/logo-location";
+import { Location } from "~/components/location";
 
 export const metadata: Metadata = {
   title: "Weather",
@@ -53,7 +54,11 @@ export default function RootLayout({
                 className="container flex flex-col items-center justify-center gap-8 px-4 pb-12 pt-4"
                 role="main"
               >
-                <LogoLocation />
+                <h1 className="flex select-none flex-row items-center gap-2 text-6xl font-extrabold tracking-tight delay-200 duration-300 animate-in fade-in sm:text-[5rem]">
+                  <CloudSun className="h-20 w-20" />
+                  Weather
+                </h1>
+                <Location />
                 {children}
               </main>
             </div>

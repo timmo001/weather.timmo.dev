@@ -1,6 +1,6 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import { CloudSun, LocateFixedIcon } from "lucide-react";
+import { LocateFixedIcon } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 import {
@@ -15,7 +15,7 @@ import { LocationForm } from "~/components/location-form";
 import { getLocationFromLocalStorage } from "~/lib/local-storage";
 import { useMemo } from "react";
 
-export function LogoLocation() {
+export function Location() {
   const location = useQuery({
     queryKey: ["location"],
     queryFn: getLocationFromLocalStorage,
@@ -31,10 +31,6 @@ export function LogoLocation() {
 
   return (
     <>
-      <h1 className="flex select-none flex-row items-center gap-2 text-6xl font-extrabold tracking-tight delay-200 duration-300 animate-in fade-in sm:text-[5rem]">
-        <CloudSun className="h-20 w-20" />
-        Weather
-      </h1>
       <section className="flex w-full flex-col items-center gap-3 delay-300 duration-300 animate-in fade-in">
         <Dialog>
           <DialogTrigger asChild>
