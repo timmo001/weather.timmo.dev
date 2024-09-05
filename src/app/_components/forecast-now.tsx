@@ -89,13 +89,14 @@ export function ForecastNow() {
                 <span className="font-normal">
                   {forecastNow.data.temperature.toFixed(1)}
                 </span>
-                <span className="font-normal">%</span>
+                <span className="font-small text-base font-normal">%</span>
               </div>
               <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Wind Speed:</span>
                 <span className="font-normal">
                   {forecastNow.data.windSpeed.toFixed(1)}
                 </span>
+                <span className="font-small text-base font-normal">mph</span>
               </div>
               <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Wind Direction:</span>
