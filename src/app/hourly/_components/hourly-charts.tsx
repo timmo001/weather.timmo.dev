@@ -220,7 +220,7 @@ export function HourlyCharts() {
               axisLine={false}
               tickMargin={8}
               scale="auto"
-              tickFormatter={(value) => `${value} mph`}
+              tickFormatter={(value) => `${value} m/s`}
             />
             <ChartLegend content={<ChartLegendContent />} verticalAlign="top" />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
@@ -230,7 +230,7 @@ export function HourlyCharts() {
               stroke="var(--color-windSpeed)"
               strokeWidth={2}
               dot={false}
-              unit="mph"
+              unit="m/s"
             />
           </LineChart>
         </ChartContainer>

@@ -96,7 +96,7 @@ export function ForecastNow() {
                 <span className="font-normal">
                   {forecastNow.data.windSpeed.toFixed(1)}
                 </span>
-                <span className="font-small text-base font-normal">mph</span>
+                <span className="font-small text-base font-normal">m/s</span>
               </div>
               <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Wind Direction:</span>

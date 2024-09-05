@@ -117,7 +117,7 @@ export async function getWeatherForecastHourlyCharts(
     })),
     windSpeeds: hourlyForecast.map((hourly) => ({
       time: dayjs(hourly.time).format("ddd HH:mm"),
-      windSpeed: hourly.windSpeed,
+      windSpeed: hourly.windSpeed, 
     })),
     precipitations: hourlyForecast.map((hourly) => ({
       time: dayjs(hourly.time).format("ddd HH:mm"),

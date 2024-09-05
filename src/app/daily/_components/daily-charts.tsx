@@ -299,7 +299,7 @@ export function DailyCharts() {
               axisLine={false}
               tickMargin={8}
               scale="auto"
-              tickFormatter={(value) => `${value} mph`}
+              tickFormatter={(value) => `${value} m/s`}
             />
             <ChartLegend content={<ChartLegendContent />} verticalAlign="top" />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
