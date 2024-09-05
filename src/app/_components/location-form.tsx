@@ -53,9 +53,7 @@ export function LocationForm() {
     router.refresh();
   }
 
-  if (form.formState.isLoading) {
-    return <span>Loading location...</span>;
-  }
+  if (form.formState.isLoading) return <span>Loading location...</span>;
 
   return (
     <Form {...form}>
