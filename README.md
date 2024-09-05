@@ -42,7 +42,7 @@ There were a few options for weather data providers, but I chose Tomorrow.io for
 - [Node.js](https://nodejs.org)
 - [Bun](https://bun.sh) (Optional, but recommended)
 
-You can also use `yarn` or `pnpm` as an alternative if you prefer. The below instructions are for `bun`, but are interchangeable.
+You can also use `npm`, `yarn`, `pnpm` etc. as an alternative if you prefer. The below instructions are for `bun`, but are interchangeable.
 
 ### Setup
 
