@@ -1,9 +1,6 @@
 import { withSentryConfig } from "@sentry/nextjs";
 
-/**
- * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
- * for Docker builds.
- */
+// Create an environment object, which allows access to environment variables in a type-safe way.
 await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
@@ -14,7 +11,9 @@ const config = {
   },
 };
 
-// Injected content via Sentry wizard below
+//
+// Injected content via Sentry wizard
+//
 export default withSentryConfig(config, {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options

@@ -1,5 +1,8 @@
 import type { Config } from "tailwindcss";
 
+//
+// This is the Tailwind CSS configuration file which contains additional configuration for animations and custom colors.
+//
 const config = {
   darkMode: ["class"],
   content: [
