@@ -39,7 +39,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
-        {/* Initialise the theme */}
+        {/* Initialise the theme, default theme is the system theme. Can be toggled via the header */}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

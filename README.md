@@ -9,7 +9,7 @@ Weather data is provided by the [Tomorrow.io](https://www.tomorrow.io/) API. The
 - Set your location using coordinates. You can use your browser's geolocation feature to get your current location.
 - Get the current weather conditions.
 - Get a 6 day forecast either in hourly or daily intervals.
-- Dark and light themes - uses your browser's theme preference as the default theme.
+- Dark and light themes - uses your system's theme preference as the default theme.
 - Responsive design.
 - Progressive Web App support - You can install the web app as a standalone app on your device using the install prompt or the install button in your browser's address bar.
 
@@ -29,7 +29,7 @@ Weather data is provided by the [Tomorrow.io](https://www.tomorrow.io/) API. The
 
 ### Light Theme
 
-Togglable using the theme switcher button in the top right corner. The initial theme is based on your browser's theme preference.
+Togglable using the theme switcher button in the top right corner. The initial theme is based on your system's theme preference.
 
 [![Current Weather (Light)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/master/resources/home-light.png)](https://weather.timmo.dev)
 
