@@ -11,7 +11,7 @@ Weather data is provided by the [Tomorrow.io](https://www.tomorrow.io/) API. The
 - Get a 6 day forecast either in hourly or daily intervals.
 - Dark and light themes - uses your system's theme preference as the default theme.
 - Responsive design - Works well on both desktop and mobile.
-- Progressive Web App support - You can install the web app as a standalone app on your device using the install prompt or the install button in your browser's address bar.
+- Progressive Web App - You can install the web app as a standalone app on your device using the install prompt or the install button in your browser's address bar.
 
 ## Screenshots
 
@@ -29,13 +29,11 @@ Weather data is provided by the [Tomorrow.io](https://www.tomorrow.io/) API. The
 
 ### Light Theme
 
-Togglable using the theme switcher button in the top right corner. The initial theme is based on your system's theme preference.
-
 [![Current Weather (Light)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/master/resources/home-light.png)](https://weather.timmo.dev)
 
 ## Why Tomorrow.io?
 
-There were a few options for weather data providers, but I chose Tomorrow.io for the following reasons:
+There were a few options for weather data providers, but I ended up choosing Tomorrow.io for these reasons:
 
 - The free tier is generous and allows for a good amount of requests per day. The hourly was an issue, but was alleviated thanks to the support team. See [here](https://github.com/timmo001/weather.timmo.dev/discussions/21) for more on this.
 - The API provides realtime data allowing for up to date weather information.
