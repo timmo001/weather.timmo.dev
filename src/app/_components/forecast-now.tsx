@@ -84,8 +84,24 @@ export function ForecastNow() {
               </div>
             </div>
           </div>
+          <div className="flex flex-col items-center justify-center gap-1">
+            <div className="flex flex-row items-center gap-1 text-xl">
+              <span className="font-bold">Humidity:</span>
+              <span className="font-semibold">
+                {forecastNow.data.temperature.toFixed(1)}
+              </span>
+              <span className="font-semibold">%</span>
+            </div>
+            <div className="flex flex-row items-center gap-1 text-xl">
+              <span className="font-bold">Wind Speed:</span>
+              <span className="font-semibold">
+                {forecastNow.data.windSpeed.toFixed(1)}
+              </span>
+              <span className="font-semibold">mph</span>
+            </div>
+          </div>
           {dateTime && (
-            <span className="text-sm font-semibold">
+            <span className="mt-4 text-sm font-semibold">
               Last updated: {dateTime.fromNow()}
             </span>
           )}
