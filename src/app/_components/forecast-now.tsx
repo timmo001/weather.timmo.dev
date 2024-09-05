@@ -83,26 +83,28 @@ export function ForecastNow() {
                 <span className="text-2xl font-semibold">°C</span>
               </div>
             </div>
-            <div className="flex flex-col items-start justify-center text-lg">
+            <div className="ms-4 flex flex-col items-start justify-center text-lg">
               <div className="flex flex-row items-center gap-1">
-                <span className="font-bold">Humidity:</span>
-                <span className="font-semibold">
+                <span className="font-semibold">Humidity:</span>
+                <span className="font-normal">
                   {forecastNow.data.temperature.toFixed(1)}
                 </span>
-                <span className="font-semibold">%</span>
+                <span className="font-normal">%</span>
               </div>
               <div className="flex flex-row items-center gap-1">
-                <span className="font-bold">Wind Speed:</span>
-                <span className="font-semibold">
+                <span className="font-semibold">Wind Speed:</span>
+                <span className="font-normal">
                   {forecastNow.data.windSpeed.toFixed(1)}
                 </span>
               </div>
               <div className="flex flex-row items-center gap-1">
-                <span className="font-bold">Wind Direction:</span>
-                <span className="font-semibold">
-                  {forecastNow.data.windDirection}
+                <span className="font-semibold">Wind Direction:</span>
+                <span className="font-normal">
+                  {forecastNow.data.windDirectionCardinal}
                 </span>
-                <span className="font-semibold">°</span>
+                <span className="font-small text-base font-normal">
+                  ({forecastNow.data.windDirection}°)
+                </span>
               </div>
             </div>
           </div>

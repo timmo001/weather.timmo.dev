@@ -53,6 +53,7 @@ export type WeatherForecastNow = {
   visibility: number;
   weatherCode: number;
   windDirection: number;
+  windDirectionCardinal: string;
   windGust: number;
   windSpeed: number;
 };

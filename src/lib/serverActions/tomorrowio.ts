@@ -16,6 +16,7 @@ import {
   type WeatherForecastNow,
   type WeatherForecastNowResponse,
 } from "~/lib/types/tomorrowio";
+import { getWindDirectionCardinalFromDegrees } from "~/lib/utils";
 
 const BASE_PARAMS = `apikey=${env.WEATHER_API_KEY}`;
 const BASE_REQUEST_OPTIONS: RequestInit = {
@@ -43,6 +44,9 @@ export async function getWeatherForecastNow(
       return {
         time: responseData.data.time,
         ...responseData.data.values,
+        windDirectionCardinal: getWindDirectionCardinalFromDegrees(
+          responseData.data.values.windDirection,
+        ),
       };
     },
     [`${location.latitude},${location.longitude}`],
