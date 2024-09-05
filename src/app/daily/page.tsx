@@ -4,6 +4,7 @@ import { DailyCharts } from "~/app/daily/_components/dailyCharts";
 
 export const metadata: Metadata = {
   title: "Daily | Weather",
+  description: "Get the daily weather forecast for your location.",
 };
 
 export default function DailyPage() {

@@ -4,6 +4,7 @@ import { HourlyCharts } from "~/app/hourly/_components/hourlyCharts";
 
 export const metadata: Metadata = {
   title: "Hourly | Weather",
+  description: "Get the hourly weather forecast for your location.",
 };
 
 export default function HourlyPage() {
