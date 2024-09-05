@@ -55,3 +55,5 @@ bun run build
 This application is deployed using [Vercel](https://vercel.com). You can deploy it to your own Vercel account by clicking the button below.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftimmo001%2Fweather.timmo.dev&env=WEATHER_API_KEY&envDescription=Your%20API%20key%20from%20tomorrow.io&project-name=my-weather-app&repository-name=my-weather-app)
+
+You can also deploy it any other platform of your choice that supports Next.js applications.
