@@ -2,7 +2,7 @@
 
 A web application that displays the current weather and forecast for a given location.
 
-Weather data is provided by the [Tomorrow.io](https://www.tomorrow.io/) API.
+Weather data is provided by the [Tomorrow.io](https://www.tomorrow.io/) API. Their weather data sources can be found [here](https://app.tomorrow.io/tomorrow-data-sources).
 
 ## Features
 
