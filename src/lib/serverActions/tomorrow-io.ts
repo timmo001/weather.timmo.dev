@@ -19,7 +19,7 @@ import {
 import { getWindDirectionCardinalFromDegrees } from "~/lib/utils";
 
 // All requests to the Tomorrow.io API require an API key
-const BASE_PARAMS = `apikey=${env.WEATHER_API_KEY}`;
+const BASE_PARAMS = `apikey=${env.WEATHER_API_KEY}&units=metric`;
 
 // Setup the base request options for all requests to the Tomorrow.io API
 const BASE_REQUEST_OPTIONS: RequestInit = {
@@ -171,10 +171,10 @@ export async function getWeatherForecastDaily(
   )();
 }
 
-// 
+//
 // Use the daily forecast and transform the data into a format for
 // the client to use in the charts
-// 
+//
 export async function getWeatherForecastDailyCharts(
   location: Location,
 ): Promise<WeatherForecastErrorResponse | WeatherForecastDailyCharts> {
