@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
+        alt: "Weather",
         url: "/api/og",
       },
     ],
@@ -26,6 +27,7 @@ export const metadata: Metadata = {
   },
 };
 
+// Create the root layout which wraps the entire app
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -36,12 +38,14 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
+        {/* Initialise the theme */}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           disableTransitionOnChange
           enableSystem
         >
+          {/* Wrap the app in the query provider */}
           <QueryProvider>
             <div className="flex min-h-screen flex-col items-center bg-gradient-to-b from-sky-500 to-white transition-all dark:from-sky-950 dark:to-black">
               <Header />
@@ -55,6 +59,7 @@ export default function RootLayout({
             </div>
           </QueryProvider>
         </ThemeProvider>
+        {/* Add analytics from vercel */}
         <Analytics />
       </body>
     </html>

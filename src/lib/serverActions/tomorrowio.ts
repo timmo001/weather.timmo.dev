@@ -18,7 +18,10 @@ import {
 } from "~/lib/types/tomorrowio";
 import { getWindDirectionCardinalFromDegrees } from "~/lib/utils";
 
+// All requests to the Tomorrow.io API require an API key
 const BASE_PARAMS = `apikey=${env.WEATHER_API_KEY}`;
+
+// Setup the base request options for all requests to the Tomorrow.io API
 const BASE_REQUEST_OPTIONS: RequestInit = {
   method: "GET",
   headers: {
@@ -26,6 +29,9 @@ const BASE_REQUEST_OPTIONS: RequestInit = {
   },
 };
 
+//
+// Get the current weather forecast for a location
+//
 export async function getWeatherForecastNow(
   location: Location,
 ): Promise<WeatherForecastErrorResponse | WeatherForecastNow> {
@@ -57,6 +63,9 @@ export async function getWeatherForecastNow(
   )();
 }
 
+//
+// Get the hourly weather forecast for a location
+//
 export async function getWeatherForecastHourly(
   location: Location,
 ): Promise<WeatherForecastErrorResponse | WeatherForecastHourly> {
@@ -85,6 +94,10 @@ export async function getWeatherForecastHourly(
   )();
 }
 
+//
+// Use the hourly forecast and transform the data into a format for
+// the client to use in the charts
+//
 export async function getWeatherForecastHourlyCharts(
   location: Location,
 ): Promise<WeatherForecastErrorResponse | WeatherForecastHourlyCharts> {
@@ -127,6 +140,9 @@ export async function getWeatherForecastHourlyCharts(
   return response;
 }
 
+//
+// Get the daily weather forecast for a location
+//
 export async function getWeatherForecastDaily(
   location: Location,
 ): Promise<WeatherForecastErrorResponse | WeatherForecastDaily> {
@@ -155,6 +171,10 @@ export async function getWeatherForecastDaily(
   )();
 }
 
+// 
+// Use the daily forecast and transform the data into a format for
+// the client to use in the charts
+// 
 export async function getWeatherForecastDailyCharts(
   location: Location,
 ): Promise<WeatherForecastErrorResponse | WeatherForecastDailyCharts> {

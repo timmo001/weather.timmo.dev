@@ -425,3 +425,5 @@ export type WeatherForecastDailyAccumulationChart = Array<{
   iceAccumulationRange: [number, number];
   iceAccumulationSum: number;
 }>;
+
+export type WeatherCodeMap = Record<number, string>;

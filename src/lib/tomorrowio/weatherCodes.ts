@@ -1,4 +1,8 @@
-export type WeatherCodeMap = Record<number, string>;
+//
+// Weather codes from Tomorrow.io to human readable strings
+//
+
+import { WeatherCodeMap } from "~/lib/types/tomorrowio";
 
 export const weatherCode: WeatherCodeMap = {
   0: "Unknown",

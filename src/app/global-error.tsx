@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import NextError from "next/error";
 import * as Sentry from "@sentry/nextjs";
 
+// This is a global error component that will be used to capture and report
+// errors that occur in the app and send them to Sentry.
 export default function GlobalError({
   error,
 }: {

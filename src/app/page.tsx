@@ -2,7 +2,7 @@ import { ForecastDaily } from "~/app/_components/forecast-daily";
 import { ForecastHourly } from "~/app/_components/forecast-hourly";
 import { ForecastNow } from "~/app/_components/forecast-now";
 
-export default function TemperaturePage() {
+export default function HomePage() {
   return (
     <>
       <section className="flex w-full flex-col items-center gap-3 delay-300 duration-300 animate-in fade-in">

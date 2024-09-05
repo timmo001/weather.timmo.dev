@@ -1,5 +1,8 @@
 import { ImageResponse } from "next/og";
 
+// Create the OpenGraph image for the app, found at /api/og and linked in the layout manifest
+// This is used by social applications to display a preview of the app when shared
+// on platforms like Twitter, Discord and WhatsApp
 export async function GET() {
   return new ImageResponse(
     (

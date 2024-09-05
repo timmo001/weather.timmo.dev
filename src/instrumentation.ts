@@ -1,3 +1,6 @@
+//
+// Used for Sentry initialization and other instrumentation tasks
+//
 export async function register() {
   if (process.env.NEXT_RUNTIME === "nodejs") {
     await import("../sentry.server.config");

@@ -1,6 +1,15 @@
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
+//
+// Create an environment object, which allows access to environment variables in a type-safe way.
+// Environment variables are validated against a zod schema, which ensures that the app isn't built
+// with invalid env vars. The schema is defined in the `env` object below.
+//
+// You can skip the validation by setting the `SKIP_ENV_VALIDATION` environment variable to `true`.
+// This should only be used for builds where the environment variables are not available at build
+// time, such as Docker builds and linters.
+//
 export const env = createEnv({
   /**
    * Specify your server-side environment variables schema here. This way you can ensure the app
@@ -29,8 +38,8 @@ export const env = createEnv({
     WEATHER_API_KEY: process.env.WEATHER_API_KEY,
   },
   /**
-   * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
-   * useful for Docker builds.
+   * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is useful for
+   * for Docker builds and linting, where the env vars are not available at build time.
    */
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
   /**

@@ -68,6 +68,8 @@
     @apply bg-background text-foreground;
   }
 
+  /* Create a custom scrollbar for use in horizontal scolling,
+     to not use the default browser's version */
   .custom-scrollbar::-webkit-scrollbar {
     height: 0.6rem;
     width: 0.6rem;

@@ -10,7 +10,7 @@ export const size = {
 };
 export const contentType = "image/png";
 
-// Image generation
+// Generate the icon/favicon for the app, found at /icon and linked in the layout
 export default function Icon() {
   return new ImageResponse(
     (

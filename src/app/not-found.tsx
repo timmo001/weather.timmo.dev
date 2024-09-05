@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Button } from "~/components/ui/button";
 
+// 404 page
 export default function NotFound() {
   return (
     <main className="flex min-h-96 flex-col items-center justify-start">

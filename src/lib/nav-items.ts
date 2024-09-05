@@ -1,3 +1,6 @@
+//
+// Create an array of navigation items for the app
+//
 export const navItems: Array<{
   label: string;
   href: string;
