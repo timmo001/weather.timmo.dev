@@ -64,7 +64,7 @@ export function ForecastNow() {
         </span>
       ) : (
         <>
-          <div className="flex flex-row items-stretch gap-6">
+          <div className="flex flex-row flex-wrap items-stretch gap-6">
             <WeatherIcon
               className="h-32 w-32"
               code={forecastNow.data.weatherCode}
@@ -72,32 +72,38 @@ export function ForecastNow() {
                 dateTime ? dateTime.hour() < 6 || dateTime.hour() >= 18 : false
               }
             />
-            <div className="flex flex-col items-center justify-center gap-1">
+            <div className="flex flex-col items-start justify-center gap-1">
               <span className="text-3xl font-bold">
                 {weatherCode[forecastNow.data.weatherCode] || "Unknown"}
               </span>
-              <div className="flex flex-row items-center gap-1">
+              <div className="flex flex-row items-start gap-1">
                 <span className="text-5xl font-semibold">
                   {forecastNow.data.temperature.toFixed(1)}
                 </span>
                 <span className="text-2xl font-semibold">°C</span>
               </div>
             </div>
-          </div>
-          <div className="flex flex-col items-center justify-center gap-1">
-            <div className="flex flex-row items-center gap-1 text-xl">
-              <span className="font-bold">Humidity:</span>
-              <span className="font-semibold">
-                {forecastNow.data.temperature.toFixed(1)}
-              </span>
-              <span className="font-semibold">%</span>
-            </div>
-            <div className="flex flex-row items-center gap-1 text-xl">
-              <span className="font-bold">Wind Speed:</span>
-              <span className="font-semibold">
-                {forecastNow.data.windSpeed.toFixed(1)}
-              </span>
-              <span className="font-semibold">mph</span>
+            <div className="flex flex-col items-start justify-center gap-1">
+              <div className="flex flex-row items-center gap-1 text-xl">
+                <span className="font-bold">Humidity:</span>
+                <span className="font-semibold">
+                  {forecastNow.data.temperature.toFixed(1)}
+                </span>
+                <span className="font-semibold">%</span>
+              </div>
+              <div className="flex flex-row items-center gap-1 text-xl">
+                <span className="font-bold">Wind Speed:</span>
+                <span className="font-semibold">
+                  {forecastNow.data.windSpeed.toFixed(1)}
+                </span>
+              </div>
+              <div className="flex flex-row items-center gap-1 text-xl">
+                <span className="font-bold">Wind Direction:</span>
+                <span className="font-semibold">
+                  {forecastNow.data.windDirection}
+                </span>
+                <span className="font-semibold">°</span>
+              </div>
             </div>
           </div>
           {dateTime && (
