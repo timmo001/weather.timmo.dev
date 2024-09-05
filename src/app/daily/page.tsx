@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
 
-import { DailyCharts } from "~/app/daily/_components/dailyCharts";
+import { DailyCharts } from "~/app/daily/_components/daily-charts";
 
 export const metadata: Metadata = {
   title: "Daily | Weather",

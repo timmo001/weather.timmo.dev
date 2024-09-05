@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
 
-import { HourlyCharts } from "~/app/hourly/_components/hourlyCharts";
+import { HourlyCharts } from "~/app/hourly/_components/hourly-charts";
 
 export const metadata: Metadata = {
   title: "Hourly | Weather",

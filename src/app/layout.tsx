@@ -7,7 +7,7 @@ import "~/styles/globals.css";
 
 import { Header } from "~/components/header";
 import { QueryProvider } from "~/components/providers/query";
-import { LogoLocation } from "~/app/_components/logo-location";
+import { LogoLocation } from "~/components/logo-location";
 
 export const metadata: Metadata = {
   title: "Weather",

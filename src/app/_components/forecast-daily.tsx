@@ -2,14 +2,14 @@
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 
-import { getLocationFromLocalStorage } from "~/lib/localStorage";
-import { getWeatherForecastDaily } from "~/lib/serverActions/tomorrowio";
-import { weatherCode } from "~/lib/tomorrowio/weatherCodes";
+import { getLocationFromLocalStorage } from "~/lib/local-storage";
+import { getWeatherForecastDaily } from "~/lib/serverActions/tomorrow-io";
+import { weatherCode } from "~/lib/tomorrowio/weather-codes";
 import {
   type WeatherForecastErrorResponse,
   type WeatherForecastDaily,
-} from "~/lib/types/tomorrowio";
-import { WeatherIcon } from "~/components/weatherIcon";
+} from "~/lib/types/tomorrow-io";
+import { WeatherIcon } from "~/components/weather-icon";
 
 export function ForecastDaily() {
   const location = useQuery({

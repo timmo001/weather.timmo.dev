@@ -11,8 +11,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "~/components/ui/dialog";
-import { LocationForm } from "~/app/_components/location-form";
-import { getLocationFromLocalStorage } from "~/lib/localStorage";
+import { LocationForm } from "~/components/location-form";
+import { getLocationFromLocalStorage } from "~/lib/local-storage";
 import { useMemo } from "react";
 
 export function LogoLocation() {

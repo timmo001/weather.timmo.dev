@@ -16,7 +16,7 @@ import {
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 import { type Location, LocationSchema } from "~/lib/schema";
-import { getLocationFromLocalStorage } from "~/lib/localStorage";
+import { getLocationFromLocalStorage } from "~/lib/local-storage";
 import { DialogClose, DialogFooter } from "~/components/ui/dialog";
 
 export function LocationForm() {

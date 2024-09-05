@@ -11,12 +11,12 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "~/components/ui/chart";
-import { getLocationFromLocalStorage } from "~/lib/localStorage";
-import { getWeatherForecastHourlyCharts } from "~/lib/serverActions/tomorrowio";
+import { getLocationFromLocalStorage } from "~/lib/local-storage";
+import { getWeatherForecastHourlyCharts } from "~/lib/serverActions/tomorrow-io";
 import {
   type WeatherForecastErrorResponse,
   type WeatherForecastHourlyCharts,
-} from "~/lib/types/tomorrowio";
+} from "~/lib/types/tomorrow-io";
 
 const temperaturesChartConfig = {
   temperature: {

@@ -18,12 +18,12 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "~/components/ui/chart";
-import { getLocationFromLocalStorage } from "~/lib/localStorage";
-import { getWeatherForecastDailyCharts } from "~/lib/serverActions/tomorrowio";
+import { getLocationFromLocalStorage } from "~/lib/local-storage";
+import { getWeatherForecastDailyCharts } from "~/lib/serverActions/tomorrow-io";
 import {
   type WeatherForecastErrorResponse,
   type WeatherForecastDailyCharts,
-} from "~/lib/types/tomorrowio";
+} from "~/lib/types/tomorrow-io";
 
 const temperaturesChartConfig = {
   temperatureMin: {

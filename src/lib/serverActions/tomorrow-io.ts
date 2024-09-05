@@ -15,7 +15,7 @@ import {
   type WeatherForecastHourlyResponse,
   type WeatherForecastNow,
   type WeatherForecastNowResponse,
-} from "~/lib/types/tomorrowio";
+} from "~/lib/types/tomorrow-io";
 import { getWindDirectionCardinalFromDegrees } from "~/lib/utils";
 
 // All requests to the Tomorrow.io API require an API key

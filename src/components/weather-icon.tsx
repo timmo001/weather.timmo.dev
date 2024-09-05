@@ -15,7 +15,7 @@ import {
   Sun,
 } from "lucide-react";
 
-import { weatherCode } from "~/lib/tomorrowio/weatherCodes";
+import { weatherCode } from "~/lib/tomorrowio/weather-codes";
 
 export function WeatherIcon({
   code,
