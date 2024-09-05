@@ -128,7 +128,6 @@ export function DailyCharts() {
   });
 
   const forecastDailyCharts = useQuery({
-    staleTime: 1000 * 60 * 20, // 20 minutes
     queryKey: [location.data, "forecast", "daily"],
     queryFn: async (): Promise<
       WeatherForecastErrorResponse | WeatherForecastDailyCharts
