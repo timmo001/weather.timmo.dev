@@ -243,7 +243,7 @@ export function DailyCharts() {
               axisLine={false}
               tickMargin={8}
               scale="auto"
-              tickFormatter={(value) => `${value} °C`}
+              tickFormatter={(value) => `${value} %`}
             />
             <ChartLegend content={<ChartLegendContent />} verticalAlign="top" />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
@@ -299,7 +299,7 @@ export function DailyCharts() {
               axisLine={false}
               tickMargin={8}
               scale="auto"
-              tickFormatter={(value) => `${value} °C`}
+              tickFormatter={(value) => `${value} mph`}
             />
             <ChartLegend content={<ChartLegendContent />} verticalAlign="top" />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
