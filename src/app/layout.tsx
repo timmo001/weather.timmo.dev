@@ -1,4 +1,5 @@
 import { type Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "next-themes";
 import { GeistSans } from "geist/font/sans";
 
@@ -54,6 +55,7 @@ export default function RootLayout({
             </div>
           </QueryProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
