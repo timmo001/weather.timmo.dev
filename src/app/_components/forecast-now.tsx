@@ -49,14 +49,14 @@ export function ForecastNow() {
   return (
     <div className="flex flex-col items-center gap-1 text-center">
       {forecastNow.isLoading ? (
-        <span>Loading realtime forecast...</span>
+        <span>Loading current forecast...</span>
       ) : forecastNow.isError ? (
-        <span>Error loading realtime forecast.</span>
+        <span>Error loading current forecast.</span>
       ) : !forecastNow.data ? (
-        <span>No realtime forecast data.</span>
+        <span>No current forecast data.</span>
       ) : "code" in forecastNow.data ? (
         <span>
-          An error occured when loading realtime forecast data
+          An error occured when loading current forecast data
           {String(forecastNow.data.code).startsWith("429") &&
             ": Too many requests to the API. Please try again later."}
         </span>
