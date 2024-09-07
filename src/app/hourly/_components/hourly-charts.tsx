@@ -1,8 +1,9 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import dayjs from "dayjs";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
+import { WeatherForecastErrorResponse } from "~/lib/schemas/tomorrow-io";
+import { WeatherForecastHourlyCharts } from "~/lib/schemas/weather";
 import {
   ChartConfig,
   ChartContainer,
@@ -13,10 +14,6 @@ import {
 } from "~/components/ui/chart";
 import { getLocationFromLocalStorage } from "~/lib/local-storage";
 import { getWeatherForecastHourlyCharts } from "~/lib/serverActions/tomorrow-io";
-import {
-  type WeatherForecastErrorResponse,
-  type WeatherForecastHourlyCharts,
-} from "~/lib/types/tomorrow-io";
 
 const temperaturesChartConfig = {
   temperature: {

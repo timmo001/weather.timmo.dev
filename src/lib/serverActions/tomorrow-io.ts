@@ -209,57 +209,57 @@ export async function getWeatherForecastHourly(
   return WeatherForecastHourlySchema.parse(timelines.hourly);
 }
 
-// //
-// // Use the hourly forecast and transform the data into a format for
-// // the client to use in the charts
-// //
-// export async function getWeatherForecastHourlyCharts(
-//   location: Location,
-//   timezone: string = "auto",
-//   units: string = "metric",
-// ): Promise<WeatherForecastErrorResponse | WeatherForecastHourlyCharts> {
-//   const hourlyForecast = await getWeatherForecastHourly(
-//     location,
-//     timezone,
-//     units,
-//   );
-//   // If there is an error, return it so the client can handle it
-//   if ("code" in hourlyForecast) return hourlyForecast;
+//
+// Use the hourly forecast and transform the data into a format for
+// the client to use in the charts
+//
+export async function getWeatherForecastHourlyCharts(
+  location: Location,
+  timezone: string = "auto",
+  units: string = "metric",
+): Promise<WeatherForecastErrorResponse | WeatherForecastHourlyCharts> {
+  const hourlyForecast = await getWeatherForecastHourly(
+    location,
+    timezone,
+    units,
+  );
+  // If there is an error, return it so the client can handle it
+  if ("code" in hourlyForecast) return hourlyForecast;
 
-//   const response: WeatherForecastHourlyCharts = {
-//     temperatures: hourlyForecast.map((hourly) => ({
-//       time: dayjs(hourly.time).format("ddd HH:mm"),
-//       temperature: hourly.temperature,
-//       temperatureApparent: hourly.temperatureApparent,
-//     })),
-//     humidities: hourlyForecast.map((hourly) => ({
-//       time: dayjs(hourly.time).format("ddd HH:mm"),
-//       humidity: hourly.humidity,
-//     })),
-//     windSpeeds: hourlyForecast.map((hourly) => ({
-//       time: dayjs(hourly.time).format("ddd HH:mm"),
-//       windSpeed: hourly.windSpeed,
-//     })),
-//     precipitations: hourlyForecast.map((hourly) => ({
-//       time: dayjs(hourly.time).format("ddd HH:mm"),
-//       rainAccumulation: hourly.rainAccumulation,
-//       sleetAccumulation: hourly.sleetAccumulation,
-//       snowAccumulation: hourly.snowAccumulation,
-//       iceAccumulation: hourly.iceAccumulation,
-//     })),
-//   };
+  const response: WeatherForecastHourlyCharts = {
+    temperatures: hourlyForecast.map((hourly) => ({
+      time: dayjs(hourly.time).format("ddd HH:mm"),
+      temperature: hourly.temperature,
+      temperatureApparent: hourly.temperatureApparent,
+    })),
+    humidities: hourlyForecast.map((hourly) => ({
+      time: dayjs(hourly.time).format("ddd HH:mm"),
+      humidity: hourly.humidity,
+    })),
+    windSpeeds: hourlyForecast.map((hourly) => ({
+      time: dayjs(hourly.time).format("ddd HH:mm"),
+      windSpeed: hourly.windSpeed,
+    })),
+    precipitations: hourlyForecast.map((hourly) => ({
+      time: dayjs(hourly.time).format("ddd HH:mm"),
+      rainAccumulation: hourly.rainAccumulation,
+      sleetAccumulation: hourly.sleetAccumulation,
+      snowAccumulation: hourly.snowAccumulation,
+      iceAccumulation: hourly.iceAccumulation,
+    })),
+  };
 
-//   console.log(
-//     "Got hourly chart data:",
-//     JSON.stringify({
-//       temperatures: response.temperatures.length,
-//       humidities: response.humidities.length,
-//       windSpeeds: response.windSpeeds.length,
-//       precipitations: response.precipitations.length,
-//     }),
-//   );
-//   return response;
-// }
+  console.log(
+    "Got hourly chart data:",
+    JSON.stringify({
+      temperatures: response.temperatures.length,
+      humidities: response.humidities.length,
+      windSpeeds: response.windSpeeds.length,
+      precipitations: response.precipitations.length,
+    }),
+  );
+  return response;
+}
 
 //
 // Get the daily weather forecast for a location
@@ -282,90 +282,90 @@ export async function getWeatherForecastDaily(
   return WeatherForecastDailySchema.parse(timelines.daily);
 }
 
-// //
-// // Use the daily forecast and transform the data into a format for
-// // the client to use in the charts
-// //
-// export async function getWeatherForecastDailyCharts(
-//   location: Location,
-//   timezone: string = "auto",
-//   units: string = "metric",
-// ): Promise<WeatherForecastErrorResponse | WeatherForecastDailyCharts> {
-//   const dailyForecast = await getWeatherForecastDaily(
-//     location,
-//     timezone,
-//     units,
-//   );
-//   // If there is an error, return it so the client can handle it
-//   if ("code" in dailyForecast) return dailyForecast;
+//
+// Use the daily forecast and transform the data into a format for
+// the client to use in the charts
+//
+export async function getWeatherForecastDailyCharts(
+  location: Location,
+  timezone: string = "auto",
+  units: string = "metric",
+): Promise<WeatherForecastErrorResponse | WeatherForecastDailyCharts> {
+  const dailyForecast = await getWeatherForecastDaily(
+    location,
+    timezone,
+    units,
+  );
+  // If there is an error, return it so the client can handle it
+  if ("code" in dailyForecast) return dailyForecast;
 
-//   const response: WeatherForecastDailyCharts = {
-//     temperatures: dailyForecast.map((daily) => ({
-//       time: dayjs(daily.time).format("ddd"),
-//       temperatureMax: daily.temperatureMax,
-//       temperatureMin: daily.temperatureMin,
-//       temperatureAvg: daily.temperatureAvg,
-//       temperatureRange: [daily.temperatureMin, daily.temperatureMax],
-//     })),
-//     humidities: dailyForecast.map((daily) => ({
-//       time: dayjs(daily.time).format("ddd"),
-//       humidityMin: daily.humidityMin,
-//       humidityMax: daily.humidityMax,
-//       humidityAvg: daily.humidityAvg,
-//       humidityRange: [daily.humidityMin, daily.humidityMax],
-//     })),
-//     windSpeeds: dailyForecast.map((daily) => ({
-//       time: dayjs(daily.time).format("ddd"),
-//       windSpeedMin: daily.windSpeedMin,
-//       windSpeedMax: daily.windSpeedMax,
-//       windSpeedAvg: daily.windSpeedAvg,
-//       windSpeedRange: [daily.windSpeedMin, daily.windSpeedMax],
-//     })),
-//     precipitations: dailyForecast.map((daily) => ({
-//       time: dayjs(daily.time).format("ddd"),
-//       rainAccumulationMin: daily.rainAccumulationMin,
-//       rainAccumulationMax: daily.rainAccumulationMax,
-//       rainAccumulationAvg: daily.rainAccumulationAvg,
-//       rainAccumulationRange: [
-//         daily.rainAccumulationMin,
-//         daily.rainAccumulationMax,
-//       ],
-//       rainAccumulationSum: daily.rainAccumulationSum,
-//       sleetAccumulationMin: daily.sleetAccumulationMin,
-//       sleetAccumulationMax: daily.sleetAccumulationMax,
-//       sleetAccumulationAvg: daily.sleetAccumulationAvg,
-//       sleetAccumulationRange: [
-//         daily.sleetAccumulationMin,
-//         daily.sleetAccumulationMax,
-//       ],
-//       sleetAccumulationSum: daily.sleetAccumulationSum,
-//       snowAccumulationMin: daily.snowAccumulationMin,
-//       snowAccumulationMax: daily.snowAccumulationMax,
-//       snowAccumulationAvg: daily.snowAccumulationAvg,
-//       snowAccumulationRange: [
-//         daily.snowAccumulationMin,
-//         daily.snowAccumulationMax,
-//       ],
-//       snowAccumulationSum: daily.snowAccumulationSum,
-//       iceAccumulationMin: daily.iceAccumulationMin,
-//       iceAccumulationMax: daily.iceAccumulationMax,
-//       iceAccumulationAvg: daily.iceAccumulationAvg,
-//       iceAccumulationRange: [
-//         daily.iceAccumulationMin,
-//         daily.iceAccumulationMax,
-//       ],
-//       iceAccumulationSum: daily.iceAccumulationSum,
-//     })),
-//   };
+  const response: WeatherForecastDailyCharts = {
+    temperatures: dailyForecast.map((daily) => ({
+      time: dayjs(daily.time).format("ddd"),
+      temperatureMax: daily.temperatureMax,
+      temperatureMin: daily.temperatureMin,
+      temperatureAvg: daily.temperatureAvg,
+      temperatureRange: [daily.temperatureMin, daily.temperatureMax],
+    })),
+    humidities: dailyForecast.map((daily) => ({
+      time: dayjs(daily.time).format("ddd"),
+      humidityMin: daily.humidityMin,
+      humidityMax: daily.humidityMax,
+      humidityAvg: daily.humidityAvg,
+      humidityRange: [daily.humidityMin, daily.humidityMax],
+    })),
+    windSpeeds: dailyForecast.map((daily) => ({
+      time: dayjs(daily.time).format("ddd"),
+      windSpeedMin: daily.windSpeedMin,
+      windSpeedMax: daily.windSpeedMax,
+      windSpeedAvg: daily.windSpeedAvg,
+      windSpeedRange: [daily.windSpeedMin, daily.windSpeedMax],
+    })),
+    precipitations: dailyForecast.map((daily) => ({
+      time: dayjs(daily.time).format("ddd"),
+      rainAccumulationMin: daily.rainAccumulationMin,
+      rainAccumulationMax: daily.rainAccumulationMax,
+      rainAccumulationAvg: daily.rainAccumulationAvg,
+      rainAccumulationRange: [
+        daily.rainAccumulationMin,
+        daily.rainAccumulationMax,
+      ],
+      rainAccumulationSum: daily.rainAccumulationSum,
+      sleetAccumulationMin: daily.sleetAccumulationMin,
+      sleetAccumulationMax: daily.sleetAccumulationMax,
+      sleetAccumulationAvg: daily.sleetAccumulationAvg,
+      sleetAccumulationRange: [
+        daily.sleetAccumulationMin,
+        daily.sleetAccumulationMax,
+      ],
+      // sleetAccumulationSum: daily.sleetAccumulationSum,
+      snowAccumulationMin: daily.snowAccumulationMin,
+      snowAccumulationMax: daily.snowAccumulationMax,
+      snowAccumulationAvg: daily.snowAccumulationAvg,
+      snowAccumulationRange: [
+        daily.snowAccumulationMin,
+        daily.snowAccumulationMax,
+      ],
+      snowAccumulationSum: daily.snowAccumulationSum,
+      iceAccumulationMin: daily.iceAccumulationMin,
+      iceAccumulationMax: daily.iceAccumulationMax,
+      iceAccumulationAvg: daily.iceAccumulationAvg,
+      iceAccumulationRange: [
+        daily.iceAccumulationMin,
+        daily.iceAccumulationMax,
+      ],
+      iceAccumulationSum: daily.iceAccumulationSum,
+    })),
+  };
 
-//   console.log(
-//     "Got daily chart data:",
-//     JSON.stringify({
-//       temperatures: response.temperatures.length,
-//       humidities: response.humidities.length,
-//       windSpeeds: response.windSpeeds.length,
-//       precipitations: response.precipitations.length,
-//     }),
-//   );
-//   return response;
-// }
+  console.log(
+    "Got daily chart data:",
+    JSON.stringify({
+      temperatures: response.temperatures.length,
+      humidities: response.humidities.length,
+      windSpeeds: response.windSpeeds.length,
+      precipitations: response.precipitations.length,
+    }),
+  );
+  return response;
+}

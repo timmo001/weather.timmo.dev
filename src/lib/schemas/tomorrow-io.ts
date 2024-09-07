@@ -90,7 +90,7 @@ export const ValuesSchema = z.object({
   sleetAccumulationAvg: z.number().nullish(),
   sleetAccumulationMax: z.number().nullish(),
   sleetAccumulationMin: z.number().nullish(),
-  sleetAccumulationSum: z.number().nullish(),
+  // sleetAccumulationSum: z.number().nullish(),
   sleetIntensityAvg: z.number().nullish(),
   sleetIntensityMax: z.number().nullish(),
   sleetIntensityMin: z.number().nullish(),

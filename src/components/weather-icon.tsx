@@ -53,7 +53,7 @@ export function WeatherIcon({
     8000: CloudLightning, // "Thunderstorm"
   };
 
-  const Icon = weatherIcon[code];
+  const Icon = weatherIcon[code as number];
 
   if (!Icon) return <Cloud className={className} />;
 

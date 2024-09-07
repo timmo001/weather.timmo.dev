@@ -91,8 +91,8 @@ export type WeatherForecastHourly = z.infer<typeof WeatherForecastHourlySchema>;
 export const WeatherForecastHourlyTemperatureChartSchema = z.array(
   z.object({
     time: z.string(),
-    temperature: z.number(),
-    temperatureApparent: z.number(),
+    temperature: z.number().nullish(),
+    temperatureApparent: z.number().nullish(),
   }),
 );
 export type WeatherForecastHourlyTemperatureChart = z.infer<
@@ -101,8 +101,8 @@ export type WeatherForecastHourlyTemperatureChart = z.infer<
 
 export const WeatherForecastHourlyHumidityChartSchema = z.array(
   z.object({
-    time: z.string(),
-    humidity: z.number(),
+    time: z.string().nullish(),
+    humidity: z.number().nullish(),
   }),
 );
 export type WeatherForecastHourlyHumidityChart = z.infer<
@@ -112,7 +112,7 @@ export type WeatherForecastHourlyHumidityChart = z.infer<
 export const WeatherForecastHourlyWindSpeedChartSchema = z.array(
   z.object({
     time: z.string(),
-    windSpeed: z.number(),
+    windSpeed: z.number().nullish(),
   }),
 );
 export type WeatherForecastHourlyWindSpeedChart = z.infer<
@@ -122,10 +122,10 @@ export type WeatherForecastHourlyWindSpeedChart = z.infer<
 export const WeatherForecastHourlyAccumulationChartSchema = z.array(
   z.object({
     time: z.string(),
-    rainAccumulation: z.number(),
-    sleetAccumulation: z.number(),
-    snowAccumulation: z.number(),
-    iceAccumulation: z.number(),
+    rainAccumulation: z.number().nullish(),
+    sleetAccumulation: z.number().nullish(),
+    snowAccumulation: z.number().nullish(),
+    iceAccumulation: z.number().nullish(),
   }),
 );
 export type WeatherForecastHourlyAccumulationChart = z.infer<
@@ -192,7 +192,7 @@ export const WeatherForecastDailySchema = z.array(
     sleetAccumulationAvg: z.number(),
     sleetAccumulationMax: z.number(),
     sleetAccumulationMin: z.number(),
-    sleetAccumulationSum: z.number().nullish(),
+    // sleetAccumulationSum: z.number().nullish(),
     sleetIntensityAvg: z.number(),
     sleetIntensityMax: z.number(),
     sleetIntensityMin: z.number(),
@@ -284,7 +284,7 @@ export const WeatherForecastDailyAccumulationChartSchema = z.array(
     sleetAccumulationMax: z.number(),
     sleetAccumulationAvg: z.number(),
     sleetAccumulationRange: z.tuple([z.number(), z.number()]),
-    sleetAccumulationSum: z.number().nullish(),
+    // sleetAccumulationSum: z.number().nullish(),
     snowAccumulationMin: z.number(),
     snowAccumulationMax: z.number(),
     snowAccumulationAvg: z.number(),
