@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
-import { type Location, LocationSchema } from "~/lib/schema";
+import { type Location, LocationSchema } from "~/lib/schemas/location";
 import { getLocationFromLocalStorage } from "~/lib/local-storage";
 import { DialogClose, DialogFooter } from "~/components/ui/dialog";
 

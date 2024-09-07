@@ -4,12 +4,10 @@ import { useQuery } from "@tanstack/react-query";
 import dayjs, { Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
+import { WeatherForecastErrorResponse } from "~/lib/schemas/tomorrow-io";
+import { WeatherForecastNow } from "~/lib/schemas/weather";
 import { getLocationFromLocalStorage } from "~/lib/local-storage";
 import { getWeatherForecastNow } from "~/lib/serverActions/tomorrow-io";
-import {
-  type WeatherForecastErrorResponse,
-  type WeatherForecastNow,
-} from "~/lib/types/tomorrow-io";
 import { weatherCode } from "~/lib/tomorrowio/weather-codes";
 import { WeatherIcon } from "~/components/weather-icon";
 
