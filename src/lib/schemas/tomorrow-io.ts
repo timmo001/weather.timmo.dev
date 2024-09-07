@@ -139,7 +139,7 @@ export type Meta = z.infer<typeof MetaSchema>;
 
 export const IntervalSchema = z.object({
   startTime: z.coerce.string(),
-  values: ValuesSchema,
+  values: ValuesSchema.optional(),
 });
 export type Interval = z.infer<typeof IntervalSchema>;
 
@@ -152,7 +152,7 @@ export const WarningSchema = z.object({
 export type Warning = z.infer<typeof WarningSchema>;
 
 export const TimelineElementSchema = z.object({
-  timestep: z.string(),
+  timestep: z.enum(["current", "1h", "1d"]),
   endTime: z.coerce.string(),
   startTime: z.coerce.string(),
   intervals: z.array(IntervalSchema),

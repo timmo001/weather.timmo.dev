@@ -9,18 +9,18 @@ export const WeatherForecastTimelinesSchema = z.object({
   current: ValuesSchema.extend({
     time: z.string(),
   }),
-  hourly: z.array(
-    z.object({
-      time: z.string(),
-      values: ValuesSchema,
-    }),
-  ),
-  daily: z.array(
-    z.object({
-      time: z.string(),
-      values: ValuesSchema,
-    }),
-  ),
+//   hourly: z.array(
+//     z.object({
+//       time: z.string(),
+//       values: ValuesSchema.optional(),
+//     }),
+//   ),
+//   daily: z.array(
+//     z.object({
+//       time: z.string(),
+//       values: ValuesSchema.optional(),
+//     }),
+//   ),
 });
 export type WeatherForecastTimelines = z.infer<
   typeof WeatherForecastTimelinesSchema

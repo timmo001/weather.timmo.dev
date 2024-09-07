@@ -77,6 +77,21 @@ export async function getWeatherForecastTimelines(
   // If there is an error, return it so the client can handle it
   if ("code" in cachedResponseData) return cachedResponseData;
 
+  console.log(
+    "Got weather forecast timelines:",
+    JSON.stringify({
+      data: {
+        timelines: cachedResponseData.data.timelines.map((timeline) => ({
+          timestep: timeline.timestep,
+          startTime: timeline.startTime,
+          endTime: timeline.endTime,
+          intervals: timeline.intervals.length,
+        })),
+        warnings: cachedResponseData.data.warnings,
+      },
+    }),
+  );
+
   const currentData = cachedResponseData.data.timelines.find(
     (timeline) => timeline.timestep === "current",
   );
@@ -85,7 +100,7 @@ export async function getWeatherForecastTimelines(
     !currentData.intervals ||
     !currentData.intervals[0]?.values
   ) {
-    console.error("No current data in response:", cachedResponseData);
+    console.error("No current data in response:", currentData);
     return {
       code: 500,
       message: "No current data in response",
@@ -93,53 +108,47 @@ export async function getWeatherForecastTimelines(
     };
   }
 
-  const hourlyData = cachedResponseData.data.timelines.find(
-    (timeline) => timeline.timestep === "1h",
-  );
-  if (
-    !hourlyData ||
-    !hourlyData.intervals ||
-    !hourlyData.intervals[0]?.values
-  ) {
-    console.error("No hourly data in response:", cachedResponseData);
-    return {
-      code: 500,
-      message: "No hourly data in response",
-      type: "error",
-    };
-  }
+  // const hourlyData = cachedResponseData.data.timelines.find(
+  //   (timeline) => timeline.timestep === "1d",
+  // );
+  // if (
+  //   !hourlyData ||
+  //   !hourlyData.intervals ||
+  //   !hourlyData.intervals[0]?.values
+  // ) {
+  //   console.error("No hourly data in response:", hourlyData);
+  //   return {
+  //     code: 500,
+  //     message: "No hourly data in response",
+  //     type: "error",
+  //   };
+  // }
 
-  const dailyData = cachedResponseData.data.timelines.find(
-    (timeline) => timeline.timestep === "1d",
-  );
-  if (!dailyData || !dailyData.intervals || !dailyData.intervals[0]?.values) {
-    console.error("No daily data in response:", cachedResponseData);
-    return {
-      code: 500,
-      message: "No daily data in response",
-      type: "error",
-    };
-  }
-
-  console.log("Got weather forecast timelines:", {
-    current: currentData.intervals[0].values,
-    hourly: hourlyData.intervals[0].values,
-    daily: dailyData.intervals,
-  });
+  // const dailyData = cachedResponseData.data.timelines.find(
+  //   (timeline) => timeline.timestep === "1h",
+  // );
+  // if (!dailyData || !dailyData.intervals || !dailyData.intervals[0]?.values) {
+  //   console.error("No daily data in response:", dailyData);
+  //   return {
+  //     code: 500,
+  //     message: "No daily data in response",
+  //     type: "error",
+  //   };
+  // }
 
   return WeatherForecastTimelinesSchema.parse({
     current: {
       time: currentData.intervals[0].startTime,
       ...currentData.intervals[0].values,
     },
-    hourly: hourlyData.intervals.map((interval) => ({
-      time: interval.startTime,
-      ...interval.values,
-    })),
-    daily: dailyData.intervals.map((interval) => ({
-      time: interval.startTime,
-      ...interval.values,
-    })),
+    // hourly: hourlyData.intervals.map((interval) => ({
+    //   time: interval.startTime,
+    //   ...interval.values,
+    // })),
+    // daily: dailyData.intervals.map((interval) => ({
+    //   time: interval.startTime,
+    //   ...interval.values,
+    // })),
   });
 }
 
@@ -159,11 +168,26 @@ export async function getWeatherForecastNow(
   // If there is an error, return it so the client can handle it
   if ("code" in timelines) return timelines;
 
-  console.log("Got weather forecast now:", timelines.current);
+  console.log("Got weather forecast now:", JSON.stringify(timelines.current));
 
-  throw new Error("Not implemented");
+  if (!timelines.current.windDirection) {
+    console.error(
+      "No wind direction in current weather data:",
+      timelines.current,
+    );
+    return {
+      code: 500,
+      message: "No wind direction in current weather data",
+      type: "error",
+    };
+  }
 
-  // return WeatherForecastNowSchema.parse(timelines.current);
+  return WeatherForecastNowSchema.parse({
+    ...timelines.current,
+    windDirectionCardinal: getWindDirectionCardinalFromDegrees(
+      timelines.current.windDirection,
+    ),
+  });
 }
 
 // //
