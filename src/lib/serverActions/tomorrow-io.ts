@@ -33,10 +33,8 @@ export async function getWeatherForecastTimelines(
   timezone: string = "auto",
   units: string = "metric",
 ): Promise<WeatherForecastErrorResponse | WeatherForecastTimelines> {
-  return unstable_cache(
-    async (): Promise<
-      WeatherForecastErrorResponse | WeatherForecastTimelines
-    > => {
+  const cachedResponseData = await unstable_cache(
+    async (): Promise<WeatherForecastErrorResponse | Timelines> => {
       const url = new URL("https://api.tomorrow.io/v4/timelines");
       url.searchParams.append("apikey", env.WEATHER_API_KEY);
       url.searchParams.append(
@@ -65,72 +63,9 @@ export async function getWeatherForecastTimelines(
       const responseData = (await response.json()) as
         | WeatherForecastErrorResponse
         | Timelines;
-      console.log("Response:", JSON.stringify(responseData));
-      // If there is an error, return it so the client can handle it
-      if ("code" in responseData) return responseData;
+      console.log("New response:", JSON.stringify(responseData));
 
-      const currentData = responseData.data.timelines.find(
-        (timeline) => timeline.timestep === "current",
-      );
-      if (
-        !currentData ||
-        !currentData.intervals ||
-        !currentData.intervals[0]?.values
-      ) {
-        console.error("No current data in response:", responseData);
-        return {
-          code: 500,
-          message: "No current data in response",
-          type: "error",
-        };
-      }
-
-      const hourlyData = responseData.data.timelines.find(
-        (timeline) => timeline.timestep === "1h",
-      );
-      if (
-        !hourlyData ||
-        !hourlyData.intervals ||
-        !hourlyData.intervals[0]?.values
-      ) {
-        console.error("No hourly data in response:", responseData);
-        return {
-          code: 500,
-          message: "No hourly data in response",
-          type: "error",
-        };
-      }
-
-      const dailyData = responseData.data.timelines.find(
-        (timeline) => timeline.timestep === "1d",
-      );
-      if (
-        !dailyData ||
-        !dailyData.intervals ||
-        !dailyData.intervals[0]?.values
-      ) {
-        console.error("No daily data in response:", responseData);
-        return {
-          code: 500,
-          message: "No daily data in response",
-          type: "error",
-        };
-      }
-
-      return WeatherForecastTimelinesSchema.parse({
-        current: {
-          time: currentData.intervals[0].startTime,
-          ...currentData.intervals[0].values,
-        },
-        hourly: hourlyData.intervals.map((interval) => ({
-          time: interval.startTime,
-          ...interval.values,
-        })),
-        daily: dailyData.intervals.map((interval) => ({
-          time: interval.startTime,
-          ...interval.values,
-        })),
-      });
+      return responseData;
     },
     [`${location.latitude},${location.longitude}`],
     {
@@ -138,6 +73,68 @@ export async function getWeatherForecastTimelines(
       revalidate: 1000 * 60 * 2, // 2 minutes
     },
   )();
+
+  // If there is an error, return it so the client can handle it
+  if ("code" in cachedResponseData) return cachedResponseData;
+
+  const currentData = cachedResponseData.data.timelines.find(
+    (timeline) => timeline.timestep === "current",
+  );
+  if (
+    !currentData ||
+    !currentData.intervals ||
+    !currentData.intervals[0]?.values
+  ) {
+    console.error("No current data in response:", cachedResponseData);
+    return {
+      code: 500,
+      message: "No current data in response",
+      type: "error",
+    };
+  }
+
+  const hourlyData = cachedResponseData.data.timelines.find(
+    (timeline) => timeline.timestep === "1h",
+  );
+  if (
+    !hourlyData ||
+    !hourlyData.intervals ||
+    !hourlyData.intervals[0]?.values
+  ) {
+    console.error("No hourly data in response:", cachedResponseData);
+    return {
+      code: 500,
+      message: "No hourly data in response",
+      type: "error",
+    };
+  }
+
+  const dailyData = cachedResponseData.data.timelines.find(
+    (timeline) => timeline.timestep === "1d",
+  );
+  if (!dailyData || !dailyData.intervals || !dailyData.intervals[0]?.values) {
+    console.error("No daily data in response:", cachedResponseData);
+    return {
+      code: 500,
+      message: "No daily data in response",
+      type: "error",
+    };
+  }
+
+  return WeatherForecastTimelinesSchema.parse({
+    current: {
+      time: currentData.intervals[0].startTime,
+      ...currentData.intervals[0].values,
+    },
+    hourly: hourlyData.intervals.map((interval) => ({
+      time: interval.startTime,
+      ...interval.values,
+    })),
+    daily: dailyData.intervals.map((interval) => ({
+      time: interval.startTime,
+      ...interval.values,
+    })),
+  });
 }
 
 //
