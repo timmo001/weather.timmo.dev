@@ -121,6 +121,12 @@ export async function getWeatherForecastTimelines(
     };
   }
 
+  console.log("Got weather forecast timelines:", {
+    current: currentData.intervals[0].values,
+    hourly: hourlyData.intervals[0].values,
+    daily: dailyData.intervals,
+  });
+
   return WeatherForecastTimelinesSchema.parse({
     current: {
       time: currentData.intervals[0].startTime,
