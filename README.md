@@ -8,7 +8,7 @@ Weather data is provided by the [Tomorrow.io](https://www.tomorrow.io/) API. The
 
 - Set your location using coordinates. You can use your browser's geolocation feature to get your current location.
 - Get the current weather conditions.
-- Get a 6 day forecast either in hourly or daily intervals.
+- Get a 5 day forecast in hourly and daily intervals.
 - Dark and light themes - uses your system's theme preference as the default theme.
 - Responsive design - Works well on both desktop and mobile.
 - Progressive Web App - You can install the web app as a standalone app on your device using the install prompt or the install button in your browser's address bar.

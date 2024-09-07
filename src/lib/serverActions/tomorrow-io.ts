@@ -17,8 +17,10 @@ import {
 import {
   WeatherForecastDaily,
   WeatherForecastDailyCharts,
+  WeatherForecastDailySchema,
   WeatherForecastHourly,
   WeatherForecastHourlyCharts,
+  WeatherForecastHourlySchema,
   WeatherForecastNow,
   WeatherForecastNowSchema,
   WeatherForecastTimelines,
@@ -108,47 +110,43 @@ export async function getWeatherForecastTimelines(
     };
   }
 
-  // const hourlyData = cachedResponseData.data.timelines.find(
-  //   (timeline) => timeline.timestep === "1d",
-  // );
-  // if (
-  //   !hourlyData ||
-  //   !hourlyData.intervals ||
-  //   !hourlyData.intervals[0]?.values
-  // ) {
-  //   console.error("No hourly data in response:", hourlyData);
-  //   return {
-  //     code: 500,
-  //     message: "No hourly data in response",
-  //     type: "error",
-  //   };
-  // }
+  const hourlyData = cachedResponseData.data.timelines.find(
+    (timeline) => timeline.timestep === "1h",
+  );
+  if (!hourlyData || !hourlyData.intervals) {
+    console.error("No hourly data in response:", hourlyData);
+    return {
+      code: 500,
+      message: "No hourly data in response",
+      type: "error",
+    };
+  }
 
-  // const dailyData = cachedResponseData.data.timelines.find(
-  //   (timeline) => timeline.timestep === "1h",
-  // );
-  // if (!dailyData || !dailyData.intervals || !dailyData.intervals[0]?.values) {
-  //   console.error("No daily data in response:", dailyData);
-  //   return {
-  //     code: 500,
-  //     message: "No daily data in response",
-  //     type: "error",
-  //   };
-  // }
+  const dailyData = cachedResponseData.data.timelines.find(
+    (timeline) => timeline.timestep === "1d",
+  );
+  if (!dailyData || !dailyData.intervals) {
+    console.error("No daily data in response:", dailyData);
+    return {
+      code: 500,
+      message: "No daily data in response",
+      type: "error",
+    };
+  }
 
   return WeatherForecastTimelinesSchema.parse({
     current: {
       time: currentData.intervals[0].startTime,
       ...currentData.intervals[0].values,
     },
-    // hourly: hourlyData.intervals.map((interval) => ({
-    //   time: interval.startTime,
-    //   ...interval.values,
-    // })),
-    // daily: dailyData.intervals.map((interval) => ({
-    //   time: interval.startTime,
-    //   ...interval.values,
-    // })),
+    hourly: hourlyData.intervals.map((interval) => ({
+      time: interval.startTime,
+      ...interval.values,
+    })),
+    daily: dailyData.intervals.map((interval) => ({
+      time: interval.startTime,
+      ...interval.values,
+    })),
   });
 }
 
@@ -190,22 +188,26 @@ export async function getWeatherForecastNow(
   });
 }
 
-// //
-// // Get the hourly weather forecast for a location
-// //
-// export async function getWeatherForecastHourly(
-//   location: Location,
-//   timezone: string = "auto",
-//   units: string = "metric",
-// ): Promise<WeatherForecastErrorResponse | WeatherForecastHourly> {
-//   const timelines = await getWeatherForecastTimelines(
-//     location,
-//     timezone,
-//     units,
-//   );
-//   // If there is an error, return it so the client can handle it
-//   if ("code" in timelines) return timelines;
-// }
+//
+// Get the hourly weather forecast for a location
+//
+export async function getWeatherForecastHourly(
+  location: Location,
+  timezone: string = "auto",
+  units: string = "metric",
+): Promise<WeatherForecastErrorResponse | WeatherForecastHourly> {
+  const timelines = await getWeatherForecastTimelines(
+    location,
+    timezone,
+    units,
+  );
+  // If there is an error, return it so the client can handle it
+  if ("code" in timelines) return timelines;
+
+  console.log("Got weather forecast hourly:", timelines.hourly.length);
+
+  return WeatherForecastHourlySchema.parse(timelines.hourly);
+}
 
 // //
 // // Use the hourly forecast and transform the data into a format for
@@ -259,22 +261,26 @@ export async function getWeatherForecastNow(
 //   return response;
 // }
 
-// //
-// // Get the daily weather forecast for a location
-// //
-// export async function getWeatherForecastDaily(
-//   location: Location,
-//   timezone: string = "auto",
-//   units: string = "metric",
-// ): Promise<WeatherForecastErrorResponse | WeatherForecastDaily> {
-//   const timelines = await getWeatherForecastTimelines(
-//     location,
-//     timezone,
-//     units,
-//   );
-//   // If there is an error, return it so the client can handle it
-//   if ("code" in timelines) return timelines;
-// }
+//
+// Get the daily weather forecast for a location
+//
+export async function getWeatherForecastDaily(
+  location: Location,
+  timezone: string = "auto",
+  units: string = "metric",
+): Promise<WeatherForecastErrorResponse | WeatherForecastDaily> {
+  const timelines = await getWeatherForecastTimelines(
+    location,
+    timezone,
+    units,
+  );
+  // If there is an error, return it so the client can handle it
+  if ("code" in timelines) return timelines;
+
+  console.log("Got weather forecast daily:", timelines.daily.length);
+
+  return WeatherForecastDailySchema.parse(timelines.daily);
+}
 
 // //
 // // Use the daily forecast and transform the data into a format for

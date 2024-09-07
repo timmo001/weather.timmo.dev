@@ -22,7 +22,7 @@ export function WeatherIcon({
   className,
   night,
 }: {
-  code: keyof typeof weatherCode;
+  code: keyof typeof weatherCode | number;
   className?: string;
   night?: boolean;
 }) {

@@ -2,13 +2,11 @@
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 
+import { WeatherForecastErrorResponse } from "~/lib/schemas/tomorrow-io";
+import { WeatherForecastHourly } from "~/lib/schemas/weather";
 import { getLocationFromLocalStorage } from "~/lib/local-storage";
 import { getWeatherForecastHourly } from "~/lib/serverActions/tomorrow-io";
 import { weatherCode } from "~/lib/tomorrowio/weather-codes";
-import {
-  type WeatherForecastErrorResponse,
-  type WeatherForecastHourly,
-} from "~/lib/types/tomorrow-io";
 import { WeatherIcon } from "~/components/weather-icon";
 
 export function ForecastHourly() {
@@ -80,12 +78,16 @@ export function ForecastHourly() {
                     {weatherCode[item.weatherCode] || "Unknown"}
                   </span>
                 </div>
-                <div className="flex flex-row items-center gap-1">
-                  <span className="text-xl font-bold">
-                    {item.temperature.toFixed(1)}
-                  </span>
-                  <span className="text-sm font-semibold">°C</span>
-                </div>
+                {item.temperature ? (
+                  <div className="flex flex-row items-center gap-1">
+                    <span className="text-xl font-bold">
+                      {item.temperature.toFixed(1)}
+                    </span>
+                    <span className="text-sm font-semibold">°C</span>
+                  </div>
+                ) : (
+                  <span className="text-xl font-bold">?</span>
+                )}
               </div>
             );
           })}
