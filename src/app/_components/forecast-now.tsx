@@ -85,6 +85,13 @@ export function ForecastNow() {
             </div>
             <div className="ms-4 flex flex-col items-start justify-center text-lg">
               <div className="flex flex-row items-center gap-1">
+                <span className="font-semibold">Dew Point:</span>
+                <span className="font-normal">
+                  {forecastNow.data.dewPoint.toFixed(1)}
+                </span>
+                <span className="font-small text-base font-normal">°C</span>
+              </div>
+              <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Humidity:</span>
                 <span className="font-normal">
                   {forecastNow.data.temperature.toFixed(1)}
