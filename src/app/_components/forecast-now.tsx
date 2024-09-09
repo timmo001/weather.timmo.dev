@@ -99,6 +99,13 @@ export function ForecastNow() {
                 <span className="font-small text-base font-normal">%</span>
               </div>
               <div className="flex flex-row items-center gap-1">
+                <span className="font-semibold">Pressure:</span>
+                <span className="font-normal">
+                  {forecastNow.data.pressureSurfaceLevel.toFixed(1)}
+                </span>
+                <span className="font-small text-base font-normal">hPa</span>
+              </div>
+              <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Wind Speed:</span>
                 <span className="font-normal">
                   {forecastNow.data.windSpeed.toFixed(1)}
