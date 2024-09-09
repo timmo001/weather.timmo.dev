@@ -29,9 +29,9 @@ export type WeatherForecastTimelines = z.infer<
 //
 export const WeatherForecastNowSchema = z.object({
   time: z.string(),
-  cloudBase: z.number(),
-  cloudCeiling: z.number(),
-  cloudCover: z.number(),
+  cloudBase: z.number().nullish(),
+  cloudCeiling: z.number().nullish(),
+  cloudCover: z.number().nullish(),
   dewPoint: z.number(),
   freezingRainIntensity: z.number(),
   humidity: z.number(),
