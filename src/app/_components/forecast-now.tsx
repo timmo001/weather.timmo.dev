@@ -64,7 +64,7 @@ export function ForecastNow() {
         </span>
       ) : (
         <>
-          <div className="flex flex-row flex-wrap items-stretch justify-center gap-6">
+          <div className="flex flex-row flex-wrap items-center justify-center gap-6">
             <WeatherIcon
               className="h-32 w-32"
               code={forecastNow.data.weatherCode}
@@ -83,7 +83,7 @@ export function ForecastNow() {
                 <span className="text-2xl font-semibold">°C</span>
               </div>
             </div>
-            <div className="ms-4 flex flex-col items-start justify-center text-lg">
+            <div className="ms-6 flex flex-col items-start justify-center text-lg">
               <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Dew Point:</span>
                 <span className="font-normal">
