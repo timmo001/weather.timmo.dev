@@ -114,6 +114,13 @@ export function ForecastNow() {
                   ({forecastNow.data.windDirection}°)
                 </span>
               </div>
+              <div className="flex flex-row items-center gap-1">
+                <span className="font-semibold">Visibility:</span>
+                <span className="font-normal">
+                  {forecastNow.data.visibility.toFixed(1)}
+                </span>
+                <span className="font-small text-base font-normal">km</span>
+              </div>
             </div>
           </div>
           {dateTime && (
