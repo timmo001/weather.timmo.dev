@@ -4,63 +4,188 @@ import { unstable_cache } from "next/cache";
 import dayjs from "dayjs";
 
 import { env } from "~/env";
-import { type Location } from "~/lib/schema";
+import { type Location } from "~/lib/schemas/location";
 import {
-  WeatherForecastDailyCharts,
-  type WeatherForecastDaily,
-  type WeatherForecastDailyResponse,
   type WeatherForecastErrorResponse,
-  type WeatherForecastHourly,
-  type WeatherForecastHourlyCharts,
-  type WeatherForecastHourlyResponse,
-  type WeatherForecastNow,
-  type WeatherForecastNowResponse,
-} from "~/lib/types/tomorrow-io";
-import { getWindDirectionCardinalFromDegrees } from "~/lib/utils";
+  type Timelines,
+  ValuesSchema,
+} from "~/lib/schemas/tomorrow-io";
+import {
+  getWindDirectionCardinalFromDegrees,
+  getZodSchemaFieldsShallow,
+} from "~/lib/utils";
+import {
+  WeatherForecastDaily,
+  WeatherForecastDailyCharts,
+  WeatherForecastDailySchema,
+  WeatherForecastHourly,
+  WeatherForecastHourlyCharts,
+  WeatherForecastHourlySchema,
+  WeatherForecastNow,
+  WeatherForecastNowSchema,
+  WeatherForecastTimelines,
+  WeatherForecastTimelinesSchema,
+} from "~/lib/schemas/weather";
 
-// All requests to the Tomorrow.io API require an API key
-const BASE_PARAMS = `apikey=${env.WEATHER_API_KEY}&units=metric`;
+//
+// Get the current weather data for a location
+//
+export async function getWeatherForecastTimelines(
+  location: Location,
+  timezone: string = "auto",
+  units: string = "metric",
+): Promise<WeatherForecastErrorResponse | WeatherForecastTimelines> {
+  const cachedResponseData = await unstable_cache(
+    async (): Promise<WeatherForecastErrorResponse | Timelines> => {
+      const url = new URL("https://api.tomorrow.io/v4/timelines");
+      url.searchParams.append("apikey", env.WEATHER_API_KEY);
+      url.searchParams.append(
+        "location",
+        `${location.latitude},${location.longitude}`,
+      );
+      url.searchParams.append(
+        "fields",
+        Object.keys(getZodSchemaFieldsShallow(ValuesSchema)).join(","),
+      );
+      url.searchParams.append("units", units);
+      url.searchParams.append("timesteps", ["current", "1h", "1d"].join(","));
+      url.searchParams.append("startTime", "now");
+      url.searchParams.append("endTime", "nowPlus5d");
+      url.searchParams.append("timezone", timezone);
 
-// Setup the base request options for all requests to the Tomorrow.io API
-const BASE_REQUEST_OPTIONS: RequestInit = {
-  method: "GET",
-  headers: {
-    Accept: "application/json",
-  },
-};
+      console.log("Get weather timelines for location:", location, url);
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Accept-Encoding": "gzip",
+        },
+      });
+
+      const responseData = (await response.json()) as
+        | WeatherForecastErrorResponse
+        | Timelines;
+      console.log("New response:", JSON.stringify(responseData));
+
+      return responseData;
+    },
+    [`${location.latitude},${location.longitude}`],
+    {
+      tags: ["timelines"],
+      revalidate: 1000 * 60 * 2, // 2 minutes
+    },
+  )();
+
+  // If there is an error, return it so the client can handle it
+  if ("code" in cachedResponseData) return cachedResponseData;
+
+  console.log(
+    "Got weather forecast timelines:",
+    JSON.stringify({
+      data: {
+        timelines: cachedResponseData.data.timelines.map((timeline) => ({
+          timestep: timeline.timestep,
+          startTime: timeline.startTime,
+          endTime: timeline.endTime,
+          intervals: timeline.intervals.length,
+        })),
+        warnings: cachedResponseData.data.warnings,
+      },
+    }),
+  );
+
+  const currentData = cachedResponseData.data.timelines.find(
+    (timeline) => timeline.timestep === "current",
+  );
+  if (
+    !currentData ||
+    !currentData.intervals ||
+    !currentData.intervals[0]?.values
+  ) {
+    console.error("No current data in response:", currentData);
+    return {
+      code: 500,
+      message: "No current data in response",
+      type: "error",
+    };
+  }
+
+  const hourlyData = cachedResponseData.data.timelines.find(
+    (timeline) => timeline.timestep === "1h",
+  );
+  if (!hourlyData || !hourlyData.intervals) {
+    console.error("No hourly data in response:", hourlyData);
+    return {
+      code: 500,
+      message: "No hourly data in response",
+      type: "error",
+    };
+  }
+
+  const dailyData = cachedResponseData.data.timelines.find(
+    (timeline) => timeline.timestep === "1d",
+  );
+  if (!dailyData || !dailyData.intervals) {
+    console.error("No daily data in response:", dailyData);
+    return {
+      code: 500,
+      message: "No daily data in response",
+      type: "error",
+    };
+  }
+
+  return WeatherForecastTimelinesSchema.parse({
+    current: {
+      time: currentData.intervals[0].startTime,
+      ...currentData.intervals[0].values,
+    },
+    hourly: hourlyData.intervals.map((interval) => ({
+      time: interval.startTime,
+      ...interval.values,
+    })),
+    daily: dailyData.intervals.map((interval) => ({
+      time: interval.startTime,
+      ...interval.values,
+    })),
+  });
+}
 
 //
 // Get the current weather forecast for a location
 //
 export async function getWeatherForecastNow(
   location: Location,
+  timezone: string = "auto",
+  units: string = "metric",
 ): Promise<WeatherForecastErrorResponse | WeatherForecastNow> {
-  return unstable_cache(
-    async (): Promise<WeatherForecastErrorResponse | WeatherForecastNow> => {
-      const url = `https://api.tomorrow.io/v4/weather/realtime?${BASE_PARAMS}&location=${location.latitude},${location.longitude}`;
-      console.log("Get forecast now for location:", location, url);
-      const response = await fetch(url, BASE_REQUEST_OPTIONS);
-      const responseData = (await response.json()) as
-        | WeatherForecastErrorResponse
-        | WeatherForecastNowResponse;
-      console.log("Response:", JSON.stringify(responseData));
-      // If there is an error, return it so the client can handle it
-      if ("code" in responseData) return responseData;
+  const timelines = await getWeatherForecastTimelines(
+    location,
+    timezone,
+    units,
+  );
+  // If there is an error, return it so the client can handle it
+  if ("code" in timelines) return timelines;
 
-      return {
-        time: responseData.data.time,
-        ...responseData.data.values,
-        windDirectionCardinal: getWindDirectionCardinalFromDegrees(
-          responseData.data.values.windDirection,
-        ),
-      };
-    },
-    [`${location.latitude},${location.longitude}`],
-    {
-      tags: ["forecast", "now"],
-      revalidate: 1000 * 60 * 5, // 5 minutes
-    },
-  )();
+  console.log("Got weather forecast now:", JSON.stringify(timelines.current));
+
+  if (!timelines.current.windDirection) {
+    console.error(
+      "No wind direction in current weather data:",
+      timelines.current,
+    );
+    return {
+      code: 500,
+      message: "No wind direction in current weather data",
+      type: "error",
+    };
+  }
+
+  return WeatherForecastNowSchema.parse({
+    ...timelines.current,
+    windDirectionCardinal: getWindDirectionCardinalFromDegrees(
+      timelines.current.windDirection,
+    ),
+  });
 }
 
 //
@@ -68,30 +193,20 @@ export async function getWeatherForecastNow(
 //
 export async function getWeatherForecastHourly(
   location: Location,
+  timezone: string = "auto",
+  units: string = "metric",
 ): Promise<WeatherForecastErrorResponse | WeatherForecastHourly> {
-  return unstable_cache(
-    async (): Promise<WeatherForecastErrorResponse | WeatherForecastHourly> => {
-      const url = `https://api.tomorrow.io/v4/weather/forecast?${BASE_PARAMS}&location=${location.latitude},${location.longitude}&timesteps=1h`;
-      console.log("Get hourly forecast for location:", location, url);
-      const response = await fetch(url, BASE_REQUEST_OPTIONS);
-      const responseData = (await response.json()) as
-        | WeatherForecastErrorResponse
-        | WeatherForecastHourlyResponse;
-      console.log("Response:", JSON.stringify(responseData));
-      // If there is an error, return it so the client can handle it
-      if ("code" in responseData) return responseData;
+  const timelines = await getWeatherForecastTimelines(
+    location,
+    timezone,
+    units,
+  );
+  // If there is an error, return it so the client can handle it
+  if ("code" in timelines) return timelines;
 
-      return responseData.timelines.hourly.map((hourly) => ({
-        time: hourly.time,
-        ...hourly.values,
-      }));
-    },
-    [`${location.latitude},${location.longitude}`],
-    {
-      tags: ["forecast", "hourly"],
-      revalidate: 1000 * 60 * 20, // 20 minutes
-    },
-  )();
+  console.log("Got weather forecast hourly:", timelines.hourly.length);
+
+  return WeatherForecastHourlySchema.parse(timelines.hourly);
 }
 
 //
@@ -100,8 +215,14 @@ export async function getWeatherForecastHourly(
 //
 export async function getWeatherForecastHourlyCharts(
   location: Location,
+  timezone: string = "auto",
+  units: string = "metric",
 ): Promise<WeatherForecastErrorResponse | WeatherForecastHourlyCharts> {
-  const hourlyForecast = await getWeatherForecastHourly(location);
+  const hourlyForecast = await getWeatherForecastHourly(
+    location,
+    timezone,
+    units,
+  );
   // If there is an error, return it so the client can handle it
   if ("code" in hourlyForecast) return hourlyForecast;
 
@@ -117,7 +238,7 @@ export async function getWeatherForecastHourlyCharts(
     })),
     windSpeeds: hourlyForecast.map((hourly) => ({
       time: dayjs(hourly.time).format("ddd HH:mm"),
-      windSpeed: hourly.windSpeed, 
+      windSpeed: hourly.windSpeed,
     })),
     precipitations: hourlyForecast.map((hourly) => ({
       time: dayjs(hourly.time).format("ddd HH:mm"),
@@ -145,30 +266,20 @@ export async function getWeatherForecastHourlyCharts(
 //
 export async function getWeatherForecastDaily(
   location: Location,
+  timezone: string = "auto",
+  units: string = "metric",
 ): Promise<WeatherForecastErrorResponse | WeatherForecastDaily> {
-  return unstable_cache(
-    async (): Promise<WeatherForecastErrorResponse | WeatherForecastDaily> => {
-      const url = `https://api.tomorrow.io/v4/weather/forecast?${BASE_PARAMS}&location=${location.latitude},${location.longitude}&timesteps=1d`;
-      console.log("Get daily forecast for location:", location, url);
-      const response = await fetch(url, BASE_REQUEST_OPTIONS);
-      const responseData = (await response.json()) as
-        | WeatherForecastErrorResponse
-        | WeatherForecastDailyResponse;
-      console.log("Response:", JSON.stringify(responseData));
-      // If there is an error, return it so the client can handle it
-      if ("code" in responseData) return responseData;
+  const timelines = await getWeatherForecastTimelines(
+    location,
+    timezone,
+    units,
+  );
+  // If there is an error, return it so the client can handle it
+  if ("code" in timelines) return timelines;
 
-      return responseData.timelines.daily.map((daily) => ({
-        time: daily.time,
-        ...daily.values,
-      }));
-    },
-    [`${location.latitude},${location.longitude}`],
-    {
-      tags: ["forecast", "daily"],
-      revalidate: 1000 * 60 * 30, // 30 minutes
-    },
-  )();
+  console.log("Got weather forecast daily:", timelines.daily.length);
+
+  return WeatherForecastDailySchema.parse(timelines.daily);
 }
 
 //
@@ -177,8 +288,14 @@ export async function getWeatherForecastDaily(
 //
 export async function getWeatherForecastDailyCharts(
   location: Location,
+  timezone: string = "auto",
+  units: string = "metric",
 ): Promise<WeatherForecastErrorResponse | WeatherForecastDailyCharts> {
-  const dailyForecast = await getWeatherForecastDaily(location);
+  const dailyForecast = await getWeatherForecastDaily(
+    location,
+    timezone,
+    units,
+  );
   // If there is an error, return it so the client can handle it
   if ("code" in dailyForecast) return dailyForecast;
 
@@ -221,7 +338,7 @@ export async function getWeatherForecastDailyCharts(
         daily.sleetAccumulationMin,
         daily.sleetAccumulationMax,
       ],
-      sleetAccumulationSum: daily.sleetAccumulationSum,
+      // sleetAccumulationSum: daily.sleetAccumulationSum,
       snowAccumulationMin: daily.snowAccumulationMin,
       snowAccumulationMax: daily.snowAccumulationMax,
       snowAccumulationAvg: daily.snowAccumulationAvg,

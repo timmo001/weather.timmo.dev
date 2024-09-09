@@ -22,7 +22,7 @@ export function WeatherIcon({
   className,
   night,
 }: {
-  code: keyof typeof weatherCode;
+  code: keyof typeof weatherCode | number;
   className?: string;
   night?: boolean;
 }) {
@@ -53,7 +53,7 @@ export function WeatherIcon({
     8000: CloudLightning, // "Thunderstorm"
   };
 
-  const Icon = weatherIcon[code];
+  const Icon = weatherIcon[code as number];
 
   if (!Icon) return <Cloud className={className} />;
 

@@ -1,7 +1,6 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import {
-  Area,
   CartesianGrid,
   ComposedChart,
   Line,
@@ -10,6 +9,8 @@ import {
   YAxis,
 } from "recharts";
 
+import { WeatherForecastErrorResponse } from "~/lib/schemas/tomorrow-io";
+import { WeatherForecastDailyCharts } from "~/lib/schemas/weather";
 import {
   ChartConfig,
   ChartContainer,
@@ -20,10 +21,6 @@ import {
 } from "~/components/ui/chart";
 import { getLocationFromLocalStorage } from "~/lib/local-storage";
 import { getWeatherForecastDailyCharts } from "~/lib/serverActions/tomorrow-io";
-import {
-  type WeatherForecastErrorResponse,
-  type WeatherForecastDailyCharts,
-} from "~/lib/types/tomorrow-io";
 
 const temperaturesChartConfig = {
   temperatureMin: {

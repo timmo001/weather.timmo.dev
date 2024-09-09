@@ -2,13 +2,11 @@
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 
+import { WeatherForecastErrorResponse } from "~/lib/schemas/tomorrow-io";
+import { WeatherForecastDaily } from "~/lib/schemas/weather";
 import { getLocationFromLocalStorage } from "~/lib/local-storage";
 import { getWeatherForecastDaily } from "~/lib/serverActions/tomorrow-io";
 import { weatherCode } from "~/lib/tomorrowio/weather-codes";
-import {
-  type WeatherForecastErrorResponse,
-  type WeatherForecastDaily,
-} from "~/lib/types/tomorrow-io";
 import { WeatherIcon } from "~/components/weather-icon";
 
 export function ForecastDaily() {

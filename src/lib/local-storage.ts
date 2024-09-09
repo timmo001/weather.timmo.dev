@@ -1,9 +1,9 @@
 "use client";
-import { type Location } from "~/lib/schema";
+import { type Location } from "~/lib/schemas/location";
 
-// 
+//
 // Get the user's location from local storage, or default to the center of the earth
-// 
+//
 export function getLocationFromLocalStorage(): Location {
   const data = localStorage.getItem("location");
   if (data) {
