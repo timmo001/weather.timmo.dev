@@ -92,6 +92,13 @@ export function ForecastNow() {
                 <span className="font-small text-base font-normal">°C</span>
               </div>
               <div className="flex flex-row items-center gap-1">
+                <span className="font-semibold">Chance of Rain:</span>
+                <span className="font-normal">
+                  {forecastNow.data.precipitationProbability.toFixed(0)}
+                </span>
+                <span className="font-small text-base font-normal">%</span>
+              </div>
+              <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Humidity:</span>
                 <span className="font-normal">
                   {forecastNow.data.temperature.toFixed(1)}
