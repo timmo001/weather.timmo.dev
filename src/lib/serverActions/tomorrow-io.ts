@@ -72,7 +72,7 @@ export async function getWeatherForecastTimelines(
     [`${location.latitude},${location.longitude}`],
     {
       tags: ["timelines"],
-      revalidate: 1000 * 60 * 2, // 2 minutes
+      revalidate: 60 * 4, // 4 minutes
     },
   )();
 
