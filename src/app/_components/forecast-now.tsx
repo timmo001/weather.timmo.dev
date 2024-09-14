@@ -99,7 +99,7 @@ export function ForecastNow() {
               <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Humidity:</span>
                 <span className="font-normal">
-                  {forecastNow.data.temperature.toFixed(1)}
+                  {forecastNow.data.humidity.toFixed(1)}
                 </span>
                 <span className="font-small text-base font-normal">%</span>
               </div>
