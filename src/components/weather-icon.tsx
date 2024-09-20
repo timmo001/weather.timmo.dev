@@ -1,4 +1,4 @@
-import { ElementType } from "react";
+import { type ElementType } from "react";
 import {
   Cloud,
   CloudDrizzle,
@@ -15,7 +15,7 @@ import {
   Sun,
 } from "lucide-react";
 
-import { weatherCode } from "~/lib/tomorrowio/weather-codes";
+import { type weatherCode } from "~/lib/tomorrowio/weather-codes";
 
 export function WeatherIcon({
   code,
@@ -26,7 +26,7 @@ export function WeatherIcon({
   className?: string;
   night?: boolean;
 }) {
-  const weatherIcon: { [key: number]: ElementType } = {
+  const weatherIcon: Record<number, ElementType> = {
     0: night ? CloudMoon : Cloud, // "Unknown"
     1000: night ? MoonStar : Sun, //"Clear"
     1100: night ? CloudMoon : CloudSun, // "Mostly Clear"

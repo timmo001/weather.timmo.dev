@@ -15,15 +15,15 @@ import {
   getZodSchemaFieldsShallow,
 } from "~/lib/utils";
 import {
-  WeatherForecastDaily,
-  WeatherForecastDailyCharts,
+  type WeatherForecastDaily,
+  type WeatherForecastDailyCharts,
+  type WeatherForecastHourly,
+  type WeatherForecastHourlyCharts,
+  type WeatherForecastNow,
+  type WeatherForecastTimelines,
   WeatherForecastDailySchema,
-  WeatherForecastHourly,
-  WeatherForecastHourlyCharts,
   WeatherForecastHourlySchema,
-  WeatherForecastNow,
   WeatherForecastNowSchema,
-  WeatherForecastTimelines,
   WeatherForecastTimelinesSchema,
 } from "~/lib/schemas/weather";
 
@@ -32,8 +32,8 @@ import {
 //
 export async function getWeatherForecastTimelines(
   location: Location,
-  timezone: string = "auto",
-  units: string = "metric",
+  timezone = "auto",
+  units = "metric",
 ): Promise<WeatherForecastErrorResponse | WeatherForecastTimelines> {
   const cachedResponseData = await unstable_cache(
     async (): Promise<WeatherForecastErrorResponse | Timelines> => {
@@ -97,11 +97,7 @@ export async function getWeatherForecastTimelines(
   const currentData = cachedResponseData.data.timelines.find(
     (timeline) => timeline.timestep === "current",
   );
-  if (
-    !currentData ||
-    !currentData.intervals ||
-    !currentData.intervals[0]?.values
-  ) {
+  if (!currentData?.intervals?.[0]?.values) {
     console.error("No current data in response:", currentData);
     return {
       code: 500,
@@ -113,7 +109,7 @@ export async function getWeatherForecastTimelines(
   const hourlyData = cachedResponseData.data.timelines.find(
     (timeline) => timeline.timestep === "1h",
   );
-  if (!hourlyData || !hourlyData.intervals) {
+  if (!hourlyData?.intervals) {
     console.error("No hourly data in response:", hourlyData);
     return {
       code: 500,
@@ -125,7 +121,7 @@ export async function getWeatherForecastTimelines(
   const dailyData = cachedResponseData.data.timelines.find(
     (timeline) => timeline.timestep === "1d",
   );
-  if (!dailyData || !dailyData.intervals) {
+  if (!dailyData?.intervals) {
     console.error("No daily data in response:", dailyData);
     return {
       code: 500,
@@ -155,8 +151,8 @@ export async function getWeatherForecastTimelines(
 //
 export async function getWeatherForecastNow(
   location: Location,
-  timezone: string = "auto",
-  units: string = "metric",
+  timezone = "auto",
+  units = "metric",
 ): Promise<WeatherForecastErrorResponse | WeatherForecastNow> {
   const timelines = await getWeatherForecastTimelines(
     location,
@@ -193,8 +189,8 @@ export async function getWeatherForecastNow(
 //
 export async function getWeatherForecastHourly(
   location: Location,
-  timezone: string = "auto",
-  units: string = "metric",
+  timezone = "auto",
+  units = "metric",
 ): Promise<WeatherForecastErrorResponse | WeatherForecastHourly> {
   const timelines = await getWeatherForecastTimelines(
     location,
@@ -215,8 +211,8 @@ export async function getWeatherForecastHourly(
 //
 export async function getWeatherForecastHourlyCharts(
   location: Location,
-  timezone: string = "auto",
-  units: string = "metric",
+  timezone = "auto",
+  units = "metric",
 ): Promise<WeatherForecastErrorResponse | WeatherForecastHourlyCharts> {
   const hourlyForecast = await getWeatherForecastHourly(
     location,
@@ -266,8 +262,8 @@ export async function getWeatherForecastHourlyCharts(
 //
 export async function getWeatherForecastDaily(
   location: Location,
-  timezone: string = "auto",
-  units: string = "metric",
+  timezone = "auto",
+  units = "metric",
 ): Promise<WeatherForecastErrorResponse | WeatherForecastDaily> {
   const timelines = await getWeatherForecastTimelines(
     location,
@@ -288,8 +284,8 @@ export async function getWeatherForecastDaily(
 //
 export async function getWeatherForecastDailyCharts(
   location: Location,
-  timezone: string = "auto",
-  units: string = "metric",
+  timezone = "auto",
+  units = "metric",
 ): Promise<WeatherForecastErrorResponse | WeatherForecastDailyCharts> {
   const dailyForecast = await getWeatherForecastDaily(
     location,

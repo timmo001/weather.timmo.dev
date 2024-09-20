@@ -8,7 +8,7 @@ export function getLocationFromLocalStorage(): Location {
   const data = localStorage.getItem("location");
   if (data) {
     try {
-      return JSON.parse(data);
+      return JSON.parse(data) as Location;
     } catch (e) {
       console.error("Error parsing location data:", e);
     }

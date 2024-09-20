@@ -1,11 +1,11 @@
 "use client";
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import dayjs, { Dayjs } from "dayjs";
+import dayjs, { type Dayjs } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
-import { WeatherForecastErrorResponse } from "~/lib/schemas/tomorrow-io";
-import { WeatherForecastNow } from "~/lib/schemas/weather";
+import { type WeatherForecastErrorResponse } from "~/lib/schemas/tomorrow-io";
+import { type WeatherForecastNow } from "~/lib/schemas/weather";
 import { getLocationFromLocalStorage } from "~/lib/local-storage";
 import { getWeatherForecastNow } from "~/lib/serverActions/tomorrow-io";
 import { weatherCode } from "~/lib/tomorrowio/weather-codes";
@@ -25,7 +25,7 @@ export function ForecastNow() {
       WeatherForecastErrorResponse | WeatherForecastNow
     > => {
       if (location.isLoading || !location.data)
-        return Promise.reject("No location data.");
+        return Promise.reject(new Error("No location data."));
       console.log("Get forecast now for location:", location.data);
       return getWeatherForecastNow(location.data);
     },
@@ -41,7 +41,7 @@ export function ForecastNow() {
       return null;
 
     return dayjs(forecastNow.data.time);
-  }, [forecastNow.data]);
+  }, [forecastNow.data, forecastNow.isError, forecastNow.isLoading]);
 
   if (location.isLoading) return <span>Loading location...</span>;
   if (location.isError) return <span>Error loading location...</span>;
@@ -72,7 +72,7 @@ export function ForecastNow() {
             />
             <div className="flex flex-col items-start justify-center gap-1">
               <span className="text-4xl font-bold">
-                {weatherCode[forecastNow.data.weatherCode] || "Unknown"}
+                {weatherCode[forecastNow.data.weatherCode] ?? "Unknown"}
               </span>
               <div className="flex flex-row items-start gap-1">
                 <span className="text-5xl font-semibold">

@@ -2,8 +2,8 @@
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 
-import { WeatherForecastErrorResponse } from "~/lib/schemas/tomorrow-io";
-import { WeatherForecastDaily } from "~/lib/schemas/weather";
+import { type WeatherForecastErrorResponse } from "~/lib/schemas/tomorrow-io";
+import { type WeatherForecastDaily } from "~/lib/schemas/weather";
 import { getLocationFromLocalStorage } from "~/lib/local-storage";
 import { getWeatherForecastDaily } from "~/lib/serverActions/tomorrow-io";
 import { weatherCode } from "~/lib/tomorrowio/weather-codes";
@@ -21,7 +21,7 @@ export function ForecastDaily() {
       WeatherForecastErrorResponse | WeatherForecastDaily
     > => {
       if (location.isLoading || !location.data)
-        return Promise.reject("No location data.");
+        return Promise.reject(new Error("No location data."));
       console.log("Get daily forecast for location:", location.data);
       return await getWeatherForecastDaily(location.data);
     },
@@ -70,7 +70,7 @@ export function ForecastDaily() {
                   }
                 />
                 <span className="whitespace-nowrap text-sm font-semibold">
-                  {weatherCode[item.weatherCodeMax] || "Unknown"}
+                  {weatherCode[item.weatherCodeMax] ?? "Unknown"}
                 </span>
                 <div className="flex flex-row items-center gap-1">
                   <span className="text-xl font-bold">
