@@ -6,6 +6,7 @@ import { CloudSun } from "lucide-react";
 import "~/styles/globals.css";
 
 import { Header } from "~/components/header";
+import { CSPostHogProvider } from "~/components/providers/posthog";
 import { QueryProvider } from "~/components/providers/query";
 import { Location } from "~/components/location";
 
@@ -37,33 +38,35 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
     >
-      <body>
-        {/* Initialise the theme, default theme is the system theme. Can be toggled via the header */}
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          disableTransitionOnChange
-          enableSystem
-        >
-          {/* Wrap the app in the query provider */}
-          <QueryProvider>
-            <div className="flex min-h-screen flex-col items-center bg-gradient-to-b from-sky-500 to-white transition-all dark:from-sky-950 dark:to-black">
-              <Header />
-              <main
-                className="container flex flex-col items-center justify-center gap-8 px-4 pb-12 pt-4"
-                role="main"
-              >
-                <h1 className="flex select-none flex-row items-center gap-2 text-6xl font-extrabold tracking-tight delay-200 duration-300 animate-in fade-in sm:text-[5rem]">
-                  <CloudSun className="h-20 w-20" />
-                  Weather
-                </h1>
-                <Location />
-                {children}
-              </main>
-            </div>
-          </QueryProvider>
-        </ThemeProvider>
-      </body>
+      <CSPostHogProvider>
+        <body>
+          {/* Initialise the theme, default theme is the system theme. Can be toggled via the header */}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            disableTransitionOnChange
+            enableSystem
+          >
+            {/* Wrap the app in the query provider */}
+            <QueryProvider>
+              <div className="flex min-h-screen flex-col items-center bg-gradient-to-b from-sky-500 to-white transition-all dark:from-sky-950 dark:to-black">
+                <Header />
+                <main
+                  className="container flex flex-col items-center justify-center gap-8 px-4 pb-12 pt-4"
+                  role="main"
+                >
+                  <h1 className="flex select-none flex-row items-center gap-2 text-6xl font-extrabold tracking-tight delay-200 duration-300 animate-in fade-in sm:text-[5rem]">
+                    <CloudSun className="h-20 w-20" />
+                    Weather
+                  </h1>
+                  <Location />
+                  {children}
+                </main>
+              </div>
+            </QueryProvider>
+          </ThemeProvider>
+        </body>
+      </CSPostHogProvider>
     </html>
   );
 }
