@@ -2,10 +2,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
-import { WeatherForecastErrorResponse } from "~/lib/schemas/tomorrow-io";
-import { WeatherForecastHourlyCharts } from "~/lib/schemas/weather";
+import { type WeatherForecastErrorResponse } from "~/lib/schemas/tomorrow-io";
+import { type WeatherForecastHourlyCharts } from "~/lib/schemas/weather";
 import {
-  ChartConfig,
+  type ChartConfig,
   ChartContainer,
   ChartLegend,
   ChartLegendContent,
@@ -71,7 +71,7 @@ export function HourlyCharts() {
       WeatherForecastErrorResponse | WeatherForecastHourlyCharts
     > => {
       if (location.isLoading || !location.data)
-        return Promise.reject("No location data.");
+        return Promise.reject(new Error("No location data."));
       console.log(
         "Get hourly temperature forecast for location:",
         location.data,

@@ -9,7 +9,7 @@ export function ThemeToggle() {
   const { theme, systemTheme, setTheme } = useTheme();
 
   const realTheme = useMemo<string>(
-    () => (theme === "system" ? systemTheme || "dark" : theme || "dark"),
+    () => (theme === "system" ? (systemTheme ?? "dark") : (theme ?? "dark")),
     [theme, systemTheme],
   );
 

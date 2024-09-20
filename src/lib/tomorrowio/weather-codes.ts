@@ -2,7 +2,7 @@
 // Weather codes from Tomorrow.io to human readable strings
 //
 
-import { WeatherCodeMap } from "~/lib/schemas/weather";
+import { type WeatherCodeMap } from "~/lib/schemas/weather";
 
 export const weatherCode: WeatherCodeMap = {
   0: "Unknown",

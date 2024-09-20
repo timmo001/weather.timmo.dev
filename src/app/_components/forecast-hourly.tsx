@@ -2,8 +2,8 @@
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 
-import { WeatherForecastErrorResponse } from "~/lib/schemas/tomorrow-io";
-import { WeatherForecastHourly } from "~/lib/schemas/weather";
+import { type WeatherForecastErrorResponse } from "~/lib/schemas/tomorrow-io";
+import { type WeatherForecastHourly } from "~/lib/schemas/weather";
 import { getLocationFromLocalStorage } from "~/lib/local-storage";
 import { getWeatherForecastHourly } from "~/lib/serverActions/tomorrow-io";
 import { weatherCode } from "~/lib/tomorrowio/weather-codes";
@@ -21,7 +21,7 @@ export function ForecastHourly() {
       WeatherForecastErrorResponse | WeatherForecastHourly
     > => {
       if (location.isLoading || !location.data)
-        return Promise.reject("No location data.");
+        return Promise.reject(new Error("No location data."));
       console.log("Get hourly forecast for location:", location.data);
       return await getWeatherForecastHourly(location.data);
     },
@@ -75,7 +75,7 @@ export function ForecastHourly() {
                 />
                 <div className="flex flex-col items-center">
                   <span className="whitespace-nowrap text-sm font-semibold">
-                    {weatherCode[item.weatherCode] || "Unknown"}
+                    {weatherCode[item.weatherCode] ?? "Unknown"}
                   </span>
                 </div>
                 {item.temperature ? (

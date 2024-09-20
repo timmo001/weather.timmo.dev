@@ -9,10 +9,10 @@ import {
   YAxis,
 } from "recharts";
 
-import { WeatherForecastErrorResponse } from "~/lib/schemas/tomorrow-io";
-import { WeatherForecastDailyCharts } from "~/lib/schemas/weather";
+import { type WeatherForecastErrorResponse } from "~/lib/schemas/tomorrow-io";
+import { type WeatherForecastDailyCharts } from "~/lib/schemas/weather";
 import {
-  ChartConfig,
+  type ChartConfig,
   ChartContainer,
   ChartLegend,
   ChartLegendContent,
@@ -130,7 +130,7 @@ export function DailyCharts() {
       WeatherForecastErrorResponse | WeatherForecastDailyCharts
     > => {
       if (location.isLoading || !location.data)
-        return Promise.reject("No location data.");
+        return Promise.reject(new Error("No location data."));
       console.log(
         "Get daily temperature forecast for location:",
         location.data,
