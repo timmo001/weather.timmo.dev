@@ -1,5 +1,4 @@
 import { type Metadata } from "next";
-import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "next-themes";
 import { GeistSans } from "geist/font/sans";
 import { CloudSun } from "lucide-react";
@@ -64,8 +63,6 @@ export default function RootLayout({
             </div>
           </QueryProvider>
         </ThemeProvider>
-        {/* Add analytics from vercel */}
-        <Analytics />
       </body>
     </html>
   );
