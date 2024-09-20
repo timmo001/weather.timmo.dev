@@ -1,4 +1,0 @@
-[install.lockfile]
-# This will generate a lockfile for for yarn as well as bun
-print = "yarn"
-save = true

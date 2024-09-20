@@ -51,9 +51,9 @@ There were a few options for weather data providers, but I ended up choosing Tom
 ### Prerequisites
 
 - [Node.js](https://nodejs.org)
-- [Bun](https://bun.sh) (Optional, but recommended)
+- [pnpm](https://pnpm.io) (Optional, but recommended)
 
-You can also use `npm`, `yarn`, `pnpm` etc. as an alternative if you prefer. The below instructions are for `bun`, but are interchangeable.
+You can also use `npm`, `yarn`, `pnpm` etc. as an alternative if you prefer. The below instructions are for `pnpm`, but are interchangeable.
 
 ### Setup
 
@@ -62,13 +62,13 @@ You can also use `npm`, `yarn`, `pnpm` etc. as an alternative if you prefer. The
 3. Install the dependencies.
 
 ```sh
-bun install
+pnpm install
 ```
 
 4. Start the development server.
 
 ```sh
-bun run dev
+pnpm dev
 ```
 
 5. Open the application in your browser at `http://localhost:3000`.
@@ -78,7 +78,7 @@ bun run dev
 To build the application for production, run the following command:
 
 ```sh
-bun run build
+pnpm build
 ```
 
 ### Deployment
