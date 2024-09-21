@@ -14,7 +14,7 @@ export async function GET() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          color: "#fff",
+          color: "#ffffff",
           backgroundColor: "#082f49",
           fontSize: 84,
           fontWeight: 600,

@@ -88,7 +88,7 @@ export function LocationForm() {
           className="my-2"
           type="button"
           size="default"
-          variant="secondary"
+          variant="outline"
           onClick={onGetLocation}
         >
           <LocateFixed className="h-4 w-4" />
@@ -98,7 +98,7 @@ export function LocationForm() {
           <DialogClose asChild>
             <Button
               type="button"
-              size="lg"
+              size="default"
               variant="default"
               onClick={onSetLocation}
             >
