@@ -1,6 +1,6 @@
 import { type MetadataRoute } from "next";
 
-import { navItems } from "~/lib/nav-items";
+import { navItems } from "~/components/nav-items";
 
 export const baseUrl = "https://weather.timmo.dev";
 

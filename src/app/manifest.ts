@@ -1,7 +1,7 @@
 import { type MetadataRoute } from "next";
 
 import { metadata as mainMetadata } from "~/app/layout";
-import { navItems } from "~/lib/nav-items";
+import { navItems } from "~/components/nav-items";
 
 // Generate the manifest, this will be found at /manifest.json
 export default function manifest(): MetadataRoute.Manifest {

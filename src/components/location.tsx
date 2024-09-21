@@ -13,21 +13,12 @@ import {
 } from "~/components/ui/dialog";
 import { LocationForm } from "~/components/location-form";
 import { getLocationFromLocalStorage } from "~/lib/local-storage";
-import { useMemo } from "react";
 
 export function Location() {
   const location = useQuery({
     queryKey: ["location"],
     queryFn: getLocationFromLocalStorage,
   });
-
-  // Used to determine if the location is already set.
-  // If the location is already set, the button should be reduced in size and text should show as "update" instead of "set"
-  const shouldUpdateLocation = useMemo<boolean>(
-    () =>
-      location.isLoading || location.isError || !location.data ? false : true,
-    [location],
-  );
 
   return (
     <>
@@ -42,19 +33,16 @@ export function Location() {
             >
               <LocateFixed className="h-4 w-4" />
               <span className="ms-2 line-clamp-1 text-ellipsis">
-                {shouldUpdateLocation ? "Update" : "Set"} Location
+                Set Location
               </span>
             </Button>
           </DialogTrigger>
 
           <DialogContent className="w-full">
             <DialogHeader>
-              <DialogTitle>
-                {shouldUpdateLocation ? "Update" : "Set"} Location
-              </DialogTitle>
+              <DialogTitle>Set Location</DialogTitle>
               <DialogDescription>
-                {shouldUpdateLocation ? "Update" : "Set"} your location to get
-                the weather forecast
+                Set your location to get the weather forecast
               </DialogDescription>
             </DialogHeader>
             <LocationForm />
