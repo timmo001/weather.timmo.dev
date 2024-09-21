@@ -83,18 +83,18 @@ export function ForecastNow() {
             </div>
             <div className="mx-10 flex flex-col items-start justify-center text-lg">
               <div className="flex flex-row items-center gap-1">
-                <span className="font-semibold">Dew Point:</span>
-                <span className="font-normal">
-                  {forecastNow.data.dewPoint.toFixed(1)}
-                </span>
-                <span className="font-small text-base font-normal">°C</span>
-              </div>
-              <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Chance of Rain:</span>
                 <span className="font-normal">
                   {forecastNow.data.precipitationProbability.toFixed(0)}
                 </span>
                 <span className="font-small text-base font-normal">%</span>
+              </div>
+              <div className="flex flex-row items-center gap-1">
+                <span className="font-semibold">Dew Point:</span>
+                <span className="font-normal">
+                  {forecastNow.data.dewPoint.toFixed(1)}
+                </span>
+                <span className="font-small text-base font-normal">°C</span>
               </div>
               <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Humidity:</span>
@@ -125,6 +125,10 @@ export function ForecastNow() {
                 <span className="font-small text-base font-normal">
                   ({forecastNow.data.windDirection}°)
                 </span>
+              </div>
+              <div className="flex flex-row items-center gap-1">
+                <span className="font-semibold">UV Index:</span>
+                <span className="font-normal">{forecastNow.data.uvIndex}</span>
               </div>
               <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Visibility:</span>
