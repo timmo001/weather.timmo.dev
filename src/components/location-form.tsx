@@ -88,7 +88,7 @@ export function LocationForm() {
           className="my-2"
           type="button"
           size="default"
-          variant="default"
+          variant="secondary"
           onClick={onGetLocation}
         >
           <LocateFixed className="h-4 w-4" />
