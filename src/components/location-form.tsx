@@ -87,17 +87,23 @@ export function LocationForm() {
         <Button
           className="my-2"
           type="button"
-          variant="outline"
+          size="default"
+          variant="default"
           onClick={onGetLocation}
         >
           <LocateFixed className="h-4 w-4" />
-          <span className="ms-2">Use my location</span>
+          <span className="ms-1">Use my location</span>
         </Button>
         <DialogFooter className="flex w-full flex-row flex-wrap items-stretch justify-center gap-4">
           <DialogClose asChild>
-            <Button type="button" onClick={onSetLocation}>
+            <Button
+              type="button"
+              size="lg"
+              variant="default"
+              onClick={onSetLocation}
+            >
               <Save className="h-4 w-4" />
-              <span className="ms-2">Set Location</span>
+              <span className="ms-1">Set Location</span>
             </Button>
           </DialogClose>
         </DialogFooter>

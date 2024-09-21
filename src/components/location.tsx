@@ -42,9 +42,12 @@ export function Location() {
               <LocateFixedIcon
                 className={`me-1 ${shouldUpdateLocation ? "h-4 w-4" : "h-5 w-5"}`}
               />
-              {shouldUpdateLocation ? "Update" : "Set"} Location
+              <span className="ms-1">
+                {shouldUpdateLocation ? "Update" : "Set"} Location
+              </span>
             </Button>
           </DialogTrigger>
+
           <DialogContent className="w-full">
             <DialogHeader>
               <DialogTitle>
