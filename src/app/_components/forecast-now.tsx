@@ -62,7 +62,7 @@ export function ForecastNow() {
         </span>
       ) : (
         <>
-          <div className="flex flex-row flex-wrap items-center justify-center gap-6">
+          <div className="flex flex-row flex-wrap items-center justify-center gap-2">
             <WeatherIcon
               className="h-32 w-32"
               code={forecastNow.data.weatherCode}
@@ -70,7 +70,7 @@ export function ForecastNow() {
                 dateTime ? dateTime.hour() < 6 || dateTime.hour() >= 18 : false
               }
             />
-            <div className="flex flex-col items-start justify-center gap-1">
+            <div className="flex flex-col items-start justify-center gap-2">
               <span className="text-4xl font-bold">
                 {weatherCode[forecastNow.data.weatherCode] ?? "Unknown"}
               </span>
@@ -81,7 +81,7 @@ export function ForecastNow() {
                 <span className="text-2xl font-semibold">°C</span>
               </div>
             </div>
-            <div className="ms-6 flex flex-col items-start justify-center text-lg">
+            <div className="mx-10 flex flex-col items-start justify-center text-lg">
               <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Dew Point:</span>
                 <span className="font-normal">
