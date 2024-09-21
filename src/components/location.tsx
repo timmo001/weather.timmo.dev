@@ -35,13 +35,13 @@ export function Location() {
         <Dialog>
           <DialogTrigger asChild>
             <Button
-              className={`text-base ${location.isLoading ? "invisible" : "visible"}`}
+              className={`text-sm ${location.isLoading ? "invisible" : "visible"}`}
               type="button"
-              size="default"
+              size="sm"
               variant="ghost"
             >
               <LocateFixed className="h-4 w-4" />
-              <span className="ms-1">
+              <span className="ms-2 line-clamp-1 text-ellipsis">
                 {shouldUpdateLocation ? "Update" : "Set"} Location
               </span>
             </Button>
