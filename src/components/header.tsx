@@ -1,7 +1,8 @@
 import Link from "next/link";
 
-import { ThemeToggle } from "~/components/theme-toggle";
 import { Button } from "~/components/ui/button";
+import { ThemeToggle } from "~/components/theme-toggle";
+import { Location } from "~/components/location";
 import { navItems } from "~/lib/nav-items";
 
 export function Header() {
@@ -14,7 +15,10 @@ export function Header() {
           </Link>
         ))}
       </nav>
-      <ThemeToggle />
+      <div className="flex flex-row items-center gap-2">
+        <Location />
+        <ThemeToggle />
+      </div>
     </header>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import { LocateFixedIcon } from "lucide-react";
+import { LocateFixed } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 import {
@@ -34,14 +34,13 @@ export function Location() {
       <section className="flex w-full flex-col items-center gap-3 delay-300 duration-300 animate-in fade-in">
         <Dialog>
           <DialogTrigger asChild>
-            {/* When the location is already set, the button should be reduced in size */}
             <Button
-              className={`${shouldUpdateLocation ? "text-base" : "text-2xl font-bold"} ${location.isLoading ? "invisible" : "visible"}`}
-              size={shouldUpdateLocation ? "default" : "lg"}
+              className={`text-base ${location.isLoading ? "invisible" : "visible"}`}
+              type="button"
+              size="default"
+              variant="ghost"
             >
-              <LocateFixedIcon
-                className={`me-1 ${shouldUpdateLocation ? "h-4 w-4" : "h-5 w-5"}`}
-              />
+              <LocateFixed className="h-4 w-4" />
               <span className="ms-1">
                 {shouldUpdateLocation ? "Update" : "Set"} Location
               </span>

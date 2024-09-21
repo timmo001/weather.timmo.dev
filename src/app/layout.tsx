@@ -8,7 +8,6 @@ import "~/styles/globals.css";
 import { Header } from "~/components/header";
 import { CSPostHogProvider } from "~/components/providers/posthog";
 import { QueryProvider } from "~/components/providers/query";
-import { Location } from "~/components/location";
 
 export const metadata: Metadata = {
   title: "Weather",
@@ -59,7 +58,6 @@ export default function RootLayout({
                     <CloudSun className="h-20 w-20" />
                     Weather
                   </h1>
-                  <Location />
                   {children}
                 </main>
               </div>
