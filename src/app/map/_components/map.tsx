@@ -11,16 +11,16 @@ export function Map() {
 
   return (
     <iframe
-      src={`https://www.windy.com/-Weather-radar-radar?radar,${
-        location.data?.latitude
-      },${location.data?.longitude},5`}
       allowFullScreen
       allowTransparency
+      src={`https://embed.windy.com/embed2.html?lat=${
+        location.data?.latitude
+      }&lon=${location.data?.longitude}&zoom=6&level=surface&overlay=rain&product=ecmwf&menu=&message=true&calendar=now&pressure=true&type=map&location=coordinates&metricWind=mph&metricTemp=%C2%B0C&radarRange=-1`}
       referrerPolicy="no-referrer"
       style={{
-        border: "none",
         width: "100%",
-        height: "86vh",
+        height: "85vh",
+        border: "none",
       }}
     />
   );

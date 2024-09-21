@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function MapPage() {
   return (
     <>
-      <section className="container flex max-w-screen-2xl flex-col items-center gap-3 delay-300 duration-300 animate-in fade-in">
+      <section className="container flex max-w-screen-2xl flex-col items-center gap-6 delay-300 duration-300 animate-in fade-in">
         <h2 className="text-2xl font-bold">Map</h2>
         <Map />
       </section>
