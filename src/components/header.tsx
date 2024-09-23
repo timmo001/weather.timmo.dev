@@ -19,7 +19,7 @@ function NavItems({ endAt }: { endAt: number }) {
     <Link key={href} href={href} passHref>
       <Button size="sm" variant="ghost">
         {icon}
-        <span className="ms-2 hidden sm:inline">{label}</span>
+        <span className="ms-2">{label}</span>
       </Button>
     </Link>
   ));
@@ -64,7 +64,8 @@ export function Header() {
           </>
         ) : (
           <>
-            <Menu startAt={0} />
+            <NavItems endAt={2} />
+            <Menu startAt={2} />
           </>
         )}
       </nav>
