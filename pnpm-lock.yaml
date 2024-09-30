@@ -57,8 +57,8 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       posthog-js:
-        specifier: ^1.165.0
-        version: 1.165.0
+        specifier: ^1.165.1
+        version: 1.165.1
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1079,9 +1079,6 @@ packages:
 
   '@types/mysql@2.15.26':
     resolution: {integrity: sha512-DSLCOXhkvfS5WNNPbfn2KdICAmk8lLc+/PNvnPnF7gOdMZCxopXduqv0OQ13y/yA/zXTSikZZqVgybUxOEg6YQ==}
-
-  '@types/node@22.7.1':
-    resolution: {integrity: sha512-adOMRLVmleuWs/5V/w5/l7o0chDK/az+5ncCsIapTKogsu/3MVWvSgP58qVTXi5IwpfGt8pMobNq9rOWtJyu5Q==}
 
   '@types/node@22.7.3':
     resolution: {integrity: sha512-qXKfhXXqGTyBskvWEzJZPUxSslAiLaB6JGP1ic/XTH9ctGgzdgYguuLP1C601aRTSDNlLb0jbKqXjZ48GNraSA==}
@@ -2486,8 +2483,8 @@ packages:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
 
-  posthog-js@1.165.0:
-    resolution: {integrity: sha512-rUfRJobvOz3Q9Er+zwb32Eq2qs+ToBe/B4k4IoKzmyszI7240Rf4xVWRB0ky8LvmdZfCeYX5knS2Uv3pnn/d5A==}
+  posthog-js@1.165.1:
+    resolution: {integrity: sha512-ZCLQIyiYokDCyXTFanl9eUoqYF/By3ZdeeEum8oByfmq7X2THmnozZiZQMNwCMfyxTPJDJclPQVxEfg7Bb60ng==}
 
   preact@10.24.0:
     resolution: {integrity: sha512-aK8Cf+jkfyuZ0ZZRG9FbYqwmEiGQ4y/PUO4SuTWoyWL244nZZh7bd5h2APd4rSNDYTBNghg1L+5iJN3Skxtbsw==}
@@ -4194,10 +4191,6 @@ snapshots:
     dependencies:
       '@types/node': 22.7.3
 
-  '@types/node@22.7.1':
-    dependencies:
-      undici-types: 6.19.8
-
   '@types/node@22.7.3':
     dependencies:
       undici-types: 6.19.8
@@ -5466,7 +5459,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 22.7.1
+      '@types/node': 22.7.3
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -5802,7 +5795,7 @@ snapshots:
     dependencies:
       xtend: 4.0.2
 
-  posthog-js@1.165.0:
+  posthog-js@1.165.1:
     dependencies:
       fflate: 0.4.8
       preact: 10.24.0
