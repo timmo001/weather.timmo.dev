@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "lint": "next lint",
     "start": "next start"
   },
@@ -27,8 +27,8 @@
     "next": "^15.0.0",
     "next-themes": "^0.3.0",
     "posthog-js": "^1.174.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.0.0-rc-65a56d0e-20241020",
+    "react-dom": "^19.0.0-rc-65a56d0e-20241020",
     "react-hook-form": "^7.53.1",
     "recharts": "^2.13.0",
     "tailwind-merge": "^2.5.4",
@@ -38,8 +38,8 @@
   "devDependencies": {
     "@types/eslint": "^8.56.10",
     "@types/node": "^22.7.8",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.1",
+    "@types/react": "^npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "^npm:types-react-dom@19.0.0-rc.1",
     "@typescript-eslint/eslint-plugin": "^8.11.0",
     "@typescript-eslint/parser": "^8.11.0",
     "eslint": "^8.57.0",
@@ -53,5 +53,11 @@
   "ct3aMetadata": {
     "initVersion": "7.37.0"
   },
-  "packageManager": "pnpm@9.11.0"
+  "packageManager": "pnpm@9.11.0",
+  "pnpm": {
+    "overrides": {
+      "@types/react": "npm:types-react@19.0.0-rc.1",
+      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+    }
+  }
 }
