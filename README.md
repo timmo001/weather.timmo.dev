@@ -4,6 +4,8 @@ A web application that displays the current weather and forecast for a given loc
 
 Weather data is provided by the [Tomorrow.io](https://www.tomorrow.io/) API. Their weather data sources can be found [here](https://app.tomorrow.io/tomorrow-data-sources).
 
+You can visit the site [here](https://weather.timmo.dev)
+
 ## Features
 
 - Set your location using coordinates. You can use your browser's geolocation feature to get your current location.
