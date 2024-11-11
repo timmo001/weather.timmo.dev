@@ -14,7 +14,7 @@ importers:
     dependencies:
       '@hookform/resolvers':
         specifier: ^3.9.1
-        version: 3.9.1(react-hook-form@7.53.1(react@19.0.0-rc-65a56d0e-20241020))
+        version: 3.9.1(react-hook-form@7.53.2(react@19.0.0-rc-65a56d0e-20241020))
       '@kodingdotninja/use-tailwind-breakpoint':
         specifier: ^1.0.0
         version: 1.0.0(react@19.0.0-rc-65a56d0e-20241020)(tailwindcss@3.4.14)
@@ -70,8 +70,8 @@ importers:
         specifier: ^19.0.0-rc-65a56d0e-20241020
         version: 19.0.0-rc-65a56d0e-20241020(react@19.0.0-rc-65a56d0e-20241020)
       react-hook-form:
-        specifier: ^7.53.1
-        version: 7.53.1(react@19.0.0-rc-65a56d0e-20241020)
+        specifier: ^7.53.2
+        version: 7.53.2(react@19.0.0-rc-65a56d0e-20241020)
       recharts:
         specifier: ^2.13.0
         version: 2.13.0(react-dom@19.0.0-rc-65a56d0e-20241020(react@19.0.0-rc-65a56d0e-20241020))(react@19.0.0-rc-65a56d0e-20241020)
@@ -2733,8 +2733,8 @@ packages:
     peerDependencies:
       react: 19.0.0-rc-65a56d0e-20241020
 
-  react-hook-form@7.53.1:
-    resolution: {integrity: sha512-6aiQeBda4zjcuaugWvim9WsGqisoUk+etmFEsSUMm451/Ic8L/UAb7sRtMj3V+Hdzm6mMjU1VhiSzYUZeBm0Vg==}
+  react-hook-form@7.53.2:
+    resolution: {integrity: sha512-YVel6fW5sOeedd1524pltpHX+jgU2u3DSDtXEaBORNdqiNrsX/nUI/iGXONegttg0mJVnfrIkiV0cmTU6Oo2xw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -3439,9 +3439,9 @@ snapshots:
 
   '@floating-ui/utils@0.2.8': {}
 
-  '@hookform/resolvers@3.9.1(react-hook-form@7.53.1(react@19.0.0-rc-65a56d0e-20241020))':
+  '@hookform/resolvers@3.9.1(react-hook-form@7.53.2(react@19.0.0-rc-65a56d0e-20241020))':
     dependencies:
-      react-hook-form: 7.53.1(react@19.0.0-rc-65a56d0e-20241020)
+      react-hook-form: 7.53.2(react@19.0.0-rc-65a56d0e-20241020)
 
   '@humanwhocodes/config-array@0.13.0':
     dependencies:
@@ -6136,7 +6136,7 @@ snapshots:
       react: 19.0.0-rc-65a56d0e-20241020
       scheduler: 0.25.0-rc-65a56d0e-20241020
 
-  react-hook-form@7.53.1(react@19.0.0-rc-65a56d0e-20241020):
+  react-hook-form@7.53.2(react@19.0.0-rc-65a56d0e-20241020):
     dependencies:
       react: 19.0.0-rc-65a56d0e-20241020
 
