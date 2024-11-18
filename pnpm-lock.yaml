@@ -61,8 +61,8 @@ importers:
         specifier: ^0.4.3
         version: 0.4.3(react-dom@19.0.0-rc-65a56d0e-20241020(react@19.0.0-rc-65a56d0e-20241020))(react@19.0.0-rc-65a56d0e-20241020)
       posthog-js:
-        specifier: ^1.186.1
-        version: 1.186.1
+        specifier: ^1.186.3
+        version: 1.186.3
       react:
         specifier: ^19.0.0-rc-65a56d0e-20241020
         version: 19.0.0-rc-65a56d0e-20241020
@@ -2647,8 +2647,8 @@ packages:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
 
-  posthog-js@1.186.1:
-    resolution: {integrity: sha512-m6TNW01nfqErwMxaZxNScYdMaUJO0s3bbmt/tboL29yZDnuHdOiYFbG+T4MCxdFxjWRa5gOR25bQD/SSt1t/4A==}
+  posthog-js@1.186.3:
+    resolution: {integrity: sha512-imtKUMccPgqw5H5Eo1hf23ezzSO/1rhYycglgfh7jVx7dslsj9QxMgBscH80I96rwTgtZOSQcX+ka4bVPHFBYA==}
 
   preact@10.24.0:
     resolution: {integrity: sha512-aK8Cf+jkfyuZ0ZZRG9FbYqwmEiGQ4y/PUO4SuTWoyWL244nZZh7bd5h2APd4rSNDYTBNghg1L+5iJN3Skxtbsw==}
@@ -6128,7 +6128,7 @@ snapshots:
     dependencies:
       xtend: 4.0.2
 
-  posthog-js@1.186.1:
+  posthog-js@1.186.3:
     dependencies:
       core-js: 3.38.1
       fflate: 0.4.8
