@@ -1,0 +1,39 @@
+---
+name: Deploy
+
+# yamllint disable-line rule:truthy
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        description: "Environment to deploy to"
+        required: true
+        default: "development"
+        options:
+          - production
+          - development
+
+concurrency:
+  group: deploy-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-sst:
+    name: 🚀 Deploy with SST
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⤵️ Check out code from GitHub
+        uses: actions/checkout@v4.2.2
+        with:
+          ref: ${{ github.head_ref }}
+      - name: 🏗️ Setup PNPM
+        uses: ./.github/actions/setup-app
+        with:
+          cache-build: true
+      - name: 🚀 Deploy with SST
+        run: pnpm dlx sst deploy --stage ${{ inputs.environment }}
+        env:
+          CI: true
+          NODE_ENV: ${{ inputs.environment }}
+          TURBO: 1 # Use turbopack for faster builds
