@@ -14,10 +14,6 @@ on:
           - production
           - development
 
-concurrency:
-  group: deploy-${{ github.head_ref || github.ref }}
-  cancel-in-progress: true
-
 jobs:
   deploy-sst:
     name: 🚀 Deploy to ${{ inputs.environment }} with SST
