@@ -5,8 +5,12 @@
   "type": "module",
   "scripts": {
     "build": "next build",
-    "dev": "next dev --turbo",
+    "check-format": "pnpm prettier --check",
+    "dev": "cross-env NODE_OPTIONS='--inspect' next dev --turbo",
+    "fix-lint": "pnpm lint --fix",
+    "format": "pnpm prettier --write",
     "lint": "next lint",
+    "prettier": "prettier src/**/*.{js,jsx,ts,tsx,json,yaml,yml}",
     "start": "next start"
   },
   "dependencies": {
