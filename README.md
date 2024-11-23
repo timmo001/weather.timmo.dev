@@ -19,19 +19,19 @@ You can visit the site [here](https://weather.timmo.dev)
 
 ### Current Weather
 
-[![Current Weather (Dark Theme)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/master/resources/home-dark.png)](https://weather.timmo.dev)
+[![Current Weather (Dark Theme)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/main/resources/home-dark.png)](https://weather.timmo.dev)
 
 ### Hourly
 
-[![Hourly (Dark)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/master/resources/hourly-dark.png)](https://weather.timmo.dev/hourly)
+[![Hourly (Dark)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/main/resources/hourly-dark.png)](https://weather.timmo.dev/hourly)
 
 ### Daily
 
-[![Daily (Dark)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/master/resources/daily-dark.png)](https://weather.timmo.dev/daily)
+[![Daily (Dark)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/main/resources/daily-dark.png)](https://weather.timmo.dev/daily)
 
 ### Light Theme
 
-[![Current Weather (Light)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/master/resources/home-light.png)](https://weather.timmo.dev)
+[![Current Weather (Light)](https://raw.githubusercontent.com/timmo001/weather.timmo.dev/main/resources/home-light.png)](https://weather.timmo.dev)
 
 ## Why Tomorrow.io?
 
