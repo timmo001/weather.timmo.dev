@@ -8,6 +8,10 @@ on:
       - main
   workflow_dispatch:
 
+concurrency:
+  group: deploy-production-${{ github.head_ref || github.ref }}
+  cancel-in-progress: false
+
 jobs:
   deploy-sst:
     name: 🚀 Deploy to production with SST

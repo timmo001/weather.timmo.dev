@@ -8,6 +8,10 @@ on:
       - dev
   workflow_dispatch:
 
+concurrency:
+  group: deploy-development-${{ github.head_ref || github.ref }}
+  cancel-in-progress: false
+
 jobs:
   deploy-sst:
     name: 🚀 Deploy to development with SST
