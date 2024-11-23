@@ -30,7 +30,7 @@ jobs:
           cache-opennext: true
       - name: 🪂 Remove deployment with SST to ${{ inputs.environment }}
         run: |
-          pnpm dlx sst remove --stage ${{ inputs.environment }}
+          pnpm dlx sst remove --stage ${{ inputs.environment }} --print-logs
         env:
           # General build settings
           CI: true
