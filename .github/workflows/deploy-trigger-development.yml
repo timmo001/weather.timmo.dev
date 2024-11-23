@@ -18,5 +18,4 @@ jobs:
           workflow: deploy.yml
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ github.ref }}
-          inputs: |
-            environment=development
+          inputs: '{ "environment": "development" }'
