@@ -34,6 +34,21 @@ jobs:
       - name: 🚀 Deploy with SST
         run: pnpm dlx sst deploy --stage ${{ inputs.environment }}
         env:
+          # General build settings
           CI: true
           NODE_ENV: ${{ inputs.environment }}
           TURBO: 1 # Use turbopack for faster builds
+          # AWS
+          AWS_REGION: "eu-west-2"
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          # Cloudflare
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_DEFAULT_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_DEFAULT_ACCOUNT_ID }}
+          # Tomorrow.io
+          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+          # Sentry
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          # Posthog
+          NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.NEXT_PUBLIC_POSTHOG_KEY }}
+          NEXT_PUBLIC_POSTHOG_HOST: ${{ secrets.NEXT_PUBLIC_POSTHOG_HOST }}
