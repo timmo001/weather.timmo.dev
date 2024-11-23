@@ -8,7 +8,7 @@ export default $config({
       home: "aws",
       providers: {
         aws: {
-          region: "eu-west-2",
+          region: process.env.AWS_REGION!,
         },
         cloudflare: {},
       },
@@ -25,6 +25,22 @@ export default $config({
         name: domain,
         dns: sst.cloudflare.dns(),
       },
+      environment: {
+        // AWS
+        AWS_REGION: process.env.AWS_REGION!,
+        AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID!,
+        AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY!,
+        // Cloudflare
+        CLOUDFLARE_API_TOKEN: process.env.CLOUDFLARE_API_TOKEN!,
+        CLOUDFLARE_DEFAULT_ACCOUNT_ID: process.env.CLOUDFLARE_DEFAULT_ACCOUNT_ID!,
+        // Tomorrow.io
+        WEATHER_API_KEY: process.env.WEATHER_API_KEY!,
+        // Sentry
+        SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN!,
+        // Posthog
+        NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY!,
+        NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST!,
+
     });
   },
 });
