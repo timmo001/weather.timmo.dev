@@ -33,7 +33,8 @@ jobs:
           cache-build: true
           cache-opennext: true
       - name: 🚀 Deploy with SST
-        run: pnpm dlx sst deploy --stage ${{ inputs.environment }} --print-logs
+        run: |
+          pnpm dlx sst deploy --stage ${{ inputs.environment }}
         env:
           # General build settings
           CI: true
