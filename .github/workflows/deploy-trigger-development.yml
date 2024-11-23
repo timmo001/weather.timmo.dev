@@ -15,7 +15,7 @@ jobs:
       - name: 👟 Trigger development deploy workflow
         uses: benc-uk/workflow-dispatch@v1.2.4
         with:
-          workflow: Deploy
+          workflow: deploy.yml
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ github.ref }}
           inputs: |
