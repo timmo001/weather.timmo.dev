@@ -32,7 +32,7 @@ jobs:
         with:
           cache-build: true
       - name: 🚀 Deploy with SST
-        run: pnpm dlx sst deploy --stage ${{ inputs.environment }}
+        run: pnpm dlx sst deploy --stage ${{ inputs.environment }} --print-logs
         env:
           # General build settings
           CI: true
