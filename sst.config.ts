@@ -3,7 +3,7 @@
 export default $config({
   app(input) {
     return {
-      name: "forecast-timmo-dev",
+      name: "weather-timmo-dev",
       removal: input?.stage === "production" ? "retain" : "remove",
       home: "aws",
       providers: {
@@ -20,7 +20,7 @@ export default $config({
         ? "forecast.timmo.dev"
         : `${$app.stage}.forecast.timmo.dev`;
 
-    new sst.aws.Nextjs("WeatherTimmoDevApp", {
+    new sst.aws.Nextjs("WeatherApp", {
       domain: {
         name: domain,
         dns: sst.cloudflare.dns(),
