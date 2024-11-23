@@ -26,10 +26,6 @@ export default $config({
         dns: sst.cloudflare.dns(),
       },
       environment: {
-        // Cloudflare
-        CLOUDFLARE_API_TOKEN: process.env.CLOUDFLARE_API_TOKEN!,
-        CLOUDFLARE_DEFAULT_ACCOUNT_ID:
-          process.env.CLOUDFLARE_DEFAULT_ACCOUNT_ID!,
         // Tomorrow.io
         WEATHER_API_KEY: process.env.WEATHER_API_KEY!,
         // Sentry
