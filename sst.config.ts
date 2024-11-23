@@ -14,28 +14,6 @@ export default $config({
       },
     };
   },
-  console: {
-    autodeploy: {
-      target(event) {
-        if (event.type === "branch" && event.action === "pushed") {
-          switch (event.branch) {
-            case "main":
-              return {
-                stage: "production",
-                runner: { engine: "codebuild", compute: "large" },
-              };
-            case "dev":
-              return {
-                stage: "development",
-                runner: { engine: "codebuild", compute: "large" },
-              };
-            default:
-              throw new Error(`Unsupported branch: ${event.branch}`);
-          }
-        }
-      },
-    },
-  },
   async run() {
     const domain =
       $app.stage === "production"
