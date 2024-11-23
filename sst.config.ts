@@ -26,10 +26,6 @@ export default $config({
         dns: sst.cloudflare.dns(),
       },
       environment: {
-        // AWS
-        AWS_REGION: process.env.AWS_REGION!,
-        AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID!,
-        AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY!,
         // Cloudflare
         CLOUDFLARE_API_TOKEN: process.env.CLOUDFLARE_API_TOKEN!,
         CLOUDFLARE_DEFAULT_ACCOUNT_ID:
