@@ -1,5 +1,5 @@
 ---
-name: Deploy
+name: Deployment
 
 # yamllint disable-line rule:truthy
 on:
