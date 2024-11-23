@@ -36,7 +36,7 @@ jobs:
         env:
           # General build settings
           CI: true
-          NODE_ENV: ${{ inputs.environment }}
+          NODE_ENV: production
           TURBO: 1 # Use turbopack for faster builds
           # AWS
           AWS_REGION: "eu-west-2"
