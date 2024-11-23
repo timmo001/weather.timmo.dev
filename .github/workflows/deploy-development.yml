@@ -1,22 +1,16 @@
 ---
-name: Deployment
+name: Deploy to Development
 
 # yamllint disable-line rule:truthy
 on:
+  push:
+    branches:
+      - dev
   workflow_dispatch:
-    inputs:
-      environment:
-        type: choice
-        description: "Environment to deploy to"
-        required: true
-        default: "development"
-        options:
-          - production
-          - development
 
 jobs:
   deploy-sst:
-    name: 🚀 Deploy to ${{ inputs.environment }} with SST
+    name: 🚀 Deploy to development with SST
     runs-on: ubuntu-latest
     steps:
       - name: ⤵️ Check out code from GitHub
@@ -28,9 +22,9 @@ jobs:
         with:
           cache-build: true
           cache-opennext: true
-      - name: 🚀 Deploy to ${{ inputs.environment }} with SST
+      - name: 🚀 Deploy to development with SST
         run: |
-          pnpm dlx sst deploy --stage ${{ inputs.environment }}
+          pnpm dlx sst deploy --stage development
         env:
           # General build settings
           CI: true
