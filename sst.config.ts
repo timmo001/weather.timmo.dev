@@ -32,7 +32,8 @@ export default $config({
         AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY!,
         // Cloudflare
         CLOUDFLARE_API_TOKEN: process.env.CLOUDFLARE_API_TOKEN!,
-        CLOUDFLARE_DEFAULT_ACCOUNT_ID: process.env.CLOUDFLARE_DEFAULT_ACCOUNT_ID!,
+        CLOUDFLARE_DEFAULT_ACCOUNT_ID:
+          process.env.CLOUDFLARE_DEFAULT_ACCOUNT_ID!,
         // Tomorrow.io
         WEATHER_API_KEY: process.env.WEATHER_API_KEY!,
         // Sentry
@@ -40,7 +41,7 @@ export default $config({
         // Posthog
         NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY!,
         NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST!,
-
+      },
     });
   },
 });
