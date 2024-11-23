@@ -7,6 +7,10 @@ inputs:
     description: "Cache build output"
     required: true
     default: "false"
+  cache-opennext:
+    description: "Cache OpenNext build output"
+    required: true
+    default: "false"
 
 runs:
   using: composite
@@ -32,6 +36,7 @@ runs:
           **/node_modules
           ~/.pnpm-store
           ${{ inputs.cache-build == 'true' && format('{0}/.next/cache', github.workspace) || '' }}
+          ${{ inputs.cache-opennext == 'true' && format('{0}/.open-next/cache', github.workspace) || '' }}
         key: ${{ runner.os }}-deps-${{ hashFiles('**/pnpm-lock.yaml') }}${{ inputs.cache-build == 'true' && format('-{0}', hashFiles('**/*.{js,jsx,ts,tsx}')) || '' }}
         restore-keys: |
           ${{ runner.os }}-deps-${{ hashFiles('**/pnpm-lock.yaml') }}-

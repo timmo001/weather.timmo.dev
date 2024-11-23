@@ -31,6 +31,7 @@ jobs:
         uses: ./.github/actions/setup-app
         with:
           cache-build: true
+          cache-opennext: true
       - name: 🚀 Deploy with SST
         run: pnpm dlx sst deploy --stage ${{ inputs.environment }} --print-logs
         env:
