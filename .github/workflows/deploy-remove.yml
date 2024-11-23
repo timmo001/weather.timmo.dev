@@ -16,7 +16,7 @@ on:
 
 jobs:
   deploy-sst:
-    name: 🪂 Remove deployment with SST to ${{ inputs.environment }}
+    name: 🪂 Remove from ${{ inputs.environment }} with SST
     runs-on: ubuntu-latest
     steps:
       - name: ⤵️ Check out code from GitHub
@@ -28,7 +28,7 @@ jobs:
         with:
           cache-build: true
           cache-opennext: true
-      - name: 🪂 Remove deployment with SST to ${{ inputs.environment }}
+      - name: 🪂 Remove from ${{ inputs.environment }} with SST
         run: |
           pnpm dlx sst remove --stage ${{ inputs.environment }} --print-logs
         env:

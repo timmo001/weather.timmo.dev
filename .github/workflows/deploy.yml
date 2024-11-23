@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   deploy-sst:
-    name: 🚀 Deploy with SST to ${{ inputs.environment }}
+    name: 🚀 Deploy to ${{ inputs.environment }} with SST
     runs-on: ubuntu-latest
     steps:
       - name: ⤵️ Check out code from GitHub
@@ -32,7 +32,7 @@ jobs:
         with:
           cache-build: true
           cache-opennext: true
-      - name: 🚀 Deploy with SST to ${{ inputs.environment }}
+      - name: 🚀 Deploy to ${{ inputs.environment }} with SST
         run: |
           pnpm dlx sst deploy --stage ${{ inputs.environment }} --print-logs
         env:
