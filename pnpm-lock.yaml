@@ -61,8 +61,8 @@ importers:
         specifier: ^0.4.3
         version: 0.4.3(react-dom@19.0.0-rc-65a56d0e-20241020(react@19.0.0-rc-65a56d0e-20241020))(react@19.0.0-rc-65a56d0e-20241020)
       posthog-js:
-        specifier: ^1.193.0
-        version: 1.193.0
+        specifier: ^1.194.0
+        version: 1.194.0
       react:
         specifier: ^19.0.0-rc-65a56d0e-20241020
         version: 19.0.0-rc-65a56d0e-20241020
@@ -1211,9 +1211,6 @@ packages:
 
   '@types/mysql@2.15.26':
     resolution: {integrity: sha512-DSLCOXhkvfS5WNNPbfn2KdICAmk8lLc+/PNvnPnF7gOdMZCxopXduqv0OQ13y/yA/zXTSikZZqVgybUxOEg6YQ==}
-
-  '@types/node@22.10.0':
-    resolution: {integrity: sha512-XC70cRZVElFHfIUB40FgZOBbgJYFKKMa5nb9lxcwYstFG/Mi+/Y0bGS+rs6Dmhmkpq4pnNiLiuZAbc02YCOnmA==}
 
   '@types/node@22.10.1':
     resolution: {integrity: sha512-qKgsUwfHZV2WCWLAnVP1JqnpE6Im6h3Y0+fYgMTasNQ7V++CBX5OT1as0g0f+OyubbFqhf6XVNIsmN4IIhEgGQ==}
@@ -2688,8 +2685,8 @@ packages:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
 
-  posthog-js@1.193.0:
-    resolution: {integrity: sha512-OxY1QsdqgT8a7UXGT3Mr5z+Uqz/fKGdq7S1va+nXVZ508PYThLny5Of6M9f/GIAYuzp6J3rZHZJ6bw9oy4j49g==}
+  posthog-js@1.194.0:
+    resolution: {integrity: sha512-9yjYjHYlT6hh6/OlEJmz/wEjMZI1cRghxmYirwq60uHK93nbbxFP1VE7LqjWFLM8jSTXRw//lpU23EvU7QjvxQ==}
 
   preact@10.24.0:
     resolution: {integrity: sha512-aK8Cf+jkfyuZ0ZZRG9FbYqwmEiGQ4y/PUO4SuTWoyWL244nZZh7bd5h2APd4rSNDYTBNghg1L+5iJN3Skxtbsw==}
@@ -4556,10 +4553,6 @@ snapshots:
     dependencies:
       '@types/node': 22.10.1
 
-  '@types/node@22.10.0':
-    dependencies:
-      undici-types: 6.20.0
-
   '@types/node@22.10.1':
     dependencies:
       undici-types: 6.20.0
@@ -5871,7 +5864,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 22.10.0
+      '@types/node': 22.10.1
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -6228,7 +6221,7 @@ snapshots:
     dependencies:
       xtend: 4.0.2
 
-  posthog-js@1.193.0:
+  posthog-js@1.194.0:
     dependencies:
       core-js: 3.38.1
       fflate: 0.4.8
