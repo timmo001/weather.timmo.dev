@@ -35,7 +35,7 @@
     "react-dom": "^19.0.0-rc-65a56d0e-20241020",
     "react-hook-form": "^7.54.1",
     "recharts": "^2.15.0",
-    "sst": "3.4.25",
+    "sst": "3.4.27",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.24.1"
