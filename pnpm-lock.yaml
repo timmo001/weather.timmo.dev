@@ -76,8 +76,8 @@ importers:
         specifier: ^2.15.0
         version: 2.15.0(react-dom@19.0.0-rc-65a56d0e-20241020(react@19.0.0-rc-65a56d0e-20241020))(react@19.0.0-rc-65a56d0e-20241020)
       sst:
-        specifier: 3.5.13
-        version: 3.5.13
+        specifier: 3.5.17
+        version: 3.5.17
       tailwind-merge:
         specifier: ^2.6.0
         version: 2.6.0
@@ -1529,6 +1529,9 @@ packages:
   caniuse-lite@1.0.30001692:
     resolution: {integrity: sha512-A95VKan0kdtrsnMubMKxEKUKImOPSuCpYgxSQBo036P5YYgVIcOYJEgt/txJWqObiRQeISNCfef9nvlQ0vbV7A==}
 
+  caniuse-lite@1.0.30001695:
+    resolution: {integrity: sha512-vHyLade6wTgI2u1ec3WQBxv+2BrTERV28UXQu9LO6lZ9pYeMk34vjXFLOxo1A4UBA8XTL4njRQZdno/yYaSmWw==}
+
   chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
     engines: {node: '>=4'}
@@ -1753,8 +1756,8 @@ packages:
   electron-to-chromium@1.5.63:
     resolution: {integrity: sha512-ddeXKuY9BHo/mw145axlyWjlJ1UBt4WK3AlvkT7W2AbqfRQoacVoRUCF6wL3uIx/8wT9oLKXzI+rFqHHscByaA==}
 
-  electron-to-chromium@1.5.83:
-    resolution: {integrity: sha512-LcUDPqSt+V0QmI47XLzZrz5OqILSMGsPFkDYus22rIbgorSvBYEFqq854ltTmUdHkY92FSdAAvsh4jWEULMdfQ==}
+  electron-to-chromium@1.5.84:
+    resolution: {integrity: sha512-I+DQ8xgafao9Ha6y0qjHHvpZ9OfyA1qKlkHkjywxzniORU2awxyz7f/iVJcULmrF2yrM3nHQf+iDjJtbbexd/g==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -3044,33 +3047,33 @@ packages:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
 
-  sst-darwin-arm64@3.5.13:
-    resolution: {integrity: sha512-wVv4MCi8Og8J4nCKG2f3YmW8F2kuE6l5mbhj3h4A9+S4HHiTzTVMpEr8n1zru7ayz06W96tXbtpRmcZtkrNoxA==}
+  sst-darwin-arm64@3.5.17:
+    resolution: {integrity: sha512-msPpGVKt7qo5ySi6KPjDkXSid8cQOJXOJJEEI8e+J2Bpw8MNjYfOyDs6sh03nzJMJuXyOjZIFlEG2uNLNUE9Zw==}
     cpu: [arm64]
     os: [darwin]
 
-  sst-darwin-x64@3.5.13:
-    resolution: {integrity: sha512-IrwBMUBo69dp3EIMNYsS/kPYSYT6dZ57OBAp2WnedydEnFOjCglkRCofcveaulFk+g5Wst+mRgWKHd7W8Mfieg==}
+  sst-darwin-x64@3.5.17:
+    resolution: {integrity: sha512-hgKtykFIpS7wKmWndNt2TbOL1fd9Az5/UGwVQ4XZMlCHiwRfDdBypBb4c8H2cSS1iFCnU9qbmrYkhV7S+QCw7Q==}
     cpu: [x64]
     os: [darwin]
 
-  sst-linux-arm64@3.5.13:
-    resolution: {integrity: sha512-++SDw86qx23c1OLaX7L430OFjPk++WJrc4SLGyA5sCDB5hZs039w4g55GCxqQyBcDtXN3qomJSKiz4tHKTZnhw==}
+  sst-linux-arm64@3.5.17:
+    resolution: {integrity: sha512-Ag/uoa0Jo36o+ewCWG4Y1IgBlWu+E3w9RCJNQU2lhpZdsvWGNHrlHO8y7fVDmGLAsypFJtYBRFnGwNwjll4WYg==}
     cpu: [arm64]
     os: [linux]
 
-  sst-linux-x64@3.5.13:
-    resolution: {integrity: sha512-+xehn+dSPxuzVGkT0WSLEeqw0PN+DrTXNp4GYReJTH/JQSvX00rRKG2+BW9uBOYwDFpe4t/ClkpG1Vi0Nng2VA==}
+  sst-linux-x64@3.5.17:
+    resolution: {integrity: sha512-er5yT4rK5X/wRe0vafejrM8jF/Ept1hxI1YtdtQHuWEKN1ot6LbfLrWDlas3u9gE57AW3gOxXgWnhPWqaABmQA==}
     cpu: [x64]
     os: [linux]
 
-  sst-linux-x86@3.5.13:
-    resolution: {integrity: sha512-yTG0aZLUTq7B8SbOZe8ZEWX8hWJFfzB115UpnABBmDVinzx1Cw0IBKBul8UvqaWpkMGyiPFw3Jmdy0jrnjexfw==}
+  sst-linux-x86@3.5.17:
+    resolution: {integrity: sha512-uteTD/jwnMl/uaVlc2TKkJGlf7SiV2r1gI8OqaLUjgFZTVzku0BGRkffidGf32JdYPZa40m7B8XfUNTYu5VLRw==}
     cpu: [x86]
     os: [linux]
 
-  sst@3.5.13:
-    resolution: {integrity: sha512-/8MdMw3FStjGNsHsrSwCbKuxJ3M+yAOKlLLBtFaNF2hD0Idn1fZxMUbOug8uiNPsXI0hjhxyt/ahtwtYeMgzsg==}
+  sst@3.5.17:
+    resolution: {integrity: sha512-bMFTK+DNblsYWSW+mRG6wuGJjoSglTCUVhKP7XOtLFve4HqmEoFhrBtEViCQNwspCL8zUwLxb3VEb/FSuFqjkQ==}
     hasBin: true
 
   stable-hash@0.0.4:
@@ -4984,8 +4987,8 @@ snapshots:
 
   browserslist@4.24.4:
     dependencies:
-      caniuse-lite: 1.0.30001692
-      electron-to-chromium: 1.5.83
+      caniuse-lite: 1.0.30001695
+      electron-to-chromium: 1.5.84
       node-releases: 2.0.19
       update-browserslist-db: 1.1.2(browserslist@4.24.4)
 
@@ -5017,6 +5020,8 @@ snapshots:
   camelcase-css@2.0.1: {}
 
   caniuse-lite@1.0.30001692: {}
+
+  caniuse-lite@1.0.30001695: {}
 
   chalk@2.4.2:
     dependencies:
@@ -5226,7 +5231,7 @@ snapshots:
 
   electron-to-chromium@1.5.63: {}
 
-  electron-to-chromium@1.5.83: {}
+  electron-to-chromium@1.5.84: {}
 
   emoji-regex@8.0.0: {}
 
@@ -6648,32 +6653,32 @@ snapshots:
 
   source-map@0.6.1: {}
 
-  sst-darwin-arm64@3.5.13:
+  sst-darwin-arm64@3.5.17:
     optional: true
 
-  sst-darwin-x64@3.5.13:
+  sst-darwin-x64@3.5.17:
     optional: true
 
-  sst-linux-arm64@3.5.13:
+  sst-linux-arm64@3.5.17:
     optional: true
 
-  sst-linux-x64@3.5.13:
+  sst-linux-x64@3.5.17:
     optional: true
 
-  sst-linux-x86@3.5.13:
+  sst-linux-x86@3.5.17:
     optional: true
 
-  sst@3.5.13:
+  sst@3.5.17:
     dependencies:
       aws4fetch: 1.0.20
       jose: 5.2.3
       openid-client: 5.6.4
     optionalDependencies:
-      sst-darwin-arm64: 3.5.13
-      sst-darwin-x64: 3.5.13
-      sst-linux-arm64: 3.5.13
-      sst-linux-x64: 3.5.13
-      sst-linux-x86: 3.5.13
+      sst-darwin-arm64: 3.5.17
+      sst-darwin-x64: 3.5.17
+      sst-linux-arm64: 3.5.17
+      sst-linux-x64: 3.5.17
+      sst-linux-x86: 3.5.17
 
   stable-hash@0.0.4: {}
 
