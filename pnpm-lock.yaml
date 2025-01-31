@@ -76,8 +76,8 @@ importers:
         specifier: ^2.15.1
         version: 2.15.1(react-dom@19.0.0-rc-65a56d0e-20241020(react@19.0.0-rc-65a56d0e-20241020))(react@19.0.0-rc-65a56d0e-20241020)
       sst:
-        specifier: 3.6.37
-        version: 3.6.37
+        specifier: 3.6.42
+        version: 3.6.42
       tailwind-merge:
         specifier: ^3.0.1
         version: 3.0.1
@@ -1204,6 +1204,9 @@ packages:
 
   '@types/mysql@2.15.26':
     resolution: {integrity: sha512-DSLCOXhkvfS5WNNPbfn2KdICAmk8lLc+/PNvnPnF7gOdMZCxopXduqv0OQ13y/yA/zXTSikZZqVgybUxOEg6YQ==}
+
+  '@types/node@22.13.0':
+    resolution: {integrity: sha512-ClIbNe36lawluuvq3+YYhnIN2CELi+6q8NpnM7PYp4hBn/TatfboPgVSm2rwKRfnV2M+Ty9GWDFI64KEe+kysA==}
 
   '@types/node@22.13.0':
     resolution: {integrity: sha512-ClIbNe36lawluuvq3+YYhnIN2CELi+6q8NpnM7PYp4hBn/TatfboPgVSm2rwKRfnV2M+Ty9GWDFI64KEe+kysA==}
@@ -3026,33 +3029,33 @@ packages:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
 
-  sst-darwin-arm64@3.6.37:
-    resolution: {integrity: sha512-vT+B18kotBxFNxyStwupd6vN7y4HT11fQNQWg7wTSRCleAzJWpL3avjXx49Y4KQD2L2JpDmQjTD/OPnKSX16rQ==}
+  sst-darwin-arm64@3.6.42:
+    resolution: {integrity: sha512-UIdLpzrgaDO1vDpQLI5lUCspbg5J9mYWj5tXLpEDOOB5DDmKawF4eVvM1tnmYFdNd5ZGm/fYiAx3lGNCR2VdHQ==}
     cpu: [arm64]
     os: [darwin]
 
-  sst-darwin-x64@3.6.37:
-    resolution: {integrity: sha512-/tbNWOQOgX5HynseaNO6qXUnSe1OKFTd76NWZCUYYp3rBPGXv5A3LTuydt1O53/I4tGl99GMNnljJESilpPSfA==}
+  sst-darwin-x64@3.6.42:
+    resolution: {integrity: sha512-7bALjJj7r4kACIIXH1Isl45MY6meLZQwWqT1xW3H0s77fNoKTCmXZCuABXITHcI5yen8vjlY1NmIv/yROWAg1Q==}
     cpu: [x64]
     os: [darwin]
 
-  sst-linux-arm64@3.6.37:
-    resolution: {integrity: sha512-CwrXakR4yUsK1yls3cAPa7ffIFTQIEpW+nL6LbkPl2BX84e9JrJp07BTMSVPWOwFUbiXQbRc/sOPpk2q05u1gg==}
+  sst-linux-arm64@3.6.42:
+    resolution: {integrity: sha512-lP1N0Ap4pirVdrvBomqXsqnxTFrnp0IRmkCSJ3g4H8Ow7TTIT7AxAHCTDg0QcjlbgRG+m0jgugvk6dwMMLiYkQ==}
     cpu: [arm64]
     os: [linux]
 
-  sst-linux-x64@3.6.37:
-    resolution: {integrity: sha512-/O7uAsHA3v9oy1UnUzl4Jhp7ufiVtsoTbE3jaEgumTCAAKLdVGZbnijLiQUfshPBs0IGe9AaOHsvR1pUSqntUQ==}
+  sst-linux-x64@3.6.42:
+    resolution: {integrity: sha512-4o+mc+6VP1Bp0GviqdHPFNPAYGUmMQKl6qXYqcCAESQggRs2U7o6F/GJCS2jYXR9DmA4HrfjOozBvLjoLykxBg==}
     cpu: [x64]
     os: [linux]
 
-  sst-linux-x86@3.6.37:
-    resolution: {integrity: sha512-Dl4hQbQNM8VNDZo+OOLBtKH8b9oaGj36EZccbnOgROOLClAVes4jf9JsMjSMh9VXDMC2qg9ZaqzblbLFIgW7yw==}
+  sst-linux-x86@3.6.42:
+    resolution: {integrity: sha512-fOMj5y9VANhuwylHbFPMpJoeGcFUb8ypKlJTPr++lbHaBFyzS+wHX/arIkkvQssgWhUL/2sU/NJdoEf+mNrcCw==}
     cpu: [x86]
     os: [linux]
 
-  sst@3.6.37:
-    resolution: {integrity: sha512-wthz+h4gHksR8Q1Peg9HoyXCCAQ1D/0Tq0Z8ELShprdUOLd9+oZQSdJKFc0E6pUvjYzwxxIsIh9mr87ZKmhUhg==}
+  sst@3.6.42:
+    resolution: {integrity: sha512-5xf3La2/myms/j7YaQo6wq3ivkoiokei3fS5QWjelWuo99PO5w/9JbShK1eh8ohBytnBHUB1/QneLqsafC5PlQ==}
     hasBin: true
 
   stable-hash@0.0.4:
@@ -4557,6 +4560,10 @@ snapshots:
   '@types/mysql@2.15.26':
     dependencies:
       '@types/node': 22.13.0
+
+  '@types/node@22.13.0':
+    dependencies:
+      undici-types: 6.20.0
 
   '@types/node@22.13.0':
     dependencies:
@@ -6579,32 +6586,32 @@ snapshots:
 
   source-map@0.6.1: {}
 
-  sst-darwin-arm64@3.6.37:
+  sst-darwin-arm64@3.6.42:
     optional: true
 
-  sst-darwin-x64@3.6.37:
+  sst-darwin-x64@3.6.42:
     optional: true
 
-  sst-linux-arm64@3.6.37:
+  sst-linux-arm64@3.6.42:
     optional: true
 
-  sst-linux-x64@3.6.37:
+  sst-linux-x64@3.6.42:
     optional: true
 
-  sst-linux-x86@3.6.37:
+  sst-linux-x86@3.6.42:
     optional: true
 
-  sst@3.6.37:
+  sst@3.6.42:
     dependencies:
       aws4fetch: 1.0.20
       jose: 5.2.3
       openid-client: 5.6.4
     optionalDependencies:
-      sst-darwin-arm64: 3.6.37
-      sst-darwin-x64: 3.6.37
-      sst-linux-arm64: 3.6.37
-      sst-linux-x64: 3.6.37
-      sst-linux-x86: 3.6.37
+      sst-darwin-arm64: 3.6.42
+      sst-darwin-x64: 3.6.42
+      sst-linux-arm64: 3.6.42
+      sst-linux-x64: 3.6.42
+      sst-linux-x86: 3.6.42
 
   stable-hash@0.0.4: {}
 
