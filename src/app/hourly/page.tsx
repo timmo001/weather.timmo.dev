@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function HourlyPage() {
   return (
     <>
-      <section className="container flex max-w-screen-2xl flex-col items-center gap-3 delay-300 duration-300 animate-in fade-in">
+      <section className="animate-in fade-in container flex max-w-(--breakpoint-2xl) flex-col items-center gap-3 delay-300 duration-300">
         <h2 className="text-2xl font-bold">Hourly</h2>
         <HourlyCharts />
       </section>

@@ -5,7 +5,7 @@ import { ForecastNow } from "~/app/_components/forecast-now";
 export default function HomePage() {
   return (
     <>
-      <section className="flex w-full flex-col items-center gap-3 delay-300 duration-300 animate-in fade-in">
+      <section className="animate-in fade-in flex w-full flex-col items-center gap-3 delay-300 duration-300">
         <h2 className="text-2xl font-bold">Now</h2>
         <ForecastNow />
         <h2 className="mt-3 text-2xl font-bold">Forecast</h2>

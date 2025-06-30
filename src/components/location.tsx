@@ -22,7 +22,7 @@ export function Location() {
 
   return (
     <>
-      <section className="flex w-full flex-col items-center gap-3 delay-300 duration-300 animate-in fade-in">
+      <section className="animate-in fade-in flex w-full flex-col items-center gap-3 delay-300 duration-300">
         <Dialog>
           <DialogTrigger asChild>
             <Button

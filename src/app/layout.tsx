@@ -48,13 +48,13 @@ export default function RootLayout({
           >
             {/* Wrap the app in the query provider */}
             <QueryProvider>
-              <div className="flex min-h-screen flex-col items-center bg-gradient-to-b from-sky-500 to-white transition-all dark:from-sky-950 dark:to-black">
+              <div className="flex min-h-screen flex-col items-center bg-linear-to-b from-sky-500 to-white transition-all dark:from-sky-950 dark:to-black">
                 <Header />
                 <main
-                  className="container flex flex-col items-center justify-center gap-8 px-4 pb-12 pt-4"
+                  className="container flex flex-col items-center justify-center gap-8 px-4 pt-4 pb-12"
                   role="main"
                 >
-                  <h1 className="flex select-none flex-row items-center gap-2 text-6xl font-extrabold tracking-tight delay-200 duration-300 animate-in fade-in sm:text-[5rem]">
+                  <h1 className="animate-in fade-in flex flex-row items-center gap-2 text-6xl font-extrabold tracking-tight delay-200 duration-300 select-none sm:text-[5rem]">
                     <CloudSun className="h-20 w-20" />
                     Weather
                   </h1>

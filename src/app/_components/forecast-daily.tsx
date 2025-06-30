@@ -46,7 +46,7 @@ export function ForecastDaily() {
             ": Too many requests to the API. Please try again later."}
         </span>
       ) : (
-        <div className="custom-scrollbar mt-1 flex max-w-96 flex-row flex-nowrap gap-5 overflow-y-auto md:max-w-screen-md lg:max-w-screen-lg">
+        <div className="custom-scrollbar mt-1 flex max-w-96 flex-row flex-nowrap gap-5 overflow-y-auto md:max-w-(--breakpoint-md) lg:max-w-(--breakpoint-lg)">
           {forecastDaily.data?.map((item) => {
             const dateTime = dayjs(item.time);
 
@@ -69,7 +69,7 @@ export function ForecastDaily() {
                       : false
                   }
                 />
-                <span className="whitespace-nowrap text-sm font-semibold">
+                <span className="text-sm font-semibold whitespace-nowrap">
                   {weatherCode[item.weatherCodeMax] ?? "Unknown"}
                 </span>
                 <div className="flex flex-row items-center gap-1">
