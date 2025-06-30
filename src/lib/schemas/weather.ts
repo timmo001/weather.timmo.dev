@@ -313,5 +313,5 @@ export type WeatherForecastDailyCharts = z.infer<
 //
 // Weather Code Map
 //
-export const WeatherCodeMapSchema = z.record(z.string());
+export const WeatherCodeMapSchema = z.record(z.number(), z.string());
 export type WeatherCodeMap = z.infer<typeof WeatherCodeMapSchema>;
