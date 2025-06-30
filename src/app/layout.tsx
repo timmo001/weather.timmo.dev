@@ -38,7 +38,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <CSPostHogProvider>
-        <body>
+        <body className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 dark:from-sky-900 dark:via-sky-950 dark:to-slate-900">
           {/* Initialise the theme, default theme is the system theme. Can be toggled via the header */}
           <ThemeProvider
             attribute="class"
@@ -48,18 +48,42 @@ export default function RootLayout({
           >
             {/* Wrap the app in the query provider */}
             <QueryProvider>
-              <div className="flex min-h-screen flex-col items-center bg-gradient-to-b from-sky-500 to-white transition-all dark:from-sky-950 dark:to-black">
-                <Header />
-                <main
-                  className="container flex flex-col items-center justify-center gap-8 px-4 pb-12 pt-4"
-                  role="main"
-                >
-                  <h1 className="flex select-none flex-row items-center gap-2 text-6xl font-extrabold tracking-tight delay-200 duration-300 animate-in fade-in sm:text-[5rem]">
-                    <CloudSun className="h-20 w-20" />
-                    Weather
-                  </h1>
-                  {children}
-                </main>
+              <div className="relative min-h-screen">
+                {/* Background overlay for better content readability */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/5 to-background/20 pointer-events-none" />
+                
+                <div className="relative z-10 flex min-h-screen flex-col">
+                  <Header />
+                  
+                  <main className="flex-1 flex flex-col items-center justify-start px-4 py-8">
+                    {/* Hero Section */}
+                    <div className="text-center mb-12 space-y-4">
+                      <div className="flex items-center justify-center gap-3 mb-4">
+                        <CloudSun className="h-16 w-16 text-foreground drop-shadow-sm" />
+                        <h1 className="text-5xl font-extrabold tracking-tight text-foreground drop-shadow-sm sm:text-6xl lg:text-7xl">
+                          Weather
+                        </h1>
+                      </div>
+                      <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                        Get accurate weather forecasts and real-time conditions for any location around the world.
+                      </p>
+                    </div>
+                    
+                    {/* Main Content */}
+                    <div className="w-full max-w-7xl">
+                      {children}
+                    </div>
+                  </main>
+                  
+                  {/* Footer */}
+                  <footer className="border-t border-border/40 bg-background/80 backdrop-blur-md">
+                    <div className="container py-6 px-4">
+                      <div className="text-center text-sm text-muted-foreground">
+                        <p>© 2024 Weather App. Built with Next.js and powered by Tomorrow.io</p>
+                      </div>
+                    </div>
+                  </footer>
+                </div>
               </div>
             </QueryProvider>
           </ThemeProvider>
