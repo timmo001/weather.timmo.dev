@@ -128,7 +128,7 @@ export function HourlyCharts() {
               tickFormatter={(value) => `${value} °C`}
             />
             <ChartLegend
-              content={(props) => <ChartLegendContent {...props} />}
+              content={ChartLegendContent as any}
               verticalAlign="top"
             />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
@@ -180,7 +180,7 @@ export function HourlyCharts() {
               tickFormatter={(value) => `${value} %`}
             />
             <ChartLegend
-              content={(props) => <ChartLegendContent {...props} />}
+              content={ChartLegendContent as any}
               verticalAlign="top"
             />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
@@ -226,7 +226,7 @@ export function HourlyCharts() {
               tickFormatter={(value) => `${value} m/s`}
             />
             <ChartLegend
-              content={(props) => <ChartLegendContent {...props} />}
+              content={ChartLegendContent as any}
               verticalAlign="top"
             />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
@@ -272,7 +272,7 @@ export function HourlyCharts() {
               tickFormatter={(value) => `${value} mm`}
             />
             <ChartLegend
-              content={(props) => <ChartLegendContent {...props} />}
+              content={ChartLegendContent as any}
               verticalAlign="top"
             />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
