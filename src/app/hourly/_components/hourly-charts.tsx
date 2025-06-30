@@ -127,7 +127,10 @@ export function HourlyCharts() {
               scale="auto"
               tickFormatter={(value) => `${value} °C`}
             />
-            <ChartLegend content={props => <ChartLegendContent {...props} />} verticalAlign="top" />
+            <ChartLegend
+              content={(props) => <ChartLegendContent {...props} />}
+              verticalAlign="top"
+            />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
             <Line
               dataKey="temperatureApparent"
@@ -176,7 +179,10 @@ export function HourlyCharts() {
               scale="auto"
               tickFormatter={(value) => `${value} %`}
             />
-            <ChartLegend content={props => <ChartLegendContent {...props} />} verticalAlign="top" />
+            <ChartLegend
+              content={(props) => <ChartLegendContent {...props} />}
+              verticalAlign="top"
+            />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
             <Line
               dataKey="humidity"
@@ -219,7 +225,10 @@ export function HourlyCharts() {
               scale="auto"
               tickFormatter={(value) => `${value} m/s`}
             />
-            <ChartLegend content={props => <ChartLegendContent {...props} />} verticalAlign="top" />
+            <ChartLegend
+              content={(props) => <ChartLegendContent {...props} />}
+              verticalAlign="top"
+            />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
             <Line
               dataKey="windSpeed"
@@ -262,7 +271,10 @@ export function HourlyCharts() {
               scale="auto"
               tickFormatter={(value) => `${value} mm`}
             />
-            <ChartLegend content={props => <ChartLegendContent {...props} />} verticalAlign="top" />
+            <ChartLegend
+              content={(props) => <ChartLegendContent {...props} />}
+              verticalAlign="top"
+            />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
             <Line
               dataKey="rainAccumulation"

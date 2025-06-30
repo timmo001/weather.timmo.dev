@@ -11,12 +11,13 @@ const config = {
   },
 };
 
-//
-// Injected content via Sentry wizard
-//
-export default withSentryConfig(config, {
+// Injected content via Sentry wizard below
+
+const { withSentryConfig } = require("@sentry/nextjs");
+
+module.exports = withSentryConfig(module.exports, {
   // For all available options, see:
-  // https://github.com/getsentry/sentry-webpack-plugin#options
+  // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 
   org: "timmo001",
   project: "weather-timmo-dev",
