@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { type ZodSchema } from "zod";
+import { type z } from "zod/v4";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -39,7 +39,7 @@ export function getWindDirectionCardinalFromDegrees(degrees: number): string {
 // Extracts the fields from a flat Zod schema
 //
 export function getZodSchemaFieldsShallow(
-  schema: ZodSchema,
+  schema: z.ZodSchema,
 ): Record<string, true> {
   const fields: Record<string, true> = {};
   const proxy = new Proxy(fields, {
