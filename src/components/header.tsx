@@ -12,7 +12,6 @@ import {
 import { ThemeToggle } from "~/components/theme-toggle";
 import { Location } from "~/components/location";
 import { navItems } from "~/components/nav-items";
-import { useBreakpoint } from "~/lib/hooks/tailwind";
 
 function NavItems({ endAt }: { endAt: number }) {
   return navItems.slice(0, endAt).map(({ label, href, icon }) => (
@@ -51,23 +50,19 @@ function Menu({ startAt }: { startAt: number }) {
 }
 
 export function Header() {
-  const isSmall = useBreakpoint("sm");
-
   return (
     <header className="flex w-full flex-nowrap items-start justify-between px-2 py-2">
-      <nav className="flex flex-1 flex-row flex-nowrap items-center gap-1">
-        {isSmall ? (
-          <>
-            <NavItems endAt={4} />
-            {/* Add if there are more than 4 items */}
-            {/* <Menu startAt={4} /> */}
-          </>
-        ) : (
-          <>
-            <NavItems endAt={2} />
-            <Menu startAt={2} />
-          </>
-        )}
+      {/* Small screen */}
+      <nav className="flex flex-row flex-nowrap items-center gap-1 md:hidden">
+        <NavItems endAt={4} />
+        {/* Add if there are more than 4 items */}
+        {/* <Menu startAt={4} /> */}
+      </nav>
+
+      {/* Larger screens */}
+      <nav className="hidden flex-1 flex-row flex-nowrap items-center gap-1 md:flex">
+        <NavItems endAt={2} />
+        <Menu startAt={2} />
       </nav>
 
       <div className="flex flex-row flex-nowrap items-center gap-1">
