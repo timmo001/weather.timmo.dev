@@ -186,7 +186,7 @@ export function DailyCharts() {
               scale="auto"
               tickFormatter={(value) => `${value} °C`}
             />
-            <ChartLegend content={<ChartLegendContent />} verticalAlign="top" />
+            <ChartLegend content={props => <ChartLegendContent {...props} />} verticalAlign="top" />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
             <Line
               dataKey="temperatureMin"
@@ -242,7 +242,7 @@ export function DailyCharts() {
               scale="auto"
               tickFormatter={(value) => `${value} %`}
             />
-            <ChartLegend content={<ChartLegendContent />} verticalAlign="top" />
+            <ChartLegend content={props => <ChartLegendContent {...props} />} verticalAlign="top" />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
             <Line
               dataKey="humidityMin"
@@ -298,7 +298,7 @@ export function DailyCharts() {
               scale="auto"
               tickFormatter={(value) => `${value} m/s`}
             />
-            <ChartLegend content={<ChartLegendContent />} verticalAlign="top" />
+            <ChartLegend content={props => <ChartLegendContent {...props} />} verticalAlign="top" />
             <ChartTooltip cursor content={<ChartTooltipContent />} />
             <Line
               dataKey="windSpeedMin"
@@ -355,7 +355,7 @@ export function DailyCharts() {
               tickFormatter={(value) => `${value} mm`}
             />
             <ChartLegend
-              content={<ChartLegendContent />}
+              content={props => <ChartLegendContent {...props} />}
               verticalAlign="top"
               align="right"
               direction="column"
