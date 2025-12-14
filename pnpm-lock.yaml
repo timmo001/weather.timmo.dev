@@ -13,7 +13,7 @@ importers:
         version: 5.1.1(react-hook-form@7.68.0(react@19.1.0))
       '@kodingdotninja/use-tailwind-breakpoint':
         specifier: ^1.0.0
-        version: 1.0.0(react@19.1.0)(tailwindcss@4.1.11)
+        version: 1.0.0(react@19.1.0)(tailwindcss@4.1.18)
       '@radix-ui/react-dialog':
         specifier: ^1.1.14
         version: 1.1.14(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -76,7 +76,7 @@ importers:
         version: 3.3.1
       tailwindcss-animate:
         specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@4.1.11)
+        version: 1.0.7(tailwindcss@4.1.18)
       typescript-eslint:
         specifier: ^8.49.0
         version: 8.49.0(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3)
@@ -127,8 +127,8 @@ importers:
         specifier: ^0.6.13
         version: 0.6.13(prettier@3.6.2)
       tailwindcss:
-        specifier: ^4.1.11
-        version: 4.1.11
+        specifier: ^4.1.18
+        version: 4.1.18
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3469,6 +3469,9 @@ packages:
   tailwindcss@4.1.11:
     resolution: {integrity: sha512-2E9TBm6MDD/xKYe+dvJZAmg3yxIEDNRc0jwlNyDg/4Fil2QcSLjFKGVff0lAf1jjeaArlG/M75Ey/EYr/OJtBA==}
 
+  tailwindcss@4.1.18:
+    resolution: {integrity: sha512-4+Z+0yiYyEtUVCScyfHCxOYP06L5Ne+JiHhY2IjR2KWMIWhJOYZKLSGZaP5HkZ8+bY0cxfzwDE5uOmzFXyIwxw==}
+
   tapable@2.2.2:
     resolution: {integrity: sha512-Re10+NauLTMCudc7T5WLFLAwDhQ0JWdrMK+9B2M8zR5hRExKmsRDCBA7/aV/pNJFltmBFO5BAMlQFi/vq3nKOg==}
     engines: {node: '>=6'}
@@ -4038,10 +4041,10 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@kodingdotninja/use-tailwind-breakpoint@1.0.0(react@19.1.0)(tailwindcss@4.1.11)':
+  '@kodingdotninja/use-tailwind-breakpoint@1.0.0(react@19.1.0)(tailwindcss@4.1.18)':
     optionalDependencies:
       react: 19.1.0
-      tailwindcss: 4.1.11
+      tailwindcss: 4.1.18
 
   '@napi-rs/wasm-runtime@0.2.12':
     dependencies:
@@ -7234,11 +7237,13 @@ snapshots:
 
   tailwind-merge@3.3.1: {}
 
-  tailwindcss-animate@1.0.7(tailwindcss@4.1.11):
+  tailwindcss-animate@1.0.7(tailwindcss@4.1.18):
     dependencies:
-      tailwindcss: 4.1.11
+      tailwindcss: 4.1.18
 
   tailwindcss@4.1.11: {}
+
+  tailwindcss@4.1.18: {}
 
   tapable@2.2.2: {}
 
