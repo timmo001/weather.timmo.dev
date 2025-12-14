@@ -12,7 +12,6 @@ export function Map() {
   return (
     <iframe
       allowFullScreen
-      allowTransparency
       src={`https://embed.windy.com/embed2.html?lat=${
         location.data?.latitude
       }&lon=${location.data?.longitude}&zoom=6&level=surface&overlay=rain&product=ecmwf&menu=&message=true&calendar=now&pressure=true&type=map&location=coordinates&metricWind=mph&metricTemp=%C2%B0C&radarRange=-1`}
