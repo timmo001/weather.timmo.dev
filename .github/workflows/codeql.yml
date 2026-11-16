@@ -26,4 +26,4 @@ permissions:
 
 jobs:
   codeql-analyze-javascript:
-    uses: timmo001/workflows/.github/workflows/codeql-javascript.yml@de4221cd9b24ad3d61aa1db87b6e4864cf56d5a1 # 20261027.0
+    uses: timmo001/workflows/.github/workflows/codeql-javascript.yml@9bb6ae3c2a1542cec4195b63f9516c83001e578e # 20261113.0
